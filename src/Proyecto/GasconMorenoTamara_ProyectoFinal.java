@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaz;
+package Proyecto;
+
+import Controlador.GestionUsuario_Controlador;
+import Modelo.GestionUsuarios;
+import Vista.Login_Vista;
 
 /**
  *
@@ -15,9 +19,11 @@ public class GasconMorenoTamara_ProyectoFinal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        LoginVista l=new LoginVista();
-        System.out.println(l);
+        Login_Vista v=new Login_Vista();
+        GestionUsuarios m=new GestionUsuarios();
+        GestionUsuario_Controlador c=new GestionUsuario_Controlador(v,m);
+        
+                
     }
     
 }
