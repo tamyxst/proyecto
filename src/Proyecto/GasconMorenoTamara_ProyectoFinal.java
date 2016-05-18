@@ -5,9 +5,9 @@
  */
 package Proyecto;
 
-import Controlador.GestionUsuario_Controlador;
-import Modelo.GestionUsuarios;
-import Vista.Login_Vista;
+import Controlador.UsuarioLogin_Controlador;
+import Modelo.Gestion;
+import Vista.UsuarioLogin_Vista;
 
 /**
  *
@@ -19,9 +19,9 @@ public class GasconMorenoTamara_ProyectoFinal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login_Vista v=new Login_Vista();
-        GestionUsuarios m=new GestionUsuarios();
-        GestionUsuario_Controlador c=new GestionUsuario_Controlador(v,m);
+        UsuarioLogin_Vista v=new UsuarioLogin_Vista();
+        Gestion m=new Gestion();
+        UsuarioLogin_Controlador c=new UsuarioLogin_Controlador(v,m);
         
                 
     }

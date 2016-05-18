@@ -7,8 +7,8 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,8 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import Modelo.Empleado;
-import Modelo.Conexion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,28 +48,39 @@ public class NuevoUsuario_Vista extends JFrame{
         pArribaNuevoUsuario.add(jPassUsuario);
         buttonGroup = new ButtonGroup();
         buttonGroup.add(tecnico);
-        tecnico.setActionCommand("Técnico");
+        tecnico.setActionCommand("tecnico");
         buttonGroup.add(comercial);
-        comercial.setActionCommand("Comercial");
+        comercial.setActionCommand("comercial");
+        tecnico.setSelected(true); //por defecto
         pArribaNuevoUsuario.add(tecnico);
         pArribaNuevoUsuario.add(comercial);
         pAbajoNuevoUsuario.add(anadirNuevo);
         
         
-        anadirNuevo.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Empleado e=new Empleado();
-                String choice = buttonGroup.getSelection().getActionCommand();
-                Empleado emp=new Empleado(jNombreUsuario.getText(),jPassUsuario.getText(),choice);
-                //Conexion.darAltaUsuario(jNombreUsuario.getText(),jPassUsuario.getText(),choice);
-            }
-            
-        });
         fNuevoUsuario.add(pArribaNuevoUsuario, BorderLayout.NORTH);
         fNuevoUsuario.add(pAbajoNuevoUsuario, BorderLayout.SOUTH);
         fNuevoUsuario.setVisible(true);
+    }
+    
+    public String getNombreNuevoUsuario(){
+        return jNombreUsuario.getText();
+    }
+    public String getPassNuevoUsuario(){
+        return jPassUsuario.getText();
+    }
+    public String getTipoNuevoUsuario(){
+        String choice = buttonGroup.getSelection().getActionCommand();
+        return choice;
+    }
+    public void addAnadirUsuario(ActionListener escucharBoton){
+        anadirNuevo.addActionListener(escucharBoton);
+    } 
+    
+    public void mostrarErrores(String mensajeError){
+        JOptionPane.showMessageDialog(this, mensajeError);    
+    }
+    public void cerrarVentana(){
+        fNuevoUsuario.dispose();
     }
         
 }

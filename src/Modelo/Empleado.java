@@ -12,12 +12,10 @@ package Modelo;
  */
 public class Empleado {
     String nombre;
-    String password;
     String tipo;
 
-    public Empleado(String nombre, String password, String tipo) {
+    public Empleado(String nombre, String tipo) {
         this.nombre = nombre;
-        this.password = password;
         this.tipo = tipo;
     }
     

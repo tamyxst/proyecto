@@ -5,8 +5,9 @@
  */
 package Controlador;
 
-import Modelo.GestionUsuarios;
-import Vista.Login_Vista;
+import Modelo.Empleado;
+import Modelo.Gestion;
+import Vista.UsuarioLogin_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,11 +15,11 @@ import java.awt.event.ActionListener;
  *
  * @author milla_000
  */
-public class GestionUsuario_Controlador {
-    private Login_Vista interfaceLogin;
-    private GestionUsuarios gesUsuarios;
+public class UsuarioLogin_Controlador {
+    private UsuarioLogin_Vista interfaceLogin;
+    private Gestion gesUsuarios;
     
-    public GestionUsuario_Controlador(Login_Vista interfaceLogin, GestionUsuarios gesUsuarios){
+    public UsuarioLogin_Controlador(UsuarioLogin_Vista interfaceLogin, Gestion gesUsuarios){
         this.interfaceLogin=interfaceLogin;
         this.gesUsuarios=gesUsuarios;
         this.interfaceLogin.addValidarUsuario(new ValidarListener());
@@ -32,9 +33,12 @@ public class GestionUsuario_Controlador {
             nombreUsuario = interfaceLogin.getNombre();
             pass = interfaceLogin.getPass();
             
-            System.out.println(nombreUsuario);
-            System.out.println(pass);
-            gesUsuarios.comprobarLogin(nombreUsuario, pass);
+            if(!gesUsuarios.comprobarLogin(nombreUsuario, pass)){
+                interfaceLogin.mostrarErrores("El usuario o la contraseña no son válidos");
+            }else{
+                gesUsuarios.comprobarTipo(nombreUsuario, pass);
+                
+            }
             
         }
         

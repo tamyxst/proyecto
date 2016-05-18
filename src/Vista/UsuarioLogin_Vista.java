@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.NuevoUsuario_Controlador;
+import Modelo.Gestion;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -20,7 +23,7 @@ import javax.swing.WindowConstants;
  *
  * @author milla_000
  */
-public class Login_Vista extends JFrame {
+public class UsuarioLogin_Vista extends JFrame {
 
     JFrame f = new JFrame();
     JPanel pArribaLogin = new JPanel();
@@ -32,7 +35,7 @@ public class Login_Vista extends JFrame {
     JTextField jUsuario = new JTextField(20);
     JTextField jpass = new JTextField(20);
 
-    public Login_Vista() {
+    public UsuarioLogin_Vista() {
         f.setSize(250, 130);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
@@ -45,6 +48,18 @@ public class Login_Vista extends JFrame {
         pArribaLogin.add(jpass);
         pAbajoLogin.setLayout(new GridLayout(1, 2));
 
+        anadirNuevoUsuario.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                NuevoUsuario_Vista nuevoUserVista=new NuevoUsuario_Vista();
+                Gestion nuevoUserGestion=new Gestion();
+                NuevoUsuario_Controlador nuevoUserControl=new NuevoUsuario_Controlador(nuevoUserVista,nuevoUserGestion);
+                System.out.println(nuevoUserControl);
+            }
+            
+        });
         pAbajoLogin.add(validar);
         pAbajoLogin.add(anadirNuevoUsuario);
         f.add(pArribaLogin, BorderLayout.NORTH);
@@ -61,4 +76,8 @@ public class Login_Vista extends JFrame {
     public void addValidarUsuario(ActionListener escucharBoton){
         validar.addActionListener(escucharBoton);
     }
+    public void mostrarErrores(String mensajeError){
+        JOptionPane.showMessageDialog(this, mensajeError);    
+    }
+    
 }
