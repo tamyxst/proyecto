@@ -16,13 +16,13 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class Gestion {
+public class MVC_Gestion_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
     String usuario = "user";
     String password = "1234";
-    
-    public Gestion(){
+    private int progress = 0;
+    public MVC_Gestion_Modelo(){
         
     }
     Conexion c=new Conexion(servidor, bd, usuario, password);
@@ -46,7 +46,7 @@ public class Gestion {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     return validar;
     }
@@ -65,10 +65,9 @@ public class Gestion {
             while(rs.next()){
                 tipo= rs.getString(4);
             }
-            System.out.println("yeha: " + tipo);
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     return tipo;
     }
@@ -86,9 +85,10 @@ public class Gestion {
             //Ejecutar el procedimiento almacenado.
             cs.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }
 
 

@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author milla_000
  */
-public class NuevoUsuario_Vista extends JFrame{
+public class MVC_NuevoUser_Vista extends JFrame{
     JFrame fNuevoUsuario=new JFrame();
     JPanel pArribaNuevoUsuario=new JPanel();
     JPanel pAbajoNuevoUsuario=new JPanel();
@@ -36,7 +36,7 @@ public class NuevoUsuario_Vista extends JFrame{
     JLabel lPassUsuario=new JLabel("Contraseña");
     JTextField jPassUsuario=new JTextField(20);
     
-    NuevoUsuario_Vista(){
+    MVC_NuevoUser_Vista(){
         fNuevoUsuario.setSize(200,200);
         fNuevoUsuario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fNuevoUsuario.setLocationRelativeTo(null);

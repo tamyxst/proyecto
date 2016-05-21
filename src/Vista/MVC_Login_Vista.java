@@ -5,8 +5,9 @@
  */
 package Vista;
 
-import Controlador.NuevoUsuario_Controlador;
-import Modelo.Gestion;
+import Controlador.MVC_NuevoUser_Controlador;
+import Modelo.MVC_Gestion_Modelo;
+import Proyecto.CreaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,8 +24,8 @@ import javax.swing.WindowConstants;
  *
  * @author milla_000
  */
-public class UsuarioLogin_Vista extends JFrame {
-
+public class MVC_Login_Vista extends JFrame {
+    MVC_NuevoUser_Controlador control;
     JFrame f = new JFrame();
     JPanel pArribaLogin = new JPanel();
     JPanel pAbajoLogin = new JPanel();
@@ -35,7 +36,7 @@ public class UsuarioLogin_Vista extends JFrame {
     JTextField jUsuario = new JTextField(20);
     JTextField jpass = new JTextField(20);
 
-    public UsuarioLogin_Vista() {
+    public MVC_Login_Vista() {
         f.setSize(250, 130);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
@@ -44,40 +45,56 @@ public class UsuarioLogin_Vista extends JFrame {
         pArribaLogin.add(lusuario);
         pArribaLogin.add(jUsuario);
         pArribaLogin.add(lpass);
-        
+
         pArribaLogin.add(jpass);
         pAbajoLogin.setLayout(new GridLayout(1, 2));
 
-        anadirNuevoUsuario.addActionListener(new ActionListener(){
+        anadirNuevoUsuario.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                NuevoUsuario_Vista nuevoUserVista=new NuevoUsuario_Vista();
-                Gestion nuevoUserGestion=new Gestion();
-                NuevoUsuario_Controlador nuevoUserControl=new NuevoUsuario_Controlador(nuevoUserVista,nuevoUserGestion);
+
+                MVC_NuevoUser_Vista nuevoUserVista = new MVC_NuevoUser_Vista();
+                MVC_Gestion_Modelo nuevoUserGestion = new MVC_Gestion_Modelo();
+                MVC_NuevoUser_Controlador nuevoUserControl = new MVC_NuevoUser_Controlador(nuevoUserVista, nuevoUserGestion);
                 System.out.println(nuevoUserControl);
             }
-            
+
         });
         pAbajoLogin.add(validar);
         pAbajoLogin.add(anadirNuevoUsuario);
         f.add(pArribaLogin, BorderLayout.NORTH);
         f.add(pAbajoLogin, BorderLayout.SOUTH);
         f.setVisible(true);
-        
+
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return jUsuario.getText();
     }
-    public String getPass(){
+
+    public String getPass() {
         return jpass.getText();
     }
-    public void addValidarUsuario(ActionListener escucharBoton){
+
+    public void addValidarUsuario(ActionListener escucharBoton) {
         validar.addActionListener(escucharBoton);
     }
-    public void mostrarErrores(String mensajeError){
-        JOptionPane.showMessageDialog(this, mensajeError);    
+
+    public void mostrarErrores(String mensajeError) {
+        JOptionPane.showMessageDialog(this, mensajeError);
+    }
+
+    public void cerrarVentana(){
+        f.dispose();
     }
     
+    public void abrirMenuTecnico(){
+        CreaUI.abrirMenuTecnico();
+    }
+    
+    public void abrirMenuComercial(){
+        CreaUI.abrirMenuComercial();
+    }
+
 }

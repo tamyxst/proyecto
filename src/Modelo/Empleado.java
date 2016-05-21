@@ -11,13 +11,44 @@ package Modelo;
  * @author milla_000
  */
 public class Empleado {
-    String nombre;
-    String tipo;
-
-    public Empleado(String nombre, String tipo) {
+    private String nombre;
+    private String tipo;
+    private boolean conectado;
+    
+    public Empleado(String nombre, String tipo, boolean conectado) {
         this.nombre = nombre;
         this.tipo = tipo;
+        this.conectado=conectado;
     }
     
+    public boolean estaConectado(){
+        return isConectado(); 
+    }
     
+    public String toString(){
+        return "Nombre: " + getNombre() + " Tipo: " + getTipo() + " Online: " + isConectado();
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @return the conectado
+     */
+    public boolean isConectado() {
+        return conectado;
+    }
+    
+
 }
