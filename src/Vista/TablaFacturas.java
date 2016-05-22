@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author milla_000
  */
-public class Tabla {
+public class TablaFacturas {
 
     MVC_Gestion_Modelo gesModelo = new MVC_Gestion_Modelo();
     private JPanel panel_1 = new JPanel();
@@ -27,7 +27,7 @@ public class Tabla {
     JTable tabla = new JTable(modelo);
     JScrollPane scrollPane = new JScrollPane(tabla);
 
-    public Tabla() {
+    public TablaFacturas() {
 
         //getContentPane().add(scrollPane, BorderLayout.CENTER);
 
@@ -39,11 +39,11 @@ public class Tabla {
          };*/
         //tabla = new JTable(modelo); //Metemos el modelo dentro de la tabla
         modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla (tantas como queramos)
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Dni");
         modelo.addColumn("Fecha");
         modelo.addColumn("Cod_rep");
         modelo.addColumn("Importe");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Dni");
 
         panel_1.setLayout(new BorderLayout());
         panel_1.add(scrollPane, BorderLayout.CENTER);
@@ -68,11 +68,11 @@ public class Tabla {
                 Object[] fila = new Object[6];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                 // de la consulta
                 fila[0] = rs.getString("num_factura"); //Lo que hay entre comillas son los campos de la base de datos
-                fila[1] = rs.getString("nombre");
-                fila[2] = rs.getString("dni");
-                fila[3] = rs.getDate("fecha_fact");
-                fila[4] = rs.getString("cod_rep");
-                fila[5] = rs.getFloat("importe");
+                fila[1] = rs.getDate("fecha_fact");
+                fila[2] = rs.getString("cod_rep");
+                fila[3] = rs.getFloat("importe");
+                fila[4] = rs.getString("nombre");
+                fila[5] = rs.getString("dni");
                 modelo.addRow(fila); // Añade una fila al final del modelo de la tabla
             }
 

@@ -5,11 +5,14 @@
  */
 package Proyecto;
 
+import Controlador.MVC_BuscarClientes_Controlador;
+import Modelo.MVC_BuscarClientes_Modelo;
 import Controlador.MVC_ComercialFacturas_Controlador;
 import Controlador.MVC_Login_Controlador;
 import Controlador.MVC_NuevoUser_Controlador;
 import Modelo.MVC_ComercialFacturas_Modelo;
 import Modelo.MVC_Gestion_Modelo;
+import Vista.MVC_BuscarClientes_Vista;
 import Vista.MVC_ComercialFacturas_Vista;
 import Vista.MVC_Comercial_Vista;
 import Vista.MVC_Login_Vista;
@@ -47,6 +50,12 @@ public class CreaUI {
     
     public static void abrirMenuArticulos(){
         
+    }
+    
+    public static void abrirMenuBuscarClientes(){
+        MVC_BuscarClientes_Vista vbClientes=new MVC_BuscarClientes_Vista();
+        MVC_BuscarClientes_Modelo mbClientes=new MVC_BuscarClientes_Modelo();
+        MVC_BuscarClientes_Controlador cbClientes=new MVC_BuscarClientes_Controlador(vbClientes,mbClientes);
     }
     
     
