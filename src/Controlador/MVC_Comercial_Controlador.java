@@ -21,10 +21,10 @@ public class MVC_Comercial_Controlador {
     MVC_Comercial_Controlador(MVC_Comercial_Vista comercialVista,MVC_Comercial_Modelo comercialModelo){
         this.comercialVista=comercialVista;
         this.comercialModelo=comercialModelo;
-        this.comercialVista.seleccionarBotonComercial(new SeleccionarBoton());
+        this.comercialVista.seleccionarBotonComercial(new SeleccionarBotonComercial());
     }
     
-    public class SeleccionarBoton implements ActionListener{
+    public class SeleccionarBotonComercial implements ActionListener{
       String opcion;
         @Override
         public void actionPerformed(ActionEvent e) {

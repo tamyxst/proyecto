@@ -36,7 +36,7 @@ public class MVC_NuevoUser_Vista extends JFrame{
     JLabel lPassUsuario=new JLabel("Contraseña");
     JTextField jPassUsuario=new JTextField(20);
     
-    MVC_NuevoUser_Vista(){
+    public MVC_NuevoUser_Vista(){
         fNuevoUsuario.setSize(200,200);
         fNuevoUsuario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fNuevoUsuario.setLocationRelativeTo(null);

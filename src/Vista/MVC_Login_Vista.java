@@ -54,10 +54,7 @@ public class MVC_Login_Vista extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                MVC_NuevoUser_Vista nuevoUserVista = new MVC_NuevoUser_Vista();
-                MVC_Gestion_Modelo nuevoUserGestion = new MVC_Gestion_Modelo();
-                MVC_NuevoUser_Controlador nuevoUserControl = new MVC_NuevoUser_Controlador(nuevoUserVista, nuevoUserGestion);
-                System.out.println(nuevoUserControl);
+                CreaUI.abrirMenuNuevoUsuario();
             }
 
         });

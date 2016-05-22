@@ -34,7 +34,7 @@ public class MVC_Comercial_Vista extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreaUI.abrirMenuFacturas();
+                //CreaUI.abrirMenuFacturas();
             }
             
         });

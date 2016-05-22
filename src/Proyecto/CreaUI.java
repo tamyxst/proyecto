@@ -5,11 +5,15 @@
  */
 package Proyecto;
 
+import Controlador.MVC_ComercialFacturas_Controlador;
 import Controlador.MVC_Login_Controlador;
+import Controlador.MVC_NuevoUser_Controlador;
+import Modelo.MVC_ComercialFacturas_Modelo;
 import Modelo.MVC_Gestion_Modelo;
-import Vista.MVC_ComercialFacturas_Vista_2;
+import Vista.MVC_ComercialFacturas_Vista;
 import Vista.MVC_Comercial_Vista;
 import Vista.MVC_Login_Vista;
+import Vista.MVC_NuevoUser_Vista;
 
 /**
  *
@@ -21,6 +25,12 @@ public class CreaUI {
         MVC_Gestion_Modelo m = new MVC_Gestion_Modelo();
         MVC_Login_Controlador c = new MVC_Login_Controlador(v, m);
     }
+    public static void abrirMenuNuevoUsuario(){
+        MVC_NuevoUser_Vista nuevoUserVista = new MVC_NuevoUser_Vista();
+        MVC_Gestion_Modelo nuevoUserGestion = new MVC_Gestion_Modelo();
+        MVC_NuevoUser_Controlador nuevoUserControl = new MVC_NuevoUser_Controlador(nuevoUserVista, nuevoUserGestion);
+    }
+    
     public static void abrirMenuComercial(){
         MVC_Comercial_Vista vComercial=new MVC_Comercial_Vista();
     }
@@ -30,11 +40,15 @@ public class CreaUI {
     }
     
     public static void abrirMenuFacturas(){
-        MVC_ComercialFacturas_Vista_2 vFacturas=new MVC_ComercialFacturas_Vista_2();
+        MVC_ComercialFacturas_Vista v=new MVC_ComercialFacturas_Vista();
+        MVC_ComercialFacturas_Modelo mFacturas=new MVC_ComercialFacturas_Modelo();
+        MVC_ComercialFacturas_Controlador cFacturas=new MVC_ComercialFacturas_Controlador(v,mFacturas);
     }
     
     public static void abrirMenuArticulos(){
         
     }
+    
+    
             
 }
