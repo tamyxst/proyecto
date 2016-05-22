@@ -28,6 +28,10 @@ public class Conexion {
         this.pass = pass;
     }
 
+    public Conexion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     public boolean abrirConexion(){
         boolean estado =false;

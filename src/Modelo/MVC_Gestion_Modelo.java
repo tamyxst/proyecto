@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,62 +18,60 @@ import java.util.logging.Logger;
  * @author milla_000
  */
 public class MVC_Gestion_Modelo {
+
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
     String usuario = "user";
     String password = "1234";
-    private int progress = 0;
-    public MVC_Gestion_Modelo(){
-        
-    }
-    Conexion c=new Conexion(servidor, bd, usuario, password);
-    
-    public boolean comprobarLogin(String nombre, String password){
-        boolean validar=false;
+
+    Conexion c = new Conexion(servidor, bd, usuario, password);
+
+    public boolean comprobarLogin(String nombre, String password) {
+        boolean validar = false;
         c.abrirConexion();
         ResultSet rs;
-        try{
-            PreparedStatement comprobar= c.getConexion().prepareStatement("SELECT nombre,pass FROM usuarios WHERE nombre=? AND pass =?");
+        try {
+            PreparedStatement comprobar = c.getConexion().prepareStatement("SELECT nombre,pass FROM usuarios WHERE nombre=? AND pass =?");
             comprobar.setString(1, nombre);
             comprobar.setString(2, password);
-            rs=comprobar.executeQuery();
-            
-            if(rs.first() ){
+            rs = comprobar.executeQuery();
+
+            if (rs.first()) {
                 System.out.println("true");
-                validar= true;           
-            }else{
+                validar = true;
+            } else {
                 System.out.println("false");
-                validar= false;
+                validar = false;
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
             Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return validar;
+        return validar;
     }
-    
-    public String comprobarTipo(String nombre, String pass){
-        String tipo="";
+
+    public String comprobarTipo(String nombre, String pass) {
+        String tipo = "";
         c.abrirConexion();
         ResultSet rs;
 
-        try{
-            PreparedStatement comprobarT= c.getConexion().prepareStatement("SELECT * FROM usuarios WHERE nombre=? AND pass =?");
+        try {
+            PreparedStatement comprobarT = c.getConexion().prepareStatement("SELECT * FROM usuarios WHERE nombre=? AND pass =?");
             comprobarT.setString(1, nombre);
             comprobarT.setString(2, pass);
-            rs=comprobarT.executeQuery();
-            
-            while(rs.next()){
-                tipo= rs.getString(4);
+            rs = comprobarT.executeQuery();
+
+            while (rs.next()) {
+                tipo = rs.getString(4);
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
             Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return tipo;
+        return tipo;
     }
-    
-    public void altaNuevoUsuario(String nombre, String password, String tipo){
+
+    public void altaNuevoUsuario(String nombre, String password, String tipo) {
         CallableStatement cs;
         try {
             c.abrirConexion();
@@ -88,9 +87,17 @@ public class MVC_Gestion_Modelo {
             Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public ResultSet listaFacturas() throws SQLException {
+        ResultSet rs = null;
+        c.abrirConexion();
+        try {
+            String consulta = "SELECT * FROM FACTURAS";
+            Statement st = c.getConexion().createStatement();
+            rs = st.executeQuery(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(ex.getMessage());
+        } 
+        return rs;
+    }
 }
-
-
-
-

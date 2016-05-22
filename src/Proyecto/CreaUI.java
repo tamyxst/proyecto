@@ -7,6 +7,7 @@ package Proyecto;
 
 import Controlador.MVC_Login_Controlador;
 import Modelo.MVC_Gestion_Modelo;
+import Vista.MVC_ComercialFacturas_Vista_2;
 import Vista.MVC_Comercial_Vista;
 import Vista.MVC_Login_Vista;
 
@@ -29,7 +30,7 @@ public class CreaUI {
     }
     
     public static void abrirMenuFacturas(){
-        
+        MVC_ComercialFacturas_Vista_2 vFacturas=new MVC_ComercialFacturas_Vista_2();
     }
     
     public static void abrirMenuArticulos(){

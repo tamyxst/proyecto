@@ -18,17 +18,17 @@ public class MVC_Comercial_Controlador {
     MVC_Comercial_Vista comercialVista;
     MVC_Comercial_Modelo comercialModelo;
     
-    MVC_Comercial_Controlador(){
-        comercialVista=comercialVista;
-        comercialModelo=comercialModelo;
-        comercialVista.seleccionarBotonComercial(new SeleccionarBoton());
+    MVC_Comercial_Controlador(MVC_Comercial_Vista comercialVista,MVC_Comercial_Modelo comercialModelo){
+        this.comercialVista=comercialVista;
+        this.comercialModelo=comercialModelo;
+        this.comercialVista.seleccionarBotonComercial(new SeleccionarBoton());
     }
     
     public class SeleccionarBoton implements ActionListener{
-     
+      String opcion;
         @Override
         public void actionPerformed(ActionEvent e) {
-            String opcion = e.getActionCommand();
+            opcion = e.getActionCommand();
             comercialModelo.opcionElegida(opcion);
         }
         
