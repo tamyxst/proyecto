@@ -19,30 +19,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author milla_000
  */
-public class Tabla extends JPanel {
+public class Tabla {
 
     MVC_Gestion_Modelo gesModelo = new MVC_Gestion_Modelo();
+    private JPanel panel_1 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
-    private JScrollPane panelScroll;
+    JScrollPane scrollPane = new JScrollPane(tabla);
 
     public Tabla() {
-        
-        panelScroll = new JScrollPane(tabla);
-        add(panelScroll, BorderLayout.CENTER);
+
         //getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-        modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int fila, int columna) {
-                return false; //Con esto conseguimos que la tabla no se pueda editar
-            }
-        };
-        tabla.setVisible(true);
-        tabla.setSize(500, 300);
-
-        tabla = new JTable(modelo); //Metemos el modelo dentro de la tabla
-
+        /*modelo = new DefaultTableModel() {
+         @Override
+         public boolean isCellEditable(int fila, int columna) {
+         return false; //Con esto conseguimos que la tabla no se pueda editar
+         }
+         };*/
+        //tabla = new JTable(modelo); //Metemos el modelo dentro de la tabla
         modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla (tantas como queramos)
         modelo.addColumn("Nombre");
         modelo.addColumn("Dni");
@@ -50,13 +45,20 @@ public class Tabla extends JPanel {
         modelo.addColumn("Cod_rep");
         modelo.addColumn("Importe");
 
-        rellenarTabla(); //Llamamos al método que rellena la tabla con los datos de la base de datos
+        panel_1.setLayout(new BorderLayout());
+        panel_1.add(scrollPane, BorderLayout.CENTER);
 
-        //SIN ESTO NO SALEN LOS DATOS
-        panelScroll.setViewportView(tabla);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
-        //hay que borrarlo del otro sitio, sino puede dar error de NullPointerException
+        rellenarTabla();
     }
 
+    public JPanel getPanel1() {
+        return panel_1;
+    }
+        //Llamamos al método que rellena la tabla con los datos de la base de datos
+
+        //SIN ESTO NO SALEN LOS DATOS
+    //panelScroll.setViewportView(tabla);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
+    //hay que borrarlo del otro sitio, sino puede dar error de NullPointerException
     public void rellenarTabla() {
 
         try {
@@ -90,7 +92,8 @@ public class Tabla extends JPanel {
     }
 
     public void actualizarTabla() {
-        tabla.updateUI();
+        vaciarTabla();
+        rellenarTabla();
     }
 
 }

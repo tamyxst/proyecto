@@ -7,7 +7,6 @@ package Proyecto;
 
 import Modelo.Empleado;
 
-
 /**
  *
  * @author Alumno
@@ -26,11 +25,8 @@ public class GasconMorenoTamara_ProyectoFinal {
 
         Empleado emp = new Empleado(nombre, tipo, conectado);
 
-        
-        
-        
         CreaUI.abrirMenuFacturas();
-        
+
         //Antes de ejecutar esto tiene que meter los datos
         //Calcular entre dos fechasJCalendar comprobar entre dos fechas
     }

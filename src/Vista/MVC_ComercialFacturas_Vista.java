@@ -36,7 +36,8 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     JLabel nombreCF, dniCF, fechaL, codigoRepL, importeL;
     JTextField nombreJF, dniJF, fechaJ, codigoRepJ, importeJ;
     JDateChooser calendar = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
-
+    Tabla t=new Tabla();
+    
     public MVC_ComercialFacturas_Vista() {
 
         fFact2.setSize(700, 700);
@@ -116,7 +117,8 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     
     //Panel Listado facturas
         pListado = new JPanel();
-        pListado.add(new Tabla(), BorderLayout.SOUTH);
+        
+        pListado.add(t.getPanel1(), BorderLayout.SOUTH);
         pListado.setVisible(true);
 
         panel1.add(pListado, BorderLayout.SOUTH);
@@ -146,7 +148,7 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
         buscarCliente.addActionListener(escucharBoton);
     }
     public void actualizarTablaFacturas(){
-        
+        t.actualizarTabla();
     }
     
     
