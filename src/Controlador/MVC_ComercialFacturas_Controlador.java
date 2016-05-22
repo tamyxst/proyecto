@@ -5,17 +5,14 @@
  */
 package Controlador;
 
+import Modelo.MVC_ComercialClientes_Modelo;
 import Modelo.MVC_ComercialFacturas_Modelo;
-import Vista.MVC_ComercialFacturas_Vista;
+import Vista.MVC_ComercialPrincipal_Vista;
 import Vista.TablaFacturas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 /**
  *
@@ -23,14 +20,18 @@ import java.util.regex.Pattern;
  */
 public class MVC_ComercialFacturas_Controlador {
 
-    static MVC_ComercialFacturas_Vista comercialFactVista;
+    static MVC_ComercialPrincipal_Vista comercialFactVista;
     MVC_ComercialFacturas_Modelo comercialGesModelo;
+    MVC_ComercialClientes_Modelo comercialCliModelo;
+    MVC_ComercialClientes_Controlador comercialCliConst;
     TablaFacturas t = new TablaFacturas();
     static int cod_cliente;
 
-    public MVC_ComercialFacturas_Controlador(MVC_ComercialFacturas_Vista comercialFactVista, MVC_ComercialFacturas_Modelo comercialGesModelo) {
+    public MVC_ComercialFacturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_ComercialFacturas_Modelo comercialGesModelo,MVC_ComercialClientes_Modelo comercialCliModelo, MVC_ComercialClientes_Controlador comercialCliConst ) {
         this.comercialFactVista = comercialFactVista;
         this.comercialGesModelo = comercialGesModelo;
+        this.comercialCliModelo=comercialCliModelo;
+        this.comercialCliConst=comercialCliConst;
         this.comercialFactVista.addEventosBotones(new SeleccionaBotonesFacturas());
         this.cod_cliente=cod_cliente;
     }
@@ -65,8 +66,7 @@ public class MVC_ComercialFacturas_Controlador {
                     codRep = comercialFactVista.getCodigoRepF();
                     importe = comercialFactVista.getImporteF();
 
-                    /*Pattern pat = Pattern.compile("^(([A-Za-z]\\d{8})|(\\d{8}[A-Za-z]))$");
-                     Matcher mat = pat.matcher(codCliente);*/
+                    
                     System.out.println("Fecha " + fecha);
                     int cod_cliente = Integer.parseInt(codCliente);
 

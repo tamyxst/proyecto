@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Modelo.MVC_Gestion_Modelo;
+import Modelo.MVC_GestionFacturas_Modelo;
 import java.awt.BorderLayout;
 
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablaFacturas {
 
-    MVC_Gestion_Modelo gesModelo = new MVC_Gestion_Modelo();
+    MVC_GestionFacturas_Modelo gesModelo = new MVC_GestionFacturas_Modelo();
     private JPanel panel_1 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
@@ -29,15 +29,6 @@ public class TablaFacturas {
 
     public TablaFacturas() {
 
-        //getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        /*modelo = new DefaultTableModel() {
-         @Override
-         public boolean isCellEditable(int fila, int columna) {
-         return false; //Con esto conseguimos que la tabla no se pueda editar
-         }
-         };*/
-        //tabla = new JTable(modelo); //Metemos el modelo dentro de la tabla
         modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla (tantas como queramos)
         modelo.addColumn("Fecha");
         modelo.addColumn("Cod_rep");

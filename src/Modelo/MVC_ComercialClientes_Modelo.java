@@ -7,10 +7,10 @@ package Modelo;
 
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_ComercialFacturas_Modelo {
+public class MVC_ComercialClientes_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
     String usuario = "user";
@@ -26,32 +26,45 @@ public class MVC_ComercialFacturas_Modelo {
 
     Conexion c = new Conexion(servidor, bd, usuario, password);
     
-    public MVC_ComercialFacturas_Modelo(){
+    public MVC_ComercialClientes_Modelo(){
         
     }
+    public ResultSet listaClientes() throws SQLException{
+        ResultSet rs = null;
+        c.abrirConexion();
+        try {
+            String consulta = "SELECT * FROM clientes;";
+            Statement st = c.getConexion().createStatement();
+            rs = st.executeQuery(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(ex.getMessage());
+        } 
+        return rs;
+    }
     
-    public void grabarNuevaFactura(Date fecha_fact,String cod_rep,float importe, int cod_cliente){
+    public void anadirNuevoCliente(String nombre, String apellidos,String dni,String cod_postal, String telefono){
         CallableStatement cs;
         try{
             c.abrirConexion();
-            cs=c.getConexion().prepareCall("{call insertarFactura_en(?,?,?,?)}");
-            cs.setDate(1, fecha_fact);
-            cs.setString(2, cod_rep);
-            cs.setFloat(3, importe);
-            cs.setInt(4,cod_cliente);
+            cs=c.getConexion().prepareCall("{call insertarCliente_en(?,?,?,?,?)}");
+            cs.setString(1, nombre);
+            cs.setString(2, apellidos);
+            cs.setString(3, dni);
+            cs.setString(4, cod_postal);
+            cs.setString(5, telefono);
             cs.execute();
                     
         }catch(SQLException ex){
             Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public boolean buscarClientesCodCliente(int cod_cliente){
+    public boolean buscarClientesPorDni(String dni){
         boolean validar=false;
         c.abrirConexion();
         ResultSet rs;
         try{
-            PreparedStatement comprobarDni = c.getConexion().prepareStatement("SELECT * FROM clientes WHERE cod_cliente=?");
-            comprobarDni.setInt(1, cod_cliente);
+            PreparedStatement comprobarDni = c.getConexion().prepareStatement("SELECT * FROM clientes WHERE dni=?");
+            comprobarDni.setString(1, dni);
             rs=comprobarDni.executeQuery();
             
             if(rs.first()){
@@ -68,27 +81,4 @@ public class MVC_ComercialFacturas_Modelo {
     public void abrirBuscarClientes(){
         CreaUI.abrirMenuBuscarClientes();
     }
-    
-    public boolean buscarCodigoReparacion(String cod_rep){
-        boolean validar=false;
-        c.abrirConexion();
-        ResultSet rs;
-        try{
-            PreparedStatement comprobarCodRep = c.getConexion().prepareStatement("SELECT * FROM reparaciones WHERE cod_rep=?");
-            comprobarCodRep.setString(1, cod_rep);
-            rs=comprobarCodRep.executeQuery();
-            boolean facturado = false;
-            while (rs.next()) {
-                facturado = rs.getBoolean(8);
-            }
-            if(facturado==true){
-                validar=true;
-            }
-            c.cerrarConexion();
-        } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return validar;
-    }
-    
 }

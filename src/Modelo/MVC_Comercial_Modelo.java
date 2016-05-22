@@ -16,7 +16,7 @@ public class MVC_Comercial_Modelo {
         if(opcion.equals("Facturas")){
             CreaUI.abrirMenuFacturas();
         }else{
-            CreaUI.abrirMenuArticulos();
+            // Futuras...
         }
     }
 }

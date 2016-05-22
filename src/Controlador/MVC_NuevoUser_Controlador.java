@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.MVC_Gestion_Modelo;
+import Modelo.MVC_GestionFacturas_Modelo;
 import Vista.MVC_NuevoUser_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +19,9 @@ import java.util.regex.Pattern;
 public class MVC_NuevoUser_Controlador {
 
     private MVC_NuevoUser_Vista nuevoUsuario_vista;
-    private MVC_Gestion_Modelo gestionUser;
+    private MVC_GestionFacturas_Modelo gestionUser;
 
-    public MVC_NuevoUser_Controlador(MVC_NuevoUser_Vista nuevoUsuario_vista, MVC_Gestion_Modelo gestionUser) {
+    public MVC_NuevoUser_Controlador(MVC_NuevoUser_Vista nuevoUsuario_vista, MVC_GestionFacturas_Modelo gestionUser) {
         this.nuevoUsuario_vista = nuevoUsuario_vista;
         this.gestionUser = gestionUser;
         this.nuevoUsuario_vista.addAnadirUsuario(new AnadirUsuarioListener());

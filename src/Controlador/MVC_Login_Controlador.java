@@ -6,7 +6,8 @@
 package Controlador;
 
 import Modelo.Empleado;
-import Modelo.MVC_Gestion_Modelo;
+import Modelo.MVC_GestionFacturas_Modelo;
+import Proyecto.CreaUI;
 import Vista.MVC_Login_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +19,9 @@ import java.awt.event.ActionListener;
 public class MVC_Login_Controlador {
 
     private MVC_Login_Vista interfaceLogin;
-    private MVC_Gestion_Modelo gesUsuarios;
+    private MVC_GestionFacturas_Modelo gesUsuarios;
 
-    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_Gestion_Modelo gesUsuarios) {
+    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_GestionFacturas_Modelo gesUsuarios) {
         this.interfaceLogin = interfaceLogin;
         this.gesUsuarios = gesUsuarios;
         this.interfaceLogin.addValidarUsuario(new Validar());
@@ -44,15 +45,20 @@ public class MVC_Login_Controlador {
                 String tipo = gesUsuarios.comprobarTipo(nombreUsuario, pass);
                 Empleado emp = new Empleado(nombreUsuario, tipo, true);
                 if (emp.getTipo().equals("comercial")) {
-                    interfaceLogin.abrirMenuComercial();
+                    CreaUI.abrirMenuComercial();
+                } else {
+                    CreaUI.abrirMenuTecnico();
                 }
+
                 conectado = true;
             }
             interfaceLogin.cerrarVentana();
         }
+
         /**
          * Event Dispatch Thread
-         * @return 
+         *
+         * @return
          */
         /*public void actionPerformed(ActionEvent e) {
          Runnable miRunnable = new Runnable() {
@@ -89,11 +95,6 @@ public class MVC_Login_Controlador {
             return conectado;
         }
 
-        /*public Empleado empleado(){
-         String tipo= gesUsuarios.comprobarTipo(nombreUsuario, pass);
-         Empleado emp=new Empleado(nombreUsuario,tipo,true);
-         return emp;
-         }*/
     }
 
 }

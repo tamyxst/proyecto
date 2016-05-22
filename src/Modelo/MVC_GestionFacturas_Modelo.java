@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_Gestion_Modelo {
+public class MVC_GestionFacturas_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -45,7 +45,7 @@ public class MVC_Gestion_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }
@@ -66,7 +66,7 @@ public class MVC_Gestion_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tipo;
     }
@@ -84,7 +84,7 @@ public class MVC_Gestion_Modelo {
             //Ejecutar el procedimiento almacenado.
             cs.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_Gestion_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

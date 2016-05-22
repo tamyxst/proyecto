@@ -6,7 +6,7 @@
 package Vista;
 
 import Controlador.MVC_NuevoUser_Controlador;
-import Modelo.MVC_Gestion_Modelo;
+import Modelo.MVC_GestionFacturas_Modelo;
 import Proyecto.CreaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -84,14 +84,6 @@ public class MVC_Login_Vista extends JFrame {
 
     public void cerrarVentana(){
         f.dispose();
-    }
-    
-    public void abrirMenuTecnico(){
-        CreaUI.abrirMenuTecnico();
-    }
-    
-    public void abrirMenuComercial(){
-        CreaUI.abrirMenuComercial();
     }
 
 }

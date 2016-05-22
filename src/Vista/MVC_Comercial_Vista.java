@@ -22,7 +22,7 @@ public class MVC_Comercial_Vista extends JFrame{
     JFrame fComercial = new JFrame("Menu Comercial");
     JPanel pComercial = new JPanel();
     JButton facturas = new JButton("Facturas");
-    JButton articulos = new JButton("Articulos");
+    JButton futuro = new JButton("XXXXX");
 
     public MVC_Comercial_Vista() {
         fComercial.setTitle("Menu Comercial");
@@ -41,13 +41,13 @@ public class MVC_Comercial_Vista extends JFrame{
         
         pComercial.setLayout(new GridLayout (2,1));
         pComercial.add(facturas);
-        pComercial.add(articulos);
+        pComercial.add(futuro);
         fComercial.add(pComercial);
         fComercial.setVisible(true);
     }
 
     public void seleccionarBotonComercial(ActionListener escucharBotonComercial){
         facturas.addActionListener(escucharBotonComercial);
-        articulos.addActionListener(escucharBotonComercial);
+        futuro.addActionListener(escucharBotonComercial);
     } 
 }

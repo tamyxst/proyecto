@@ -10,6 +10,8 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +28,7 @@ import javax.swing.UIManager;
  *
  * @author milla_000
  */
-public class MVC_ComercialFacturas_Vista extends JDialog {
+public class MVC_ComercialPrincipal_Vista extends JDialog {
     
     JFrame fFact2 = new JFrame();
     JPanel panel1 = new JPanel();
@@ -37,6 +39,7 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     JDateChooser calendar = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     TablaFacturas t=new TablaFacturas();
     
+    
     JPanel panel2 = new JPanel();
     JPanel pDatosCli = new JPanel();
     JPanel pBotonesCli = new JPanel();
@@ -45,12 +48,12 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     JLabel dniCliL=new JLabel("Dni");
     JLabel cod_postalCliL=new JLabel("Cod Postal");
     JLabel telefonoCliL=new JLabel("Telefono");
-    JTextField nombreCliJ = new JTextField(20);
-    JTextField apellidosCliJ =new JTextField(20);
-    JTextField dniCliJ=new JTextField(20);
-    JTextField cod_postalCliJ=new JTextField(20);
-    JTextField telefonoCliJ=new JTextField(20);
-    TablaFacturas tCli=new TablaFacturas();
+    static JTextField nombreCliJ = new JTextField(20);
+    static JTextField apellidosCliJ =new JTextField(20);
+    static JTextField dniCliJ=new JTextField(20);
+    static JTextField cod_postalCliJ=new JTextField(20);
+    static JTextField telefonoCliJ=new JTextField(20);
+    TablaClientes tCli=new TablaClientes();
     JButton anadirCli = new JButton("Añadir");
     JButton modificarCli=new JButton("Modificar");
     JButton bajaCli=new JButton("Baja");
@@ -58,7 +61,7 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     
     JPanel panel3 = new JPanel();
     
-    public MVC_ComercialFacturas_Vista() {
+    public MVC_ComercialPrincipal_Vista() {
 
         fFact2.setSize(700, 700);
         fFact2.setLocationRelativeTo(null);
@@ -66,7 +69,7 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
         JLabel label = new JLabel("Bienvenido/a");
         label.setHorizontalTextPosition(JLabel.TRAILING); // Set the text position regarding its icon
         label.setIcon(UIManager.getIcon("OptionPane.informationIcon"));
-
+ 
         createPage1();
         createPage2();
         //createPage3();
@@ -167,7 +170,7 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     public void actualizarTablaFacturas(){
         t.actualizarTabla();
     }
-    
+    //CLIENTES
     public void createPage2() {
         JLabel label = new JLabel("Nuevo Cliente");
         label.setHorizontalTextPosition(JLabel.TRAILING);
@@ -181,7 +184,6 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
         dniCliJ.setBounds(10, 35, 150, 20);
         cod_postalCliJ.setBounds(10, 35, 150, 20);
         telefonoCliJ.setBounds(10, 35, 150, 20);
-
 
         pDatosCli.add(nombreCliL);
         pDatosCli.add(nombreCliJ);
@@ -199,13 +201,39 @@ public class MVC_ComercialFacturas_Vista extends JDialog {
     //Panel Botones
         pBotonesCli.add(anadirCli);
         pBotonesCli.add(modificarCli);
+        pBotonesCli.add(bajaCli);
         panel2.add(pBotonesCli, BorderLayout.CENTER);
     
     //Panel Listado facturas
-        pListadoCli.add(tCli.getPanel1(), BorderLayout.SOUTH);
+        pListadoCli.add(tCli.getPanel2(), BorderLayout.SOUTH);
         pListadoCli.setVisible(true);
         panel2.add(pListadoCli, BorderLayout.SOUTH);
 
     }
+    
+    public String getNombre(){
+        return nombreCliJ.getText();
+    }
 
+    public String getApellidos(){
+        return apellidosCliJ.getText();
+    }
+    public String getDni(){
+        return dniCliJ.getText();
+    }
+    public String getCodPostal(){
+        return cod_postalCliJ.getText();
+    }
+    public String getTelefono(){
+        return telefonoCliJ.getText();
+    }
+    public void addEventosClientes(ActionListener escucharBoton){
+        anadirCli.addActionListener(escucharBoton);
+        modificarCli.addActionListener(escucharBoton);
+        bajaCli.addActionListener(escucharBoton);
+    }
+    public void actualizarTablaClientes(){
+        tCli.actualizarTablaClientes();
+    }
+    
 }
