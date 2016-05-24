@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo_Comercial;
 
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_ComercialClientes_Modelo {
+public class MVC_Clientes_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
     String usuario = "user";
@@ -26,7 +26,7 @@ public class MVC_ComercialClientes_Modelo {
 
     Conexion c = new Conexion(servidor, bd, usuario, password);
     
-    public MVC_ComercialClientes_Modelo(){
+    public MVC_Clientes_Modelo(){
         
     }
     public ResultSet listaClientes() throws SQLException{
@@ -55,7 +55,7 @@ public class MVC_ComercialClientes_Modelo {
             cs.execute();
                     
         }catch(SQLException ex){
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public boolean buscarClientesPorDni(String dni){
@@ -74,7 +74,7 @@ public class MVC_ComercialClientes_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }

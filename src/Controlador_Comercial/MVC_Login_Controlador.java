@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package Controlador_Comercial;
 
-import Modelo.Empleado;
-import Modelo.MVC_GestionFacturas_Modelo;
+import Modelo_Comercial.Empleado;
+import Modelo_Comercial.MVC_GestionFac_Modelo;
 import Proyecto.CreaUI;
-import Vista.MVC_Login_Vista;
+import Vista_Comercial.MVC_Login_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,9 +19,9 @@ import java.awt.event.ActionListener;
 public class MVC_Login_Controlador {
 
     private MVC_Login_Vista interfaceLogin;
-    private MVC_GestionFacturas_Modelo gesUsuarios;
+    private MVC_GestionFac_Modelo gesUsuarios;
 
-    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_GestionFacturas_Modelo gesUsuarios) {
+    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_GestionFac_Modelo gesUsuarios) {
         this.interfaceLogin = interfaceLogin;
         this.gesUsuarios = gesUsuarios;
         this.interfaceLogin.addValidarUsuario(new Validar());

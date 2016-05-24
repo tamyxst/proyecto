@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista_Comercial;
 
-import Modelo.MVC_ComercialClientes_Modelo;
-import Modelo.MVC_GestionFacturas_Modelo;
+import Modelo_Comercial.MVC_Clientes_Modelo;
+import Modelo_Comercial.MVC_GestionFac_Modelo;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author milla_000
  */
 public class TablaClientes {
-    MVC_ComercialClientes_Modelo gesModeloClientes = new MVC_ComercialClientes_Modelo();
+    MVC_Clientes_Modelo gesModeloClientes = new MVC_Clientes_Modelo();
     private JPanel panel_2 = new JPanel();
     DefaultTableModel modeloCli = new DefaultTableModel();
     JTable tablaCli = new JTable(modeloCli);

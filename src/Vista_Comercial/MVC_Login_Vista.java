@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista_Comercial;
 
-import Controlador.MVC_NuevoUser_Controlador;
-import Modelo.MVC_GestionFacturas_Modelo;
+import Controlador_Comercial.MVC_NuevoUser_Controlador;
+import Modelo_Comercial.MVC_GestionFac_Modelo;
 import Proyecto.CreaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

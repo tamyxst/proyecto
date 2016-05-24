@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo_Comercial;
 
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_ComercialFacturas_Modelo {
+public class MVC_Facturas_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
     String usuario = "user";
@@ -26,7 +26,7 @@ public class MVC_ComercialFacturas_Modelo {
 
     Conexion c = new Conexion(servidor, bd, usuario, password);
     
-    public MVC_ComercialFacturas_Modelo(){
+    public MVC_Facturas_Modelo(){
         
     }
     
@@ -42,9 +42,28 @@ public class MVC_ComercialFacturas_Modelo {
             cs.execute();
                     
         }catch(SQLException ex){
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void marcarReparacionFacturada(String cod_rep){
+        boolean facturado=true;
+        c.abrirConexion();
+        ResultSet rs;
+        try{
+            PreparedStatement marcarRep = c.getConexion().prepareStatement("UPDATE reparaciones SET facturado=? WHERE cod_rep =?");
+            marcarRep.setBoolean(1, facturado);
+            marcarRep.setString(2, cod_rep);
+            marcarRep.executeUpdate();
+            
+            
+            c.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+    }
+    
     public boolean buscarClientesCodCliente(int cod_cliente){
         boolean validar=false;
         c.abrirConexion();
@@ -61,7 +80,7 @@ public class MVC_ComercialFacturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }
@@ -86,7 +105,7 @@ public class MVC_ComercialFacturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }

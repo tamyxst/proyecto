@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista_Comercial;
 
-import Modelo.MVC_GestionFacturas_Modelo;
+import Modelo_Comercial.MVC_GestionFac_Modelo;
 import java.awt.BorderLayout;
 
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablaFacturas {
 
-    MVC_GestionFacturas_Modelo gesModelo = new MVC_GestionFacturas_Modelo();
+    MVC_GestionFac_Modelo gesModelo = new MVC_GestionFac_Modelo();
     private JPanel panel_1 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);

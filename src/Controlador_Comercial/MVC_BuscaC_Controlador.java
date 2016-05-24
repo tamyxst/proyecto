@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package Controlador_Comercial;
 
-import Modelo.MVC_BuscarClientes_Modelo;
-import Vista.MVC_BuscarClientes_Vista;
+import Modelo_Comercial.MVC_BuscaC_Modelo;
+import Vista_Comercial.MVC_BuscaC_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -17,13 +17,13 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_BuscarClientes_Controlador {
+public class MVC_BuscaC_Controlador {
 
-    private MVC_BuscarClientes_Vista buscarClientesV;
-    private MVC_BuscarClientes_Modelo buscarClientesM;
+    private MVC_BuscaC_Vista buscarClientesV;
+    private MVC_BuscaC_Modelo buscarClientesM;
    
 
-    public MVC_BuscarClientes_Controlador(MVC_BuscarClientes_Vista buscarClientesV, MVC_BuscarClientes_Modelo buscarClientesM) {
+    public MVC_BuscaC_Controlador(MVC_BuscaC_Vista buscarClientesV, MVC_BuscaC_Modelo buscarClientesM) {
         this.buscarClientesV = buscarClientesV;
         this.buscarClientesM = buscarClientesM;
         this.buscarClientesV.buscarPorDniClientes(new BuscarPorDniClientes());
@@ -47,7 +47,7 @@ public class MVC_BuscarClientes_Controlador {
                         buscarClientesV.mostrarMensajeErrorBuscar("No hay resultados.");
                     }else{
                         System.out.println(cod_cliente);
-                        MVC_ComercialFacturas_Controlador.setText(cod_cliente);
+                        MVC_Facturas_Controlador.setText(cod_cliente);
                         buscarClientesV.cerrarVentanaBuscadorClientes();
                     }
  

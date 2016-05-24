@@ -5,7 +5,6 @@
  */
 package Proyecto;
 
-import Modelo.Empleado;
 
 /**
  *
@@ -17,14 +16,7 @@ public class GasconMorenoTamara_ProyectoFinal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        String nombre = "";
-        String tipo = "";
-        boolean conectado = false;
-        boolean validar = false;
-
-        Empleado emp = new Empleado(nombre, tipo, conectado);
-
+        //CreaUI.abrirMenuLogin();
         CreaUI.abrirMenuFacturas();
         //CreaUI.abrirMenuLogin();
         //Antes de ejecutar esto tiene que meter los datos

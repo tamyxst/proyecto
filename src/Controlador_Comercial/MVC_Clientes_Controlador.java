@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package Controlador_Comercial;
 
-import static Controlador.MVC_ComercialFacturas_Controlador.comercialFactVista;
-import Modelo.MVC_ComercialClientes_Modelo;
-import Vista.MVC_ComercialPrincipal_Vista;
+import static Controlador_Comercial.MVC_Facturas_Controlador.comercialFactVista;
+import Modelo_Comercial.MVC_Clientes_Modelo;
+import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -17,12 +17,12 @@ import java.util.regex.Pattern;
  *
  * @author milla_000
  */
-public class MVC_ComercialClientes_Controlador {
+public class MVC_Clientes_Controlador {
 
     MVC_ComercialPrincipal_Vista comerPrincVist;
-    MVC_ComercialClientes_Modelo comerClienMod;
+    MVC_Clientes_Modelo comerClienMod;
 
-    public MVC_ComercialClientes_Controlador(MVC_ComercialPrincipal_Vista comerPrincVist, MVC_ComercialClientes_Modelo comerClienMod) {
+    public MVC_Clientes_Controlador(MVC_ComercialPrincipal_Vista comerPrincVist, MVC_Clientes_Modelo comerClienMod) {
         this.comerPrincVist = comerPrincVist;
         this.comerClienMod = comerClienMod;
         this.comerPrincVist.addEventosClientes(new AddBotonesClientes());

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo_Comercial;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_GestionFacturas_Modelo {
+public class MVC_GestionFac_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -45,7 +45,7 @@ public class MVC_GestionFacturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }
@@ -66,7 +66,7 @@ public class MVC_GestionFacturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tipo;
     }
@@ -84,7 +84,7 @@ public class MVC_GestionFacturas_Modelo {
             //Ejecutar el procedimiento almacenado.
             cs.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFacturas_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista_Comercial;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,14 +17,14 @@ import javax.swing.JTextField;
  *
  * @author milla_000
  */
-public class MVC_BuscarClientes_Vista extends JFrame {
+public class MVC_BuscaC_Vista extends JFrame {
     JFrame fBClientes=new JFrame();
     JPanel pBClientes=new JPanel();
     JButton buscar=new JButton("Buscar");
     JLabel dni=new JLabel("Dni");
     JTextField Jdni=new JTextField(15);
     
-    public MVC_BuscarClientes_Vista(){
+    public MVC_BuscaC_Vista(){
         fBClientes.setSize(200,150);
         fBClientes.setTitle("Busqueda de Clientes");
         fBClientes.setLocationRelativeTo(null);

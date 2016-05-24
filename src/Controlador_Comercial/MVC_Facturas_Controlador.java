@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package Controlador_Comercial;
 
-import Modelo.MVC_ComercialClientes_Modelo;
-import Modelo.MVC_ComercialFacturas_Modelo;
-import Vista.MVC_ComercialPrincipal_Vista;
-import Vista.TablaFacturas;
+import Modelo_Comercial.MVC_Clientes_Modelo;
+import Modelo_Comercial.MVC_Facturas_Modelo;
+import Vista_Comercial.MVC_ComercialPrincipal_Vista;
+import Vista_Comercial.TablaFacturas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -18,16 +18,16 @@ import java.util.Date;
  *
  * @author milla_000
  */
-public class MVC_ComercialFacturas_Controlador {
+public class MVC_Facturas_Controlador {
 
     static MVC_ComercialPrincipal_Vista comercialFactVista;
-    MVC_ComercialFacturas_Modelo comercialGesModelo;
-    MVC_ComercialClientes_Modelo comercialCliModelo;
-    MVC_ComercialClientes_Controlador comercialCliConst;
+    MVC_Facturas_Modelo comercialGesModelo;
+    MVC_Clientes_Modelo comercialCliModelo;
+    MVC_Clientes_Controlador comercialCliConst;
     TablaFacturas t = new TablaFacturas();
     static int cod_cliente;
 
-    public MVC_ComercialFacturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_ComercialFacturas_Modelo comercialGesModelo,MVC_ComercialClientes_Modelo comercialCliModelo, MVC_ComercialClientes_Controlador comercialCliConst ) {
+    public MVC_Facturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_Facturas_Modelo comercialGesModelo,MVC_Clientes_Modelo comercialCliModelo, MVC_Clientes_Controlador comercialCliConst ) {
         this.comercialFactVista = comercialFactVista;
         this.comercialGesModelo = comercialGesModelo;
         this.comercialCliModelo=comercialCliModelo;
@@ -87,6 +87,8 @@ public class MVC_ComercialFacturas_Controlador {
                         java.sql.Date sqlDate = new java.sql.Date(fecha.getTime());
 
                         comercialGesModelo.grabarNuevaFactura(sqlDate, codRep, importe, cod_cliente);
+                        //Marcamos la reparacion como facturada
+                        comercialGesModelo.marcarReparacionFacturada(codRep);
                         comercialFactVista.actualizarTablaFacturas();
                     }
                 } catch (NumberFormatException ex) {
