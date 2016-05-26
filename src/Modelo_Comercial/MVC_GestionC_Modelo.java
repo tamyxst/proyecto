@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author milla_000
  */
-public class MVC_GestionFac_Modelo {
+public class MVC_GestionC_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -46,7 +46,7 @@ public class MVC_GestionFac_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }
@@ -67,7 +67,7 @@ public class MVC_GestionFac_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tipo;
     }
@@ -85,7 +85,7 @@ public class MVC_GestionFac_Modelo {
             //Ejecutar el procedimiento almacenado.
             cs.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -114,14 +114,13 @@ public class MVC_GestionFac_Modelo {
 
             //No se debe cerrar la conexion para mostrar tablas
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
     }
     public ResultSet listaReparaciones() {
         c.abrirConexion();
         ResultSet rs = null;
-        c.abrirConexion();
         try {
             String consulta = "SELECT * FROM reparaciones WHERE facturado=false";
             Statement st = c.getConexion().createStatement();
@@ -132,6 +131,7 @@ public class MVC_GestionFac_Modelo {
         } 
         return rs;
     }
+    
     public ResultSet listaPorCodPostal(String cod_postal) {
         c.abrirConexion();
         ResultSet rs = null;
@@ -141,7 +141,7 @@ public class MVC_GestionFac_Modelo {
             rs = consulta.executeQuery();
             //No se debe cerrar la conexion para mostrar tablas
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
     }

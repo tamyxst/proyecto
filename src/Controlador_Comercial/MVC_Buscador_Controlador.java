@@ -61,10 +61,10 @@ public class MVC_Buscador_Controlador {
                 //buscaFactModelo.buscarFacturasCodPostal(codPostal);
                 //buscaFactModelo.buscarFacturasPoblacion(poblacion);*/
                 //} else {
-                //  buscaFactVista.mostrarErroresFacturas("El código postal no es válido.");
+                //  buscaFactVista.mostrarErroresPanelComercial("El código postal no es válido.");
                 //}
             } catch (NullPointerException ex) {
-                buscaFactVista.mostrarErroresFacturas("No has seleccionado ninguna fecha");
+                buscaFactVista.mostrarErroresPanelComercial("No has seleccionado ninguna fecha");
             }
 
         }

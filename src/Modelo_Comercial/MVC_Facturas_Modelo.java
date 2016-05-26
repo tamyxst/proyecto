@@ -42,7 +42,7 @@ public class MVC_Facturas_Modelo {
             cs.execute();
                     
         }catch(SQLException ex){
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -59,7 +59,7 @@ public class MVC_Facturas_Modelo {
             
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
      
     }
@@ -80,7 +80,7 @@ public class MVC_Facturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }
@@ -105,7 +105,7 @@ public class MVC_Facturas_Modelo {
             }
             c.cerrarConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return validar;
     }

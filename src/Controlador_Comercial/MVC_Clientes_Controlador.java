@@ -9,7 +9,7 @@ import static Controlador_Comercial.MVC_Facturas_Controlador.comercialFactVista;
 import Modelo_Comercial.Cliente;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
-import Tablas.TablaClientes;
+import Componentes.TablaClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -58,27 +58,26 @@ public class MVC_Clientes_Controlador {
                 Matcher mat = pat.matcher(dni);
 
                 if (cliente.getNombre().equals("")) {
-                    comercialFactVista.mostrarErroresFacturas("El campo dni esta vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo dni esta vacío");
                 } else if (cliente.getApellidos().equals("")) {
-                    comercialFactVista.mostrarErroresFacturas("El campo apellidos esta vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo apellidos esta vacío");
                 } else if (cliente.getDni().equals("")) {
-                    comercialFactVista.mostrarErroresFacturas("El campo dni no puede estar vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo dni no puede estar vacío");
                 } else if (cliente.getCod_postal().equals("")) {
-                    comercialFactVista.mostrarErroresFacturas("El campo Cod Postal esta vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo Cod Postal esta vacío");
                 } else if (cliente.getTelefono().equals("")) {
-                    comercialFactVista.mostrarErroresFacturas("El campo telefono esta vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo telefono esta vacío");
                 } else if (mat.matches()) {
                     opcion = e.getActionCommand();
                     if (opcion.equals("Añadir")) {
                         if (comerClienMod.buscarClientesPorDni(dni)) {
-                            comercialFactVista.mostrarErroresFacturas("Ya existe un cliente con ese dni");
+                            comercialFactVista.mostrarErroresPanelComercial("Ya existe un cliente con ese dni");
                         } else {
                             //Añadimos cliente a la BD
                             comerClienMod.anadirNuevoCliente(cliente);
                             comercialFactVista.actualizarTablaClientes();
                         }
                     } else if (opcion.equals("Modificar")) {
-                        //Cliente cliente=new Cliente(nombre, apellidos, dni, cod_postal, telefono);
                         comerClienMod.modificarCliente(cliente);
                         comercialFactVista.actualizarTablaClientes();
                     } else {
@@ -86,7 +85,7 @@ public class MVC_Clientes_Controlador {
                         comercialFactVista.actualizarTablaClientes();
                     }
                 } else {
-                    comercialFactVista.mostrarErroresFacturas("El dni no es válido");
+                    comercialFactVista.mostrarErroresPanelComercial("El dni no es válido");
                 }
             } 
 

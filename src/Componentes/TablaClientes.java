@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package Componentes;
 
 import Modelo_Comercial.MVC_Clientes_Modelo;
-import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Modelo_Comercial.MVC_GestionC_Modelo;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

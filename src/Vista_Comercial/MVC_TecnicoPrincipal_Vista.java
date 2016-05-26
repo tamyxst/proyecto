@@ -5,17 +5,18 @@
  */
 package Vista_Comercial;
 
-import Modelo_Comercial.Empleado;
+import Componentes.ComboTecnicos;
+import Componentes.TablaReparaciones;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -25,31 +26,30 @@ import javax.swing.UIManager;
  *
  * @author Alumno
  */
-public class MVC_TecnicoPrincipal_Vista {
+public class MVC_TecnicoPrincipal_Vista extends JFrame {
 
     JFrame fRep1 = new JFrame();
-    CargarTecnicos comboTec=new CargarTecnicos();
+    ComboTecnicos comboTec=new ComboTecnicos();
+    TablaReparaciones tReparacionesT=new TablaReparaciones();
+    
     //Página 1
     JPanel panel1 = new JPanel();
     JPanel pListadoR = new JPanel();
     JPanel pDatosR = new JPanel();
     JPanel pBotones = new JPanel();
-    JButton anadirR = new JButton();
-    JButton modificarR = new JButton();
-    JButton bajaR = new JButton();
-    JLabel cod_repRL = new JLabel("Cód Rep:");
-    JTextField cod_repRJ = new JTextField();
+    JButton anadirR = new JButton("Añadir");
+    JButton modificarR = new JButton("Modificar");
+    JButton bajaR = new JButton("Eliminar");
     JLabel problemaRL = new JLabel("Problema:");
-    JTextField problemaRJ = new JTextField();
+    public static JTextField problemaRJ = new JTextField(20);
     JLabel solucionRL = new JLabel("Solución:");
-    JTextField solucionRJ = new JTextField();
+    public static JTextField solucionRJ = new JTextField(20);
     JLabel fecha_recogidaRL = new JLabel("Fecha recogida:");
     JDateChooser fecha_recogidaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JLabel fecha_entregaRL = new JLabel("Fecha entrega:");
     JDateChooser fecha_entregaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JLabel cod_clienteRL = new JLabel("Cód Cliente:");
     JTextField cod_clienteRJ = new JTextField();
-
     JLabel tecnicoRL = new JLabel("Técnico:"); //Combo box a la tabla usuarios... se correspondan al nombre
     
     //Página 2
@@ -64,7 +64,7 @@ public class MVC_TecnicoPrincipal_Vista {
         label.setIcon(UIManager.getIcon("OptionPane.informationIcon"));
 
         createPage1Reparaciones();
-        //createPage2Reparaciones();
+        createPage2Reparaciones();
         //createPage3Repraciones();
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
@@ -88,15 +88,11 @@ public class MVC_TecnicoPrincipal_Vista {
         label.setHorizontalTextPosition(JLabel.TRAILING);
 
         pDatosR.setLayout(null);
-        pDatosR.setLayout(new GridLayout(7, 2));
+        pDatosR.setLayout(new GridLayout(6, 2));
 
-        cod_repRJ.setBounds(10, 35, 150, 20);
-        problemaRJ.setBounds(10, 35, 150, 20);
-        solucionRJ.setBounds(10, 35, 150, 20);
-        cod_clienteRJ.setBounds(10, 35, 150, 20);
-
-        pDatosR.add(cod_repRL);
-        pDatosR.add(cod_repRJ);
+        problemaRJ.setBounds(30, 35, 150, 20);
+        solucionRJ.setBounds(30, 35, 150, 20);
+        cod_clienteRJ.setBounds(30, 35, 150, 20);
 
         pDatosR.add(problemaRL);
         pDatosR.add(problemaRJ);
@@ -104,8 +100,8 @@ public class MVC_TecnicoPrincipal_Vista {
         pDatosR.add(solucionRL);
         pDatosR.add(solucionRJ);
 
-        pDatosR.add(fecha_entregaRL);
-        pDatosR.add(fecha_entregaR);
+        pDatosR.add(fecha_recogidaRL);
+        pDatosR.add(fecha_recogidaR);
 
         pDatosR.add(fecha_entregaRL);
         pDatosR.add(fecha_entregaR);
@@ -116,7 +112,57 @@ public class MVC_TecnicoPrincipal_Vista {
         pDatosR.add(tecnicoRL);
         //Añadir combobox
         pDatosR.add(comboTec.getPanel1(), BorderLayout.CENTER);
-        panel1.add(pDatosR);
+        
+        pBotones.add(anadirR);
+        pBotones.add(modificarR);
+        pBotones.add(bajaR);
+        
+        panel1.add(pDatosR, BorderLayout.NORTH);
+        panel1.add(pBotones, BorderLayout.CENTER);
+        panel1.add(tReparacionesT.getPanel1(), BorderLayout.SOUTH);
     }
-
+    
+    public String getProblemaReparacion(){
+        return problemaRJ.getText();
+    }
+    public String getSolucionReparacion(){
+        return solucionRJ.getText();
+    }    
+    public Date getFechaRecogidaReparacion(){
+        return fecha_recogidaR.getDate();
+    }
+    public Date getFechaEntregaReparacion(){
+        return fecha_entregaR.getDate();
+    }
+    public int getCodClienteReparacion(){
+        int cod_cliente= Integer.parseInt(cod_clienteRJ.getText());
+        return cod_cliente;
+    }    
+    public void mostrarTablaReparacionesT(){
+        JFrame fReparacionesT=new JFrame();
+        fReparacionesT.add(tReparacionesT.getPanel1(), BorderLayout.CENTER);
+        fReparacionesT.setSize(500,300);
+        fReparacionesT.setLocationRelativeTo(null);
+        fReparacionesT.setResizable(false);
+        fReparacionesT.setVisible(true);
+    }
+    public void mostrarErroresPanelTecnico(String mensajeError){
+        JOptionPane.showMessageDialog(this,mensajeError);
+    }
+    
+    public void addEventosBotonesPTecnico(ActionListener escucharBoton){
+        anadirR.addActionListener(escucharBoton);
+        modificarR.addActionListener(escucharBoton);
+        bajaR.addActionListener(escucharBoton);
+    }
+    public void actualizarTablaReparaciones(){
+        tReparacionesT.actualizarTabla();
+    }
+    
+    public String getNombreTecnico(){
+        return comboTec.getNombreTecnico();
+    }
+    public void createPage2Reparaciones() {
+       
+    }
 }

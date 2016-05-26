@@ -14,7 +14,7 @@ import Controlador_Comercial.MVC_Login_Controlador;
 import Controlador_Comercial.MVC_NuevoUser_Controlador;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Modelo_Comercial.MVC_Facturas_Modelo;
-import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Modelo_Comercial.MVC_GestionC_Modelo;
 import Vista_Comercial.MVC_BuscaC_Vista;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import Vista_Comercial.MVC_Comercial_Vista;
@@ -29,12 +29,12 @@ import Vista_Comercial.MVC_TecnicoPrincipal_Vista;
 public class CreaUI {
     public static void abrirMenuLogin(){
         MVC_Login_Vista v = new MVC_Login_Vista();
-        MVC_GestionFac_Modelo m = new MVC_GestionFac_Modelo();
+        MVC_GestionC_Modelo m = new MVC_GestionC_Modelo();
         MVC_Login_Controlador c = new MVC_Login_Controlador(v, m);
     }
     public static void abrirMenuNuevoUsuario(){
         MVC_NuevoUser_Vista nuevoUserVista = new MVC_NuevoUser_Vista();
-        MVC_GestionFac_Modelo nuevoUserGestion = new MVC_GestionFac_Modelo();
+        MVC_GestionC_Modelo nuevoUserGestion = new MVC_GestionC_Modelo();
         MVC_NuevoUser_Controlador nuevoUserControl = new MVC_NuevoUser_Controlador(nuevoUserVista, nuevoUserGestion);
     }
     
@@ -44,6 +44,7 @@ public class CreaUI {
     
     public static void abrirMenuTecnico(){
         MVC_TecnicoPrincipal_Vista tecPrinVis=new MVC_TecnicoPrincipal_Vista();
+        
     }
     
     public static void abrirMenuFacturas(){

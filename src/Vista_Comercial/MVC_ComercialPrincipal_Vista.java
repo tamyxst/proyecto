@@ -5,11 +5,11 @@
  */
 package Vista_Comercial;
 
-import Tablas.TablaReparaciones;
-import Tablas.TablaFacturas;
-import Tablas.TablaCodPostal;
-import Tablas.TablaFacturaFechas;
-import Tablas.TablaClientes;
+import Componentes.TablaPendientesFacturar;
+import Componentes.TablaFacturas;
+import Componentes.TablaCodPostal;
+import Componentes.TablaFacturaFechas;
+import Componentes.TablaClientes;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -34,7 +34,7 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
 
     JFrame fFact2 = new JFrame();
     TablaFacturaFechas tFacFechas=new TablaFacturaFechas();
-    TablaReparaciones tRepa=new TablaReparaciones();
+    TablaPendientesFacturar tRepa=new TablaPendientesFacturar();
     TablaCodPostal tCodPos=new TablaCodPostal();
     
     //Página 1
@@ -76,7 +76,7 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     JLabel reparNoFacturadas=new JLabel("Reparaciones no facturadas");
     JLabel frasRealizadasLa = new JLabel("Facturas entre fechas");
     JLabel frasCodPostalLa = new JLabel("Facturas por Código postal");
-    JTextField frasCodPos = new JTextField(10);
+    JTextField frasCodPos = new JTextField(20);
     JDateChooser primFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JDateChooser ultiFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
 
@@ -183,11 +183,11 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         this.codClienteJ.setText(cadena);
     }
 
-    public void mostrarErroresFacturas(String mensajeError) {
+    public void mostrarErroresPanelComercial(String mensajeError) {
         JOptionPane.showMessageDialog(this, mensajeError);
     }
 
-    public void addEventosBotones(ActionListener escucharBoton) {
+    public void addEventosBotonesPComercial(ActionListener escucharBoton) {
         anadir.addActionListener(escucharBoton);
         buscarCliente.addActionListener(escucharBoton);
     }
@@ -268,17 +268,17 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     }
 
     public void createPage3() {
+        JLabel label = new JLabel("Búsqueda");
+        label.setHorizontalTextPosition(JLabel.TRAILING);
         
         panel3.setLayout(new GridLayout(3,1));
         panelFechas.add(frasRealizadasLa);
         panelFechas.add(primFras);
         panelFechas.add(ultiFras);
         panelFechas.add(mostrarFechas);
-
-        //panelBusq.setLayout(new GridLayout(1, 3));
-
-        //mostrarCodPos.setPreferredSize(new Dimension(25, 25));
-
+        
+        frasCodPos.setBounds(20, 35, 150, 20);
+        
         panelBusq.add(frasCodPostalLa);
         panelBusq.add(frasCodPos);
         panelBusq.add(mostrarCodPos);

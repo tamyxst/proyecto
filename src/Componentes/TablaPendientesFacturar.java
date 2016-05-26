@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package Componentes;
 
-import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Modelo_Comercial.MVC_GestionC_Modelo;
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alumno
  */
-public class TablaReparaciones {
-    MVC_GestionFac_Modelo gesModelo = new MVC_GestionFac_Modelo();
+public class TablaPendientesFacturar {
+    MVC_GestionC_Modelo gesModelo = new MVC_GestionC_Modelo();
     private JPanel panel_4 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
     JScrollPane scrollPane = new JScrollPane(tabla);
     
-    public TablaReparaciones(){
+    public TablaPendientesFacturar(){
         modelo.addColumn("Cod_rep"); //Añadimos las columnas a la tabla (tantas como queramos)
         modelo.addColumn("Problema");
         modelo.addColumn("Solución");

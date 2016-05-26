@@ -6,7 +6,7 @@
 package Vista_Comercial;
 
 import Controlador_Comercial.MVC_NuevoUser_Controlador;
-import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Modelo_Comercial.MVC_GestionC_Modelo;
 import Proyecto.CreaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

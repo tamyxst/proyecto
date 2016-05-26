@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tablas;
+package Componentes;
 
-import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Modelo_Comercial.MVC_GestionC_Modelo;
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Alumno
  */
 public class TablaCodPostal {
-    MVC_GestionFac_Modelo gesModelo = new MVC_GestionFac_Modelo();
+    MVC_GestionC_Modelo gesModelo = new MVC_GestionC_Modelo();
     private JPanel panel_5 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
