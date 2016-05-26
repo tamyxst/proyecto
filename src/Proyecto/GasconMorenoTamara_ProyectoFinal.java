@@ -17,7 +17,7 @@ public class GasconMorenoTamara_ProyectoFinal {
      */
     public static void main(String[] args) {
         //CreaUI.abrirMenuLogin();
-        //CreaUI.abrirMenuFacturas();
+        CreaUI.abrirMenuFacturas();
         CreaUI.abrirMenuTecnico();
         //CreaUI.abrirMenuLogin();
         //Antes de ejecutar esto tiene que meter los datos

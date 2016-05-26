@@ -94,8 +94,7 @@ public class MVC_GestionFac_Modelo {
         c.abrirConexion();
         try {
             String consulta = "SELECT f.num_factura,f.fecha_fact,f.cod_rep,f.importe,e.nombre,e.dni "
-                    + "FROM facturas f JOIN clientes e ON(f.cod_cliente=e.cod_cliente)JOIN reparaciones r "
-                    + "ON(e.cod_cliente=r.cod_cliente)"
+                    + "FROM facturas f JOIN clientes e ON(f.cod_cliente=e.cod_cliente)"
                     + "GROUP BY f.num_factura,f.fecha_fact,f.cod_rep,f.importe,e.nombre,e.dni ";
             Statement st = c.getConexion().createStatement();
             rs = st.executeQuery(consulta);

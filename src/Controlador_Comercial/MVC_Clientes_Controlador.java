@@ -42,8 +42,10 @@ public class MVC_Clientes_Controlador {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
+            try{
                 cod_cliente = TablaClientes.getCodCliente(); //Recibo el cod_cliente directamente de la tabla. 
+            }catch(NumberFormatException ex){}    
+                
                 nombre = comerPrincVist.getNombre();
                 apellidos = comerPrincVist.getApellidos();
                 dni = comerPrincVist.getDni();
@@ -86,10 +88,8 @@ public class MVC_Clientes_Controlador {
                 } else {
                     comercialFactVista.mostrarErroresFacturas("El dni no es válido");
                 }
-            } catch (NumberFormatException ex) {
-                comercialFactVista.mostrarErroresFacturas("Has introducido números");
-            }
+            } 
 
-        }
+        
     }
 }
