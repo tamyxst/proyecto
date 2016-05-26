@@ -42,16 +42,16 @@ public class MVC_Clientes_Modelo {
         return rs;
     }
     
-    public void anadirNuevoCliente(String nombre, String apellidos,String dni,String cod_postal, String telefono){
+    public void anadirNuevoCliente(Cliente cliente){
         CallableStatement cs;
         try{
             c.abrirConexion();
             cs=c.getConexion().prepareCall("{call insertarCliente_en(?,?,?,?,?)}");
-            cs.setString(1, nombre);
-            cs.setString(2, apellidos);
-            cs.setString(3, dni);
-            cs.setString(4, cod_postal);
-            cs.setString(5, telefono);
+            cs.setString(1, cliente.getNombre());
+            cs.setString(2, cliente.getApellidos());
+            cs.setString(3, cliente.getDni());
+            cs.setString(4, cliente.getCod_postal());
+            cs.setString(5, cliente.getTelefono());
             cs.execute();
                     
         }catch(SQLException ex){
@@ -81,4 +81,37 @@ public class MVC_Clientes_Modelo {
     public void abrirBuscarClientes(){
         CreaUI.abrirMenuBuscarClientes();
     }
+    
+    public void modificarCliente(Cliente cliente){  
+        c.abrirConexion();
+        ResultSet rs;
+        try{
+            PreparedStatement modificarCli = c.getConexion().prepareStatement("UPDATE clientes SET nombre=?,apellidos=?,dni=?,cod_postal=?, telefono=? WHERE cod_cliente=?");
+            modificarCli.setString(1, cliente.getNombre());
+            modificarCli.setString(2, cliente.getApellidos());
+            modificarCli.setString(3, cliente.getDni());
+            modificarCli.setString(4, cliente.getCod_postal());
+            modificarCli.setString(5, cliente.getTelefono());
+            modificarCli.setInt(6, cliente.getCod_cliente());
+            modificarCli.executeUpdate();
+
+            c.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void bajaCliente(Cliente cliente){  
+        c.abrirConexion();
+        ResultSet rs;
+        try{
+            PreparedStatement bajaCli = c.getConexion().prepareStatement("DELETE from clientes where cod_CLIENTE=?");
+            bajaCli.setInt(1, cliente.getCod_cliente());
+            bajaCli.executeUpdate();
+
+            c.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

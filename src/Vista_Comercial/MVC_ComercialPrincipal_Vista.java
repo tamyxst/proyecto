@@ -29,7 +29,10 @@ import javax.swing.UIManager;
 public class MVC_ComercialPrincipal_Vista extends JDialog {
 
     JFrame fFact2 = new JFrame();
-
+    TablaFacturaFechas tFacFechas=new TablaFacturaFechas();
+    TablaReparaciones tRepa=new TablaReparaciones();
+    TablaCodPostal tCodPos=new TablaCodPostal();
+    
     //Página 1
     JPanel panel1 = new JPanel();
     JPanel pListado, pDatosF, pBotones;
@@ -62,18 +65,18 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
     //Página 3
     JPanel panel3 = new JPanel();
     JPanel panelFechas = new JPanel();
-    JPanel panelLugares = new JPanel();
-    JButton mostrarFechas = new JButton("Mostrar");
+    JPanel panelBusq = new JPanel();
+    JButton mostrarFechas = new JButton("Mostrar por fechas");
     JButton mostrarCodPos = new JButton("Mostrar");
-    JButton mostrarPob = new JButton("Mostrar");
+    JButton mostrarRepNoFac=new JButton("Mostrar Reparaciones");
+    JLabel reparNoFacturadas=new JLabel("Reparaciones no facturadas");
     JLabel frasRealizadasLa = new JLabel("Facturas entre fechas");
     JLabel frasCodPostalLa = new JLabel("Facturas por Código postal");
-    JLabel frasPoblacionLa = new JLabel("Facturas por población");
-    JTextField frasCodPos = new JTextField(15);
-    JTextField frasPobPos = new JTextField(15);
+    JTextField frasCodPos = new JTextField(10);
     JDateChooser primFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JDateChooser ultiFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
 
+    
     public MVC_ComercialPrincipal_Vista() {
 
         fFact2.setSize(700, 700);
@@ -160,8 +163,9 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         return codClienteJ.getText();
     }
 
-    public String getCodigoRepF() {
-        return codigoRepJ.getText();
+    public int getCodigoRepF() {
+        int codRepN = Integer.parseInt(codigoRepJ.getText());
+        return codRepN;
     }
 
     public float getImporteF() {
@@ -171,7 +175,7 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
 
     public void setCodCliente(int codCliente) {
         String cadena = String.valueOf(codCliente);
-        System.out.println("Compruebo que funciona COD CLIENTE:" + cadena);
+        //System.out.println("Compruebo que funciona COD CLIENTE:" + cadena);
         this.codClienteJ.setText(cadena);
     }
 
@@ -189,7 +193,6 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
     }
 
     //CLIENTES
-
     public void createPage2() {
         JLabel label = new JLabel("Nuevo Cliente");
         label.setHorizontalTextPosition(JLabel.TRAILING);
@@ -261,32 +264,35 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
     }
 
     public void createPage3() {
+        
+        panel3.setLayout(new GridLayout(3,1));
         panelFechas.add(frasRealizadasLa);
         panelFechas.add(primFras);
         panelFechas.add(ultiFras);
         panelFechas.add(mostrarFechas);
 
-        panelLugares.setLayout(new GridLayout(2, 1));
+        //panelBusq.setLayout(new GridLayout(1, 3));
 
-        mostrarCodPos.setPreferredSize(new Dimension(10, 10));
+        //mostrarCodPos.setPreferredSize(new Dimension(25, 25));
 
-        panelLugares.add(frasCodPostalLa);
-        panelLugares.add(frasCodPos);
-        panelLugares.add(mostrarCodPos);
-
-        panelLugares.add(frasPoblacionLa);
-        panelLugares.add(frasPobPos);
-        panelLugares.add(mostrarPob);
+        panelBusq.add(frasCodPostalLa);
+        panelBusq.add(frasCodPos);
+        panelBusq.add(mostrarCodPos);
+        
+        JPanel pRep=new JPanel();
+        
+        pRep.add(reparNoFacturadas);
+        pRep.add(mostrarRepNoFac);
 
         panel3.add(panelFechas, BorderLayout.NORTH);
-        panel3.add(panelLugares, BorderLayout.CENTER);
-
+        panel3.add(panelBusq, BorderLayout.NORTH);
+        panel3.add(pRep, BorderLayout.NORTH);
     }
 
     public void addEventosBusquedaFacturas(ActionListener escucharBoton) {
         mostrarFechas.addActionListener(escucharBoton);
         mostrarCodPos.addActionListener(escucharBoton);
-        mostrarPob.addActionListener(escucharBoton);
+        mostrarRepNoFac.addActionListener(escucharBoton);
     }
 
     public Date getFechaPrimera() {
@@ -301,7 +307,38 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         return frasCodPos.getText();
     }
 
-    public String getPoblacionListadoFras() {
-        return frasPobPos.getText();
+    public void mostrarTablaFechas(Date fecha1, Date fecha2) {
+        java.sql.Date fechaI= convertirFecha(fecha1);
+        java.sql.Date fechaU= convertirFecha(fecha2);    
+        System.out.println(fechaI +" "+fechaU);
+
+        tFacFechas.rellenarTablaEntreFechas(fechaI, fechaU);
+        JFrame fLisFrasFechas=new JFrame();
+        fLisFrasFechas.add(tFacFechas.getPanel1(), BorderLayout.CENTER);
+        fLisFrasFechas.setSize(500,300);
+        fLisFrasFechas.setResizable(false);
+        fLisFrasFechas.setVisible(true);
+    }
+
+    public java.sql.Date convertirFecha(java.util.Date date) {
+        return new java.sql.Date(date.getTime());
+    }
+    
+    public void mostrarTablaReparaciones(){
+        JFrame fReparaciones=new JFrame();
+        fReparaciones.add(tRepa.getPanel1(), BorderLayout.CENTER);
+        fReparaciones.setSize(500,300);
+        fReparaciones.setResizable(false);
+        fReparaciones.setVisible(true);
+    }
+    
+    public void mostrarTablaFacturas(String cod_postal){
+        JFrame fFacCodPostal=new JFrame();
+        
+        tCodPos.rellenarTablaPorCodPostal(cod_postal);
+        fFacCodPostal.add(tCodPos.getPanel1(), BorderLayout.CENTER);
+        fFacCodPostal.setSize(500,300);
+        fFacCodPostal.setResizable(false);
+        fFacCodPostal.setVisible(true);
     }
 }

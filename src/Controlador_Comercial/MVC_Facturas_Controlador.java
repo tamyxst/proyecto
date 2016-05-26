@@ -24,15 +24,17 @@ public class MVC_Facturas_Controlador {
     MVC_Facturas_Modelo comercialGesModelo;
     MVC_Clientes_Modelo comercialCliModelo;
     MVC_Clientes_Controlador comercialCliConst;
+    MVC_Buscador_Controlador buscaFac;
     TablaFacturas t = new TablaFacturas();
     static int cod_cliente;
 
-    public MVC_Facturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_Facturas_Modelo comercialGesModelo,MVC_Clientes_Modelo comercialCliModelo, MVC_Clientes_Controlador comercialCliConst ) {
+    public MVC_Facturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_Facturas_Modelo comercialGesModelo,MVC_Clientes_Modelo comercialCliModelo, MVC_Clientes_Controlador comercialCliConst,MVC_Buscador_Controlador buscaFac ) {
         this.comercialFactVista = comercialFactVista;
         this.comercialGesModelo = comercialGesModelo;
         this.comercialCliModelo=comercialCliModelo;
         this.comercialCliConst=comercialCliConst;
         this.comercialFactVista.addEventosBotones(new SeleccionaBotonesFacturas());
+        this.buscaFac=buscaFac;
         this.cod_cliente=cod_cliente;
     }
 
@@ -46,7 +48,7 @@ public class MVC_Facturas_Controlador {
 
         String codCliente;
         Date fecha;
-        String codRep;
+        int codRep;
         float importe;
         String opcion;
 
@@ -76,8 +78,8 @@ public class MVC_Facturas_Controlador {
                         comercialFactVista.mostrarErroresFacturas("El cliente no existe, debes crearlo antes");
                     } else if (comercialGesModelo.buscarCodigoReparacion(codRep)) {
                         comercialFactVista.mostrarErroresFacturas("Código reparación no válido. Ya esta facturado o debes crearlo antes.");
-                    } else if (codRep.equals("")) {
-                        comercialFactVista.mostrarErroresFacturas("El campo código Reparación esta vacío");
+                    } else if (codRep==(0)) {
+                        comercialFactVista.mostrarErroresFacturas("El campo código Reparación no puede ser 0");
                     } else if (importe == 0) {
                         comercialFactVista.mostrarErroresFacturas("El campo importe esta vacío");
                     } else {

@@ -6,6 +6,7 @@
 package Modelo_Comercial;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,4 +104,47 @@ public class MVC_GestionFac_Modelo {
         } 
         return rs;
     }
+    public ResultSet listaFacturasEntreFechas(Date fechaPrimera, Date fechaUltima) {
+        c.abrirConexion();
+        ResultSet rs = null;
+        try {
+            PreparedStatement consulta = c.getConexion().prepareStatement("select * from facturas where fecha_fact>=? AND fecha_fact<=? ORDER BY fecha_fact");
+            consulta.setDate(1, fechaPrimera);
+            consulta.setDate(2, fechaUltima);
+            rs = consulta.executeQuery();
+
+            //No se debe cerrar la conexion para mostrar tablas
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    public ResultSet listaReparaciones() {
+        c.abrirConexion();
+        ResultSet rs = null;
+        c.abrirConexion();
+        try {
+            String consulta = "SELECT * FROM reparaciones WHERE facturado=false";
+            Statement st = c.getConexion().createStatement();
+            rs = st.executeQuery(consulta);
+            //No se debe cerrar la conexion para mostrar tablas
+        } catch (SQLException ex) {
+            Logger.getLogger(ex.getMessage());
+        } 
+        return rs;
+    }
+    public ResultSet listaPorCodPostal(String cod_postal) {
+        c.abrirConexion();
+        ResultSet rs = null;
+        try {
+            PreparedStatement consulta = c.getConexion().prepareStatement("select * from facturas f JOIN clientes c where f.cod_cliente=c.cod_cliente AND c.cod_postal=?");
+            consulta.setString(1, cod_postal);
+            rs = consulta.executeQuery();
+            //No se debe cerrar la conexion para mostrar tablas
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionFac_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    
 }

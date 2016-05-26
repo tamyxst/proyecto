@@ -6,6 +6,7 @@
 package Proyecto;
 
 import Controlador_Comercial.MVC_BuscaC_Controlador;
+import Controlador_Comercial.MVC_Buscador_Controlador;
 import Controlador_Comercial.MVC_Clientes_Controlador;
 import Modelo_Comercial.MVC_BuscaC_Modelo;
 import Controlador_Comercial.MVC_Facturas_Controlador;
@@ -49,7 +50,9 @@ public class CreaUI {
         MVC_Facturas_Modelo mFacturas=new MVC_Facturas_Modelo();
         MVC_Clientes_Modelo mClientes=new MVC_Clientes_Modelo();
         MVC_Clientes_Controlador cClientes=new MVC_Clientes_Controlador(v,mClientes);
-        MVC_Facturas_Controlador cFacturas=new MVC_Facturas_Controlador(v,mFacturas,mClientes,cClientes);
+        MVC_Buscador_Controlador buscaFac=new MVC_Buscador_Controlador(v);
+        MVC_Facturas_Controlador cFacturas=new MVC_Facturas_Controlador(v,mFacturas,mClientes,cClientes,buscaFac);
+        
     }
     
     public static void abrirMenuClientes(){
@@ -64,6 +67,5 @@ public class CreaUI {
         MVC_BuscaC_Controlador cbClientes=new MVC_BuscaC_Controlador(vbClientes,mbClientes);
     }
     
-    
-            
+          
 }

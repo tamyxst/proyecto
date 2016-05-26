@@ -30,13 +30,13 @@ public class MVC_Facturas_Modelo {
         
     }
     
-    public void grabarNuevaFactura(Date fecha_fact,String cod_rep,float importe, int cod_cliente){
+    public void grabarNuevaFactura(Date fecha_fact,int cod_rep,float importe, int cod_cliente){
         CallableStatement cs;
         try{
             c.abrirConexion();
             cs=c.getConexion().prepareCall("{call insertarFactura_en(?,?,?,?)}");
             cs.setDate(1, fecha_fact);
-            cs.setString(2, cod_rep);
+            cs.setInt(2, cod_rep);
             cs.setFloat(3, importe);
             cs.setInt(4,cod_cliente);
             cs.execute();
@@ -46,14 +46,14 @@ public class MVC_Facturas_Modelo {
         }
     }
     
-    public void marcarReparacionFacturada(String cod_rep){
+    public void marcarReparacionFacturada(int cod_rep){
         boolean facturado=true;
         c.abrirConexion();
         ResultSet rs;
         try{
             PreparedStatement marcarRep = c.getConexion().prepareStatement("UPDATE reparaciones SET facturado=? WHERE cod_rep =?");
             marcarRep.setBoolean(1, facturado);
-            marcarRep.setString(2, cod_rep);
+            marcarRep.setInt(2, cod_rep);
             marcarRep.executeUpdate();
             
             
@@ -88,20 +88,20 @@ public class MVC_Facturas_Modelo {
         CreaUI.abrirMenuBuscarClientes();
     }
     
-    public boolean buscarCodigoReparacion(String cod_rep){
-        boolean validar=false;
+    public boolean buscarCodigoReparacion(int cod_rep){
+        boolean validar=true;
         c.abrirConexion();
         ResultSet rs;
         try{
             PreparedStatement comprobarCodRep = c.getConexion().prepareStatement("SELECT * FROM reparaciones WHERE cod_rep=?");
-            comprobarCodRep.setString(1, cod_rep);
+            comprobarCodRep.setInt(1, cod_rep);
             rs=comprobarCodRep.executeQuery();
-            boolean facturado = false;
+            boolean facturado=true;
             while (rs.next()) {
                 facturado = rs.getBoolean(8);
             }
-            if(facturado==true){
-                validar=true;
+            if(facturado==false){
+                validar=false;
             }
             c.cerrarConexion();
         } catch (SQLException ex) {

@@ -28,7 +28,7 @@ public class TablaClientes {
     DefaultTableModel modeloCli = new DefaultTableModel();
     JTable tablaCli = new JTable(modeloCli);
     JScrollPane scrollPaneCli = new JScrollPane(tablaCli);
-    
+    static String cod_cliente;
     TablaClientes(){
         modeloCli.addColumn("Cod Cliente"); //Añadimos las columnas a la tabla (tantas como queramos)
         modeloCli.addColumn("Nombre");
@@ -36,20 +36,23 @@ public class TablaClientes {
         modeloCli.addColumn("Dni");
         modeloCli.addColumn("Cod Postal");
         modeloCli.addColumn("Telefono");
-    
+        this.cod_cliente=cod_cliente;
         tablaCli.addMouseListener(new MouseAdapter() 
    		{
                       @Override
       		public void mouseClicked(MouseEvent e) 
       		{
          		int row = tablaCli.rowAtPoint(e.getPoint());
-
+                                
+                        
+                                cod_cliente=tablaCli.getValueAt(row, 0).toString();
 				/* row devolvera -1 si se ha clicado fuera de la fila pero dentro de la tabla, si no devolvera el indice de la fila en la que se ha clicado. */
 				MVC_ComercialPrincipal_Vista.nombreCliJ.setText(tablaCli.getValueAt(row, 1).toString());
    				MVC_ComercialPrincipal_Vista.apellidosCliJ.setText(tablaCli.getValueAt(row, 2).toString());
                                 MVC_ComercialPrincipal_Vista.dniCliJ.setText(tablaCli.getValueAt(row, 3).toString());
    				MVC_ComercialPrincipal_Vista.cod_postalCliJ.setText(tablaCli.getValueAt(row, 4).toString());
                                 MVC_ComercialPrincipal_Vista.telefonoCliJ.setText(tablaCli.getValueAt(row, 5).toString());
+                                
       		}
    		});
         
@@ -61,6 +64,11 @@ public class TablaClientes {
     public JPanel getPanel2() {
         return panel_2;
     }
+    public static int getCodCliente(){
+        int CodCliente= Integer.parseInt(cod_cliente);
+        return CodCliente;
+    }
+    
     public void rellenarTablaClientes() {
 
         try {
