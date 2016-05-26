@@ -8,7 +8,7 @@ package Controlador_Comercial;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Modelo_Comercial.MVC_Facturas_Modelo;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
-import Vista_Comercial.TablaFacturas;
+import Tablas.TablaFacturas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;

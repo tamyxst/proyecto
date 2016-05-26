@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista_Comercial;
+package Tablas;
 
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Modelo_Comercial.MVC_GestionFac_Modelo;
+import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,7 @@ public class TablaClientes {
     JTable tablaCli = new JTable(modeloCli);
     JScrollPane scrollPaneCli = new JScrollPane(tablaCli);
     static String cod_cliente;
-    TablaClientes(){
+    public TablaClientes(){
         modeloCli.addColumn("Cod Cliente"); //Añadimos las columnas a la tabla (tantas como queramos)
         modeloCli.addColumn("Nombre");
         modeloCli.addColumn("Apellidos");

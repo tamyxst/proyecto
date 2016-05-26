@@ -5,6 +5,11 @@
  */
 package Vista_Comercial;
 
+import Tablas.TablaReparaciones;
+import Tablas.TablaFacturas;
+import Tablas.TablaCodPostal;
+import Tablas.TablaFacturaFechas;
+import Tablas.TablaClientes;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -51,11 +56,11 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
     JLabel dniCliL = new JLabel("Dni");
     JLabel cod_postalCliL = new JLabel("Cod Postal");
     JLabel telefonoCliL = new JLabel("Telefono");
-    static JTextField nombreCliJ = new JTextField(20);
-    static JTextField apellidosCliJ = new JTextField(20);
-    static JTextField dniCliJ = new JTextField(20);
-    static JTextField cod_postalCliJ = new JTextField(20);
-    static JTextField telefonoCliJ = new JTextField(20);
+    public static JTextField nombreCliJ = new JTextField(20);
+    public static JTextField apellidosCliJ = new JTextField(20);
+    public static JTextField dniCliJ = new JTextField(20);
+    public static JTextField cod_postalCliJ = new JTextField(20);
+    public static JTextField telefonoCliJ = new JTextField(20);
     TablaClientes tCli = new TablaClientes();
     JButton anadirCli = new JButton("Añadir");
     JButton modificarCli = new JButton("Modificar");

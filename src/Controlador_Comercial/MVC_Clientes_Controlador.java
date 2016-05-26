@@ -9,7 +9,7 @@ import static Controlador_Comercial.MVC_Facturas_Controlador.comercialFactVista;
 import Modelo_Comercial.Cliente;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
-import Vista_Comercial.TablaClientes;
+import Tablas.TablaClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;

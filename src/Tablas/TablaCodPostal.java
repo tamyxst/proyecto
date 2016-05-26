@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista_Comercial;
+package Tablas;
 
 import Modelo_Comercial.MVC_GestionFac_Modelo;
 import java.awt.BorderLayout;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JPanel;
@@ -19,42 +18,48 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alumno
  */
-public class TablaFacturaFechas {
+public class TablaCodPostal {
     MVC_GestionFac_Modelo gesModelo = new MVC_GestionFac_Modelo();
-    private JPanel panel_3 = new JPanel();
+    private JPanel panel_5 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
     JScrollPane scrollPane = new JScrollPane(tabla);
-    java.sql.Date Date1;
-    java.sql.Date Date2;
-    
-    public TablaFacturaFechas(){
+    String cod_postal;
+    public TablaCodPostal(){
         modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla (tantas como queramos)
         modelo.addColumn("Fecha");
         modelo.addColumn("Cod_rep");
         modelo.addColumn("Importe");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Dni");
 
-        panel_3.setLayout(new BorderLayout());
-        panel_3.add(scrollPane, BorderLayout.CENTER);
+        panel_5.setLayout(new BorderLayout());
+        panel_5.add(scrollPane, BorderLayout.CENTER);
 
-        rellenarTablaEntreFechas(Date1, Date2);
+        rellenarTablaPorCodPostal(cod_postal);
     }
-    
     public JPanel getPanel1() {
-        return panel_3;
+        return panel_5;
     }
-    public void rellenarTablaEntreFechas(Date fecha1, Date fecha2) {
-        ResultSet res=null;
+        //Llamamos al método que rellena la tabla con los datos de la base de datos
+
+        //SIN ESTO NO SALEN LOS DATOS
+    //panelScroll.setViewportView(tabla);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
+    //hay que borrarlo del otro sitio, sino puede dar error de NullPointerException
+    public void rellenarTablaPorCodPostal(String cod_postal) {
+
         try {
-             res = gesModelo.listaFacturasEntreFechas(fecha1, fecha2); //con es la conexión que hemos creado antes con el patrón singleton               
+            ResultSet rs = gesModelo.listaPorCodPostal(cod_postal); //con es la conexión que hemos creado antes con el patrón singleton               
             //listaEquipos() es la consulta a la base de datos, que retorna un ResultSet
-            while (res.next()) {
-                Object[] fila = new Object[4];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
+            while (rs.next()) {
+                Object[] fila = new Object[6];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                 // de la consulta
-                fila[0] = res.getString("num_factura"); //Lo que hay entre comillas son los campos de la base de datos
-                fila[1] = res.getDate("fecha_fact");
-                fila[2] = res.getInt("cod_rep");
-                fila[3] = res.getFloat("importe");
+                fila[0] = rs.getString("num_factura"); //Lo que hay entre comillas son los campos de la base de datos
+                fila[1] = rs.getDate("fecha_fact");
+                fila[2] = rs.getString("cod_rep");
+                fila[3] = rs.getFloat("importe");
+                fila[4] = rs.getString("nombre");
+                fila[5] = rs.getString("dni");
                 modelo.addRow(fila); // Añade una fila al final del modelo de la tabla
             }
 
@@ -66,6 +71,8 @@ public class TablaFacturaFechas {
         }
 
     }
+    
+   
     public void vaciarTabla() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -74,8 +81,7 @@ public class TablaFacturaFechas {
 
     public void actualizarTabla() {
         vaciarTabla();
-        rellenarTablaEntreFechas(Date1,Date2);
+        rellenarTablaPorCodPostal(cod_postal);
     }
-    
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista_Comercial;
+package Tablas;
 
 import Modelo_Comercial.MVC_GestionFac_Modelo;
 import java.awt.BorderLayout;
