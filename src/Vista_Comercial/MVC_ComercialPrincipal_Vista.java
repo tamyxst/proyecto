@@ -12,7 +12,6 @@ import Tablas.TablaFacturaFechas;
 import Tablas.TablaClientes;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -31,7 +30,7 @@ import javax.swing.UIManager;
  *
  * @author milla_000
  */
-public class MVC_ComercialPrincipal_Vista extends JDialog {
+public final class MVC_ComercialPrincipal_Vista extends JDialog {
 
     JFrame fFact2 = new JFrame();
     TablaFacturaFechas tFacFechas=new TablaFacturaFechas();
@@ -88,7 +87,7 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         fFact2.setLocationRelativeTo(null);
 
         JLabel label = new JLabel("Bienvenido/a");
-        label.setHorizontalTextPosition(JLabel.TRAILING); // Set the text position regarding its icon
+        label.setHorizontalTextPosition(JLabel.TRAILING); 
         label.setIcon(UIManager.getIcon("OptionPane.informationIcon"));
 
         createPage1();
@@ -321,6 +320,7 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         JFrame fLisFrasFechas=new JFrame();
         fLisFrasFechas.add(tFacFechas.getPanel1(), BorderLayout.CENTER);
         fLisFrasFechas.setSize(500,300);
+        fLisFrasFechas.setLocationRelativeTo(null);
         fLisFrasFechas.setResizable(false);
         fLisFrasFechas.setVisible(true);
     }
@@ -333,6 +333,7 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         JFrame fReparaciones=new JFrame();
         fReparaciones.add(tRepa.getPanel1(), BorderLayout.CENTER);
         fReparaciones.setSize(500,300);
+        fReparaciones.setLocationRelativeTo(null);
         fReparaciones.setResizable(false);
         fReparaciones.setVisible(true);
     }
@@ -343,6 +344,7 @@ public class MVC_ComercialPrincipal_Vista extends JDialog {
         tCodPos.rellenarTablaPorCodPostal(cod_postal);
         fFacCodPostal.add(tCodPos.getPanel1(), BorderLayout.CENTER);
         fFacCodPostal.setSize(500,300);
+        fFacCodPostal.setLocationRelativeTo(null);
         fFacCodPostal.setResizable(false);
         fFacCodPostal.setVisible(true);
     }

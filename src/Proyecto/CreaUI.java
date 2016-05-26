@@ -20,6 +20,7 @@ import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import Vista_Comercial.MVC_Comercial_Vista;
 import Vista_Comercial.MVC_Login_Vista;
 import Vista_Comercial.MVC_NuevoUser_Vista;
+import Vista_Comercial.MVC_TecnicoPrincipal_Vista;
 
 /**
  *
@@ -42,7 +43,7 @@ public class CreaUI {
     }
     
     public static void abrirMenuTecnico(){
-        
+        MVC_TecnicoPrincipal_Vista tecPrinVis=new MVC_TecnicoPrincipal_Vista();
     }
     
     public static void abrirMenuFacturas(){
@@ -56,9 +57,9 @@ public class CreaUI {
     }
     
     public static void abrirMenuClientes(){
-        MVC_ComercialPrincipal_Vista v=new MVC_ComercialPrincipal_Vista();
+        MVC_ComercialPrincipal_Vista comerPrinVis=new MVC_ComercialPrincipal_Vista();
         MVC_Clientes_Modelo mClientes=new MVC_Clientes_Modelo();
-        MVC_Clientes_Controlador cClientes=new MVC_Clientes_Controlador(v,mClientes);
+        MVC_Clientes_Controlador cClientes=new MVC_Clientes_Controlador(comerPrinVis,mClientes);
     }
     
     public static void abrirMenuBuscarClientes(){
