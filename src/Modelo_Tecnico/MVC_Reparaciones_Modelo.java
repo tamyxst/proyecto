@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo_Comercial;
+package Modelo_Tecnico;
 
+import Componentes.Conexion;
+import Modelo_Comercial.MVC_GestionC_Modelo;
+import Componentes.Reparacion;
 import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -53,7 +56,8 @@ public class MVC_Reparaciones_Modelo {
             cs.setString(1, r.getProblema());
             cs.setString(2, r.getSolucion());
             cs.setDate(3, r.getF_recogida());
-            cs.setDate(5, r.getF_entrega());
+            cs.setDate(4, r.getF_entrega());
+            cs.setInt(5, r.getCod_cliente());
             cs.setInt(6, r.getId());
             cs.setBoolean(7, r.isFacturado());
             cs.execute();
@@ -79,10 +83,11 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public void bajaReparacion(Reparacion r){  
+
+    public void bajaReparacion(Reparacion r) {
         c.abrirConexion();
         ResultSet rs;
-        try{
+        try {
             PreparedStatement bajaRep = c.getConexion().prepareStatement("DELETE from reparaciones where cod_rep=?");
             bajaRep.setInt(1, r.getCod_cliente());
             bajaRep.executeUpdate();
@@ -92,5 +97,21 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    }
 
+    public boolean buscarClientesCodCliente(int cod_cliente) {
+        boolean validar=false;
+        c.abrirConexion();
+        ResultSet rs;
+        try {
+            PreparedStatement comprobarCodCliente = c.getConexion().prepareStatement("SELECT * FROM clientes WHERE cod_cliente=?");
+            comprobarCodCliente.setInt(1, cod_cliente);
+            rs = comprobarCodCliente.executeQuery();
+
+            validar = rs.first();
+            c.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return validar;
+    }
+}

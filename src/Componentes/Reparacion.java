@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo_Comercial;
+package Componentes;
 
 import java.sql.Date;
 
@@ -31,14 +31,14 @@ public class Reparacion {
         this.id = id;
         this.facturado = facturado;
     }
-    public Reparacion(String problema, String solucion, Date f_recogida, Date f_entrega, int cod_cliente, int id, boolean facturado) {
+    public Reparacion(int cod_rep,String problema, String solucion,Date f_entrega) {
+        this.cod_rep=cod_rep;
         this.problema = problema;
         this.solucion = solucion;
-        this.f_recogida = f_recogida;
         this.f_entrega = f_entrega;
-        this.cod_cliente = cod_cliente;
-        this.id = id;
-        this.facturado = facturado;
+    }
+    public Reparacion(int cod_rep) {
+        this.cod_rep = cod_rep;
     }
 
     /**

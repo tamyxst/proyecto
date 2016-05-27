@@ -59,7 +59,7 @@ public class TablaFacturas {
             while (rs.next()) {
                 Object[] fila = new Object[6];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                 // de la consulta
-                fila[0] = rs.getString("num_factura"); //Lo que hay entre comillas son los campos de la base de datos
+                fila[0] = rs.getInt("num_factura"); //Lo que hay entre comillas son los campos de la base de datos
                 fila[1] = rs.getDate("fecha_fact");
                 fila[2] = rs.getInt("cod_rep");
                 fila[3] = rs.getFloat("importe");

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador_Comercial;
+package Controlador_Empleado;
 
-import Modelo_Comercial.MVC_GestionC_Modelo;
-import Vista_Comercial.MVC_NuevoUser_Vista;
+import Modelo_Empleado.MVC_GestionE_Modelo;
+import Modelo_Empleado.MVC_GestionE_Modelo;
+import Vista_Empleado.MVC_NuevoUser_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -19,9 +20,9 @@ import java.util.regex.Pattern;
 public class MVC_NuevoUser_Controlador {
 
     private MVC_NuevoUser_Vista nuevoUsuario_vista;
-    private MVC_GestionC_Modelo gestionUser;
+    private MVC_GestionE_Modelo gestionUser;
 
-    public MVC_NuevoUser_Controlador(MVC_NuevoUser_Vista nuevoUsuario_vista, MVC_GestionC_Modelo gestionUser) {
+    public MVC_NuevoUser_Controlador(MVC_NuevoUser_Vista nuevoUsuario_vista, MVC_GestionE_Modelo gestionUser) {
         this.nuevoUsuario_vista = nuevoUsuario_vista;
         this.gestionUser = gestionUser;
         this.nuevoUsuario_vista.addAnadirUsuario(new AnadirUsuarioListener());

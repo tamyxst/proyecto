@@ -8,7 +8,6 @@ package Controlador_Comercial;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Modelo_Comercial.MVC_Facturas_Modelo;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
-import Componentes.TablaFacturas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -24,7 +23,7 @@ public class MVC_Facturas_Controlador {
     MVC_Clientes_Modelo comercialCliModelo;
     MVC_Clientes_Controlador comercialCliConst;
     MVC_Buscador_Controlador buscaFac;
-    TablaFacturas t = new TablaFacturas();
+    //TablaFacturas t = new TablaFacturas();
     static int cod_cliente;
 
     public MVC_Facturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_Facturas_Modelo comercialGesModelo, MVC_Clientes_Modelo comercialCliModelo, MVC_Clientes_Controlador comercialCliConst, MVC_Buscador_Controlador buscaFac) {

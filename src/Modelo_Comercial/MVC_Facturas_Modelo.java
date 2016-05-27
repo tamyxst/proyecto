@@ -5,6 +5,7 @@
  */
 package Modelo_Comercial;
 
+import Componentes.Conexion;
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
 import java.sql.Date;
@@ -73,11 +74,7 @@ public class MVC_Facturas_Modelo {
             comprobarDni.setInt(1, cod_cliente);
             rs=comprobarDni.executeQuery();
             
-            if(rs.first()){
-                validar= true;
-            }else{
-                validar= false;
-            }
+            validar = rs.first();
             c.cerrarConexion();
         } catch (SQLException ex) {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);

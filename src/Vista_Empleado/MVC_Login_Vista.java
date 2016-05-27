@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista_Comercial;
+package Vista_Empleado;
 
-import Controlador_Comercial.MVC_NuevoUser_Controlador;
+import Controlador_Empleado.MVC_NuevoUser_Controlador;
 import Modelo_Comercial.MVC_GestionC_Modelo;
 import Proyecto.CreaUI;
 import java.awt.BorderLayout;

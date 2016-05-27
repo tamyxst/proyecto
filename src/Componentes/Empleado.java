@@ -1,4 +1,4 @@
-package Modelo_Comercial;
+package Componentes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

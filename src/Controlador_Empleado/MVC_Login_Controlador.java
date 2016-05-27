@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador_Comercial;
+package Controlador_Empleado;
 
-import Modelo_Comercial.Empleado;
+import Componentes.Empleado;
 import Modelo_Comercial.MVC_GestionC_Modelo;
+import Modelo_Empleado.MVC_GestionE_Modelo;
+import Modelo_Empleado.MVC_GestionE_Modelo;
 import Proyecto.CreaUI;
-import Vista_Comercial.MVC_Login_Vista;
+import Vista_Empleado.MVC_Login_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,9 +21,9 @@ import java.awt.event.ActionListener;
 public class MVC_Login_Controlador {
 
     private MVC_Login_Vista interfaceLogin;
-    private MVC_GestionC_Modelo gesUsuarios;
+    private MVC_GestionE_Modelo gesUsuarios;
 
-    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_GestionC_Modelo gesUsuarios) {
+    public MVC_Login_Controlador(MVC_Login_Vista interfaceLogin, MVC_GestionE_Modelo gesUsuarios) {
         this.interfaceLogin = interfaceLogin;
         this.gesUsuarios = gesUsuarios;
         this.interfaceLogin.addValidarUsuario(new Validar());
@@ -49,7 +51,6 @@ public class MVC_Login_Controlador {
                 } else {
                     CreaUI.abrirMenuTecnico();
                 }
-
                 conectado = true;
             }
             interfaceLogin.cerrarVentana();

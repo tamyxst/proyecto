@@ -6,10 +6,11 @@
 package Controlador_Comercial;
 
 import static Controlador_Comercial.MVC_Facturas_Controlador.comercialFactVista;
-import Modelo_Comercial.Cliente;
+import Componentes.Cliente;
 import Modelo_Comercial.MVC_Clientes_Modelo;
-import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import Componentes.TablaClientes;
+import Vista_Comercial.MVC_ComercialPrincipal_Vista;
+import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -54,20 +55,26 @@ public class MVC_Clientes_Controlador {
 
                 Cliente cliente = new Cliente(cod_cliente, nombre, apellidos, dni, cod_postal, telefono);
 
-                Pattern pat = Pattern.compile("^(([A-Za-z]\\d{8})|(\\d{8}[A-Za-z]))$");
-                Matcher mat = pat.matcher(dni);
+                Pattern patDni = Pattern.compile("^(([A-Za-z]\\d{8})|(\\d{8}[A-Za-z]))$");
+                Matcher matDni = patDni.matcher(dni);
+                
+                Pattern patCodPostal = Pattern.compile("([0-9]{5})");
+                Matcher matCodPostal = patCodPostal.matcher(cod_postal);
+                
+                Pattern patTfno = Pattern.compile("([0-9]{9})");
+                Matcher matTfno = patTfno.matcher(telefono);
 
                 if (cliente.getNombre().equals("")) {
-                    comercialFactVista.mostrarErroresPanelComercial("El campo dni esta vacío");
+                    comercialFactVista.mostrarErroresPanelComercial("El campo nombre esta vacío");
                 } else if (cliente.getApellidos().equals("")) {
                     comercialFactVista.mostrarErroresPanelComercial("El campo apellidos esta vacío");
                 } else if (cliente.getDni().equals("")) {
                     comercialFactVista.mostrarErroresPanelComercial("El campo dni no puede estar vacío");
-                } else if (cliente.getCod_postal().equals("")) {
-                    comercialFactVista.mostrarErroresPanelComercial("El campo Cod Postal esta vacío");
-                } else if (cliente.getTelefono().equals("")) {
-                    comercialFactVista.mostrarErroresPanelComercial("El campo telefono esta vacío");
-                } else if (mat.matches()) {
+                } else if (!matTfno.matches()) {
+                    comercialFactVista.mostrarErroresPanelComercial("El campo telefono no es correcto");
+                } else if(!matCodPostal.matches()){
+                    comercialFactVista.mostrarErroresPanelComercial("El campo código postal no es correcto");
+                }else if (matDni.matches()) {
                     opcion = e.getActionCommand();
                     if (opcion.equals("Añadir")) {
                         if (comerClienMod.buscarClientesPorDni(dni)) {

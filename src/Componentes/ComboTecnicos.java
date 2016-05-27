@@ -1,7 +1,9 @@
 package Componentes;
 
-import Modelo_Comercial.MVC_Reparaciones_Modelo;
+import Modelo_Tecnico.MVC_Reparaciones_Modelo;
 import java.awt.BorderLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -21,10 +23,10 @@ import javax.swing.JPanel;
  */
 public final class ComboTecnicos {
 
-    DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-    JComboBox combo = new JComboBox(modeloCombo);
+    //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+    JComboBox combo = new JComboBox();
     MVC_Reparaciones_Modelo gesModeloReparaciones = new MVC_Reparaciones_Modelo();
-    private final JPanel panel1 = new JPanel();
+    private JPanel panel1 = new JPanel();
     String nombre;
 
     public ComboTecnicos() {
@@ -33,23 +35,27 @@ public final class ComboTecnicos {
         panel1.setLayout(new BorderLayout());
         panel1.add(combo, BorderLayout.CENTER);
 
-        combo.addMouseListener(new MouseAdapter() {
+        combo.addItemListener(new ItemListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                nombre = combo.getSelectedItem().toString();
+            public void itemStateChanged(ItemEvent arg0) { // picks up changes to combobox selection
+                if (arg0.getStateChange() == ItemEvent.SELECTED) {
+                    nombre = (String) combo.getSelectedItem(); // takes the selected item
+                    
+                }
             }
         });
-
     }
 
     public void llenar() {
         try {
             ResultSet rs = gesModeloReparaciones.cargarCombo();
-            modeloCombo.addElement("Seleccione un Técnico");
-
+            String comboId;
+            combo.addItem("Seleccione un Técnico");
             while (rs.next()) {
                 //Seleccionar nº de columna en la bd que corresponda al nombre del técnico.
-                modeloCombo.addElement(rs.getString(1));
+                comboId = rs.getString(1);
+                combo.addItem(comboId);
+
             }
 
         } catch (SQLException e) {
@@ -64,5 +70,10 @@ public final class ComboTecnicos {
     public String getNombreTecnico() {
         return nombre;
     }
+    
+    public void getSetEnabled(){
+        combo.setEnabled(false);
+    }
+    
 
 }

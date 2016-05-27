@@ -3,10 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista_Comercial;
+package Vista_Tecnico;
 
 import Componentes.ComboTecnicos;
+import Componentes.TablaClientes;
 import Componentes.TablaReparaciones;
+import static Vista_Comercial.MVC_ComercialPrincipal_Vista.apellidosCliJ;
+import static Vista_Comercial.MVC_ComercialPrincipal_Vista.cod_postalCliJ;
+import static Vista_Comercial.MVC_ComercialPrincipal_Vista.dniCliJ;
+import static Vista_Comercial.MVC_ComercialPrincipal_Vista.nombreCliJ;
+import static Vista_Comercial.MVC_ComercialPrincipal_Vista.telefonoCliJ;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -29,7 +35,7 @@ import javax.swing.UIManager;
 public class MVC_TecnicoPrincipal_Vista extends JFrame {
 
     JFrame fRep1 = new JFrame();
-    ComboTecnicos comboTec=new ComboTecnicos();
+    public static ComboTecnicos comboTec=new ComboTecnicos();
     TablaReparaciones tReparacionesT=new TablaReparaciones();
     
     //Página 1
@@ -45,15 +51,30 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     JLabel solucionRL = new JLabel("Solución:");
     public static JTextField solucionRJ = new JTextField(20);
     JLabel fecha_recogidaRL = new JLabel("Fecha recogida:");
-    JDateChooser fecha_recogidaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+    public static JDateChooser fecha_recogidaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JLabel fecha_entregaRL = new JLabel("Fecha entrega:");
-    JDateChooser fecha_entregaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+    public static JDateChooser fecha_entregaR = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JLabel cod_clienteRL = new JLabel("Cód Cliente:");
-    JTextField cod_clienteRJ = new JTextField();
+    public static JTextField cod_clienteRJ = new JTextField();
     JLabel tecnicoRL = new JLabel("Técnico:"); //Combo box a la tabla usuarios... se correspondan al nombre
     
     //Página 2
     JPanel panel2 = new JPanel();
+    JPanel pDatosCliR = new JPanel();
+    JPanel pBotonesCliR = new JPanel();
+    JLabel nombreCliLR = new JLabel("Nombre");
+    JLabel apellidosCliLR = new JLabel("Apellidos");
+    JLabel dniCliLR = new JLabel("Dni");
+    JLabel cod_postalCliLR = new JLabel("Cod Postal");
+    JLabel telefonoCliLR = new JLabel("Telefono");
+    public static JTextField nombreCliJR = new JTextField(20);
+    public static JTextField apellidosCliJR = new JTextField(20);
+    public static JTextField dniCliJR = new JTextField(20);
+    public static JTextField cod_postalCliJR = new JTextField(20);
+    public static JTextField telefonoCliJR = new JTextField(20);
+    TablaClientes tCliR = new TablaClientes();
+    JButton anadirCliR = new JButton("Nuevo");
+    JPanel pListadoCliR = new JPanel();
 
     public MVC_TecnicoPrincipal_Vista() {
         fRep1.setSize(700, 700);
@@ -163,6 +184,70 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         return comboTec.getNombreTecnico();
     }
     public void createPage2Reparaciones() {
-       
+        JLabel label = new JLabel("Nuevo Cliente");
+        label.setHorizontalTextPosition(JLabel.TRAILING);
+
+        //Panel Datos factura
+        pDatosCliR.setLayout(null);
+        pDatosCliR.setLayout(new GridLayout(6, 2));
+
+        nombreCliJR.setBounds(10, 35, 150, 20);
+        apellidosCliJR.setBounds(10, 35, 150, 20);
+        dniCliJR.setBounds(10, 35, 150, 20);
+        cod_postalCliJR.setBounds(10, 35, 150, 20);
+        telefonoCliJR.setBounds(10, 35, 150, 20);
+
+        pDatosCliR.add(nombreCliLR);
+        pDatosCliR.add(nombreCliJR);
+
+        pDatosCliR.add(apellidosCliLR);
+        pDatosCliR.add(apellidosCliJR);
+        pDatosCliR.add(dniCliLR);
+        pDatosCliR.add(dniCliJR);
+        pDatosCliR.add(cod_postalCliLR);
+        pDatosCliR.add(cod_postalCliJR);
+        pDatosCliR.add(telefonoCliLR);
+        pDatosCliR.add(telefonoCliJR);
+        panel2.add(pDatosCliR, BorderLayout.NORTH);
+
+        //Panel Botones
+        pBotonesCliR.add(anadirCliR);
+        panel2.add(pBotonesCliR, BorderLayout.CENTER);
+
+        //Panel Listado facturas
+        pListadoCliR.add(tCliR.getPanel2(), BorderLayout.SOUTH);
+        pListadoCliR.setVisible(true);
+        panel2.add(pListadoCliR, BorderLayout.SOUTH);
     }
+    
+    public String getNombreR() {
+        return nombreCliJR.getText();
+    }
+
+    public String getApellidosR() {
+        return apellidosCliJR.getText();
+    }
+
+    public String getDniR() {
+        return dniCliJR.getText();
+    }
+
+    public String getCodPostalR() {
+        return cod_postalCliJR.getText();
+    }
+
+    public String getTelefonoR() {
+        return telefonoCliJR.getText();
+    }
+
+    public void addEventosClientesR(ActionListener escucharBoton) {
+        anadirCliR.addActionListener(escucharBoton);
+    }
+
+    public void actualizarTablaClientesR() {
+        tCliR.actualizarTablaClientes();
+    }
+    
+    
+    
 }

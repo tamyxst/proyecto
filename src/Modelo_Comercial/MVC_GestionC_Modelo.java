@@ -5,7 +5,7 @@
  */
 package Modelo_Comercial;
 
-import java.sql.CallableStatement;
+import Componentes.Conexion;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,67 +27,7 @@ public class MVC_GestionC_Modelo {
 
     Conexion c = new Conexion(servidor, bd, usuario, password);
 
-    public boolean comprobarLogin(String nombre, String password) {
-        boolean validar = false;
-        c.abrirConexion();
-        ResultSet rs;
-        try {
-            PreparedStatement comprobar = c.getConexion().prepareStatement("SELECT nombre,pass FROM usuarios WHERE nombre=? AND pass =?");
-            comprobar.setString(1, nombre);
-            comprobar.setString(2, password);
-            rs = comprobar.executeQuery();
-
-            if (rs.first()) {
-                System.out.println("true");
-                validar = true;
-            } else {
-                System.out.println("false");
-                validar = false;
-            }
-            c.cerrarConexion();
-        } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return validar;
-    }
-
-    public String comprobarTipo(String nombre, String pass) {
-        String tipo = "";
-        c.abrirConexion();
-        ResultSet rs;
-
-        try {
-            PreparedStatement comprobarT = c.getConexion().prepareStatement("SELECT * FROM usuarios WHERE nombre=? AND pass =?");
-            comprobarT.setString(1, nombre);
-            comprobarT.setString(2, pass);
-            rs = comprobarT.executeQuery();
-
-            while (rs.next()) {
-                tipo = rs.getString(4);
-            }
-            c.cerrarConexion();
-        } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return tipo;
-    }
-
-    public void altaNuevoUsuario(String nombre, String password, String tipo) {
-        CallableStatement cs;
-        try {
-            c.abrirConexion();
-            //Se lo indicamos con 2 interrogantes el nº de parametros.
-            cs = c.getConexion().prepareCall("{call insertarUsuario_en(?,?,?)}");
-            //Establecemos los valores de los parametros.
-            cs.setString(1, nombre);
-            cs.setString(2, password);
-            cs.setString(3, tipo);
-            //Ejecutar el procedimiento almacenado.
-            cs.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     public ResultSet listaFacturas() throws SQLException {
         ResultSet rs = null;

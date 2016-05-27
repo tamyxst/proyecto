@@ -5,8 +5,8 @@
  */
 package Componentes;
 
-import Modelo_Comercial.MVC_GestionT_Modelo;
-import Vista_Comercial.MVC_TecnicoPrincipal_Vista;
+import Modelo_Tecnico.MVC_GestionT_Modelo;
+import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,7 +30,6 @@ public class TablaReparaciones {
     static String cod_rep;
     public TablaReparaciones(){
         this.cod_rep=cod_rep;
-        
         modelo.addColumn("Cod_rep"); //Añadimos las columnas a la tabla (tantas como queramos)
         modelo.addColumn("Problema");
         modelo.addColumn("Solución");
@@ -48,7 +47,9 @@ public class TablaReparaciones {
                 cod_rep=tabla.getValueAt(row, 0).toString();
                 MVC_TecnicoPrincipal_Vista.problemaRJ.setText(tabla.getValueAt(row, 1).toString());
                 MVC_TecnicoPrincipal_Vista.solucionRJ.setText(tabla.getValueAt(row, 2).toString());
-                
+                MVC_TecnicoPrincipal_Vista.fecha_recogidaR.setEnabled(false);
+                MVC_TecnicoPrincipal_Vista.cod_clienteRJ.setEditable(false);
+                MVC_TecnicoPrincipal_Vista.comboTec.getSetEnabled();
             }
         });
         
