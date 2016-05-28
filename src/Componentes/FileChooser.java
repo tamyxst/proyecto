@@ -81,10 +81,10 @@ public class FileChooser extends JPanel {
                 String path = file.getAbsolutePath();
                 reparaciones = getArchivo(path);
                 if (reparaciones.isEmpty()) {
-                    JOptionPane.showMessageDialog(this,"No se han cargado datos");
-                }else{
+                    JOptionPane.showMessageDialog(this, "No se han cargado datos");
+                } else {
                     gesModelo.anadirReparacionesDesdeFichero(reparaciones);
-                    JOptionPane.showMessageDialog(this,"Datos cargados");
+                    JOptionPane.showMessageDialog(this, "Datos cargados");
                 }
                 System.out.println("Abriendo: " + file.getName() + "." + saltoLinea);
             } else {
@@ -116,12 +116,14 @@ public class FileChooser extends JPanel {
                     BufferedWriter bf = new BufferedWriter(new FileWriter(fchooser.getSelectedFile()));
                     String linea;
                     String titulo = "REPARACIONES PENDIENTES YEAR 2016";
+                    String barra = "===============================================================================";
                     bf.write(titulo);
                     bf.newLine();
-                    bf.write("============================================================");
+                    bf.write(barra);
                     bf.newLine();
                     for (Reparacion r : reparaciones) {
-                        bf.write(String.format("%-60s%-20s%-20s%-20s%-20s%n", r.getProblema(), r.getF_recogida(), r.getF_entrega(), r.getCod_cliente(), r.getId()));
+                        bf.write(String.format("%-60s%-20s%-20s%-20s%-20s%n" + barra + "%n", r.getProblema(), r.getF_recogida(), r.getF_entrega(), r.getCod_cliente(), r.getId()));
+
                         bf.flush();
                     }
                     bf.close();
@@ -147,26 +149,30 @@ public class FileChooser extends JPanel {
 
             String titulo = br.readLine();
             String barra = br.readLine();
+            String barras = "===============================================================================";
+            String[] reparacion = new String[5];
             try {
                 while ((linea = br.readLine()) != null) {
-                    String primeraCo = linea.substring(0, 60).trim(); //Problema
-                    String segundaCo = linea.substring(60, 80).trim(); //f_rec
-                    String terceraCo = linea.substring(80, 100).trim(); //f_entrega
-                    String cuartaCo = linea.substring(100, 120).trim(); //cod_clie
-                    String quintaCo = linea.substring(120, 140).trim(); //id
+                    if (!linea.equals(barras)) {
+                        String problema = linea.substring(0, 60).trim();
+                        String f_recogidaS = linea.substring(60, 80).trim();
+                        String f_entregaS = linea.substring(80, 100).trim();
+                        String cod_clienteS = linea.substring(100, 120).trim();
+                        String idS = linea.substring(120, 140).trim();
 
-                    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-                    int cod_cliente = Integer.parseInt(cuartaCo);
-                    int id = Integer.parseInt(quintaCo);
+                        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+                        int cod_cliente = Integer.parseInt(cod_clienteS);
+                        int id = Integer.parseInt(idS);
 
-                    java.util.Date f_recogidaU = format.parse(segundaCo);
-                    java.sql.Date f_recogida = convertirFecha(f_recogidaU);
+                        java.util.Date f_recogidaU = format.parse(f_recogidaS);
+                        java.sql.Date f_recogida = convertirFecha(f_recogidaU);
 
-                    java.util.Date f_entregaU = format.parse(terceraCo);
-                    java.sql.Date f_entrega = convertirFecha(f_entregaU);
+                        java.util.Date f_entregaU = format.parse(f_entregaS);
+                        java.sql.Date f_entrega = convertirFecha(f_entregaU);
 
-                    Reparacion r = new Reparacion(primeraCo, f_recogida, f_entrega, cod_cliente, id);
-                    reparaciones.add(r);
+                        Reparacion r = new Reparacion(problema, f_recogida, f_entrega, cod_cliente, id);
+                        reparaciones.add(r);
+                    }
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(FileChooser.class.getName()).log(Level.SEVERE, null, ex);
