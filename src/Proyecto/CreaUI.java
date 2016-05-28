@@ -5,6 +5,7 @@
  */
 package Proyecto;
 
+import Componentes.FileChooser;
 import Controlador_Comercial.MVC_BuscaC_Controlador;
 import Controlador_Comercial.MVC_Buscador_Controlador;
 import Controlador_Comercial.MVC_Clientes_Controlador;
@@ -52,8 +53,8 @@ public class CreaUI {
         MVC_Reparaciones_Modelo tecRepMod=new MVC_Reparaciones_Modelo();
         MVC_ClientesR_Modelo cliMod=new MVC_ClientesR_Modelo();
         MVC_ClientesR_Controlador cliContr=new MVC_ClientesR_Controlador(tecPrinVis,cliMod);
-        MVC_Reparaciones_Controlador cReparaciones=new MVC_Reparaciones_Controlador(tecPrinVis,tecRepMod,cliMod,cliContr);
-        
+        MVC_GestionE_Modelo gesEmpMod=new MVC_GestionE_Modelo();
+        MVC_Reparaciones_Controlador cReparaciones=new MVC_Reparaciones_Controlador(tecPrinVis,tecRepMod,cliMod,cliContr, gesEmpMod);
         
     }
     

@@ -6,6 +6,7 @@
 package Vista_Tecnico;
 
 import Componentes.ComboTecnicos;
+import Componentes.FileChooser;
 import Componentes.TablaClientes;
 import Componentes.TablaReparaciones;
 import static Vista_Comercial.MVC_ComercialPrincipal_Vista.apellidosCliJ;
@@ -37,6 +38,7 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     JFrame fRep1 = new JFrame();
     public static ComboTecnicos comboTec=new ComboTecnicos();
     TablaReparaciones tReparacionesT=new TablaReparaciones();
+    FileChooser fc=new FileChooser();
     
     //Página 1
     JPanel panel1 = new JPanel();
@@ -75,6 +77,9 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     TablaClientes tCliR = new TablaClientes();
     JButton anadirCliR = new JButton("Nuevo");
     JPanel pListadoCliR = new JPanel();
+    
+    //Página 3
+    JPanel panel3=new JPanel();
 
     public MVC_TecnicoPrincipal_Vista() {
         fRep1.setSize(700, 700);
@@ -86,7 +91,7 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
 
         createPage1Reparaciones();
         createPage2Reparaciones();
-        //createPage3Repraciones();
+        createPage3Reparaciones();
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
         tabbedPane.addTab(null, new JPanel());
@@ -94,11 +99,11 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
 
         tabbedPane.addTab("Reparaciones", panel1);
         tabbedPane.addTab("Clientes", panel2);
-        //tabbedPane.addTab("Buscar", panel3);
+        tabbedPane.addTab("Buscar", panel3);
 
         tabbedPane.setIconAt(1, new ImageIcon("reparaciones.gif"));
         tabbedPane.setIconAt(2, new ImageIcon("clientes.gif"));
-        //tabbedPane.setIconAt(3, new ImageIcon("buscar.gif"));
+        tabbedPane.setIconAt(3, new ImageIcon("calendar.gif"));
 
         fRep1.add(tabbedPane);
         fRep1.setVisible(true);
@@ -141,6 +146,7 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         panel1.add(pDatosR, BorderLayout.NORTH);
         panel1.add(pBotones, BorderLayout.CENTER);
         panel1.add(tReparacionesT.getPanel1(), BorderLayout.SOUTH);
+        
     }
     
     public String getProblemaReparacion(){
@@ -248,6 +254,10 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         tCliR.actualizarTablaClientes();
     }
     
-    
-    
+    public void createPage3Reparaciones() {
+        JLabel label = new JLabel("Cargar reparaciones");
+        label.setHorizontalTextPosition(JLabel.TRAILING);
+        panel3.add(fc.getPanel(), BorderLayout.CENTER);
+        
+    }
 }

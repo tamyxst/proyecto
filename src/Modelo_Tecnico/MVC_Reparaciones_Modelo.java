@@ -66,6 +66,26 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void grabarReparacionSinFechaEntrega(Reparacion r) {
+        CallableStatement cs;
+        Date f_entrega =null;
+        try {
+            c.abrirConexion();
+            cs = c.getConexion().prepareCall("{call insertarReparacionSinFecha_en(?,?,?,?,?,?,?)}");
+            cs.setString(1, r.getProblema());
+            cs.setString(2, r.getSolucion());
+            cs.setDate(3, r.getF_recogida());
+            cs.setDate(4, f_entrega);
+            cs.setInt(5, r.getCod_cliente());
+            cs.setInt(6, r.getId());
+            cs.setBoolean(7, r.isFacturado());
+            cs.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void modificarReparacion(Reparacion r) {
         c.abrirConexion();

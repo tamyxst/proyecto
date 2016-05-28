@@ -21,12 +21,21 @@ public class Reparacion {
     private int id; //Corresponde al nº de usuario en la tabla usuarios
     private boolean facturado; // si es 1 esta facturada la reparación
     
-    public Reparacion(int cod_rep, String problema, String solucion, Date f_recogida, Date f_entrega, int cod_cliente, int id, boolean facturado) {
-        this.cod_rep = cod_rep;
+    public Reparacion(String problema, String solucion, Date f_recogida, Date f_entrega, int cod_cliente, int id, boolean facturado) {
+        
         this.problema = problema;
         this.solucion = solucion;
         this.f_recogida = f_recogida;
         this.f_entrega = f_entrega;
+        this.cod_cliente = cod_cliente;
+        this.id = id;
+        this.facturado = facturado;
+    }
+    public Reparacion(String problema, String solucion, Date f_recogida, int cod_cliente, int id, boolean facturado) {
+        
+        this.problema = problema;
+        this.solucion = solucion;
+        this.f_recogida = f_recogida;
         this.cod_cliente = cod_cliente;
         this.id = id;
         this.facturado = facturado;
@@ -36,6 +45,14 @@ public class Reparacion {
         this.problema = problema;
         this.solucion = solucion;
         this.f_entrega = f_entrega;
+    }
+    //Constructor FileChooser
+    public Reparacion(String problema, Date f_recogida, Date f_entrega, int cod_cliente, int id) {
+        this.problema = problema;
+        this.f_recogida=f_recogida;
+        this.f_entrega = f_entrega;
+        this.cod_cliente=cod_cliente;
+        this.id=id;
     }
     public Reparacion(int cod_rep) {
         this.cod_rep = cod_rep;
@@ -95,6 +112,27 @@ public class Reparacion {
      */
     public boolean isFacturado() {
         return facturado;
+    }
+
+    /**
+     * @param cod_rep the cod_rep to set
+     */
+    public void setCod_rep(int cod_rep) {
+        this.cod_rep = cod_rep;
+    }
+
+    /**
+     * @param problema the problema to set
+     */
+    public void setProblema(String problema) {
+        this.problema = problema;
+    }
+
+    /**
+     * @param f_recogida the f_recogida to set
+     */
+    public void setF_recogida(java.sql.Date f_recogida) {
+        this.f_recogida = f_recogida;
     }
 
 }
