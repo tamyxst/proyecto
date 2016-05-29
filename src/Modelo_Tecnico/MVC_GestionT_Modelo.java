@@ -77,4 +77,5 @@ public class MVC_GestionT_Modelo {
             Logger.getLogger(ex.getMessage());
         }
     }
+    
 }

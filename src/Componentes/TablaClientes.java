@@ -53,7 +53,7 @@ public class TablaClientes {
                                 MVC_ComercialPrincipal_Vista.dniCliJ.setText(tablaCli.getValueAt(row, 3).toString());
    				MVC_ComercialPrincipal_Vista.cod_postalCliJ.setText(tablaCli.getValueAt(row, 4).toString());
                                 MVC_ComercialPrincipal_Vista.telefonoCliJ.setText(tablaCli.getValueAt(row, 5).toString());
-                                
+                                MVC_ComercialPrincipal_Vista.anadirCli.setEnabled(false);
       		}
    		});
         

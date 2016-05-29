@@ -65,6 +65,7 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public static JButton anadirCli = new JButton("Añadir");
     JButton modificarCli = new JButton("Modificar");
     JButton bajaCli = new JButton("Baja");
+    JButton resetCli=new JButton("Reset");
     JPanel pListadoCli = new JPanel();
 
     //Página 3
@@ -233,6 +234,7 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         pBotonesCli.add(anadirCli);
         pBotonesCli.add(modificarCli);
         pBotonesCli.add(bajaCli);
+        pBotonesCli.add(resetCli);
         panel2.add(pBotonesCli, BorderLayout.CENTER);
 
         //Panel Listado facturas
@@ -261,11 +263,23 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public String getTelefono() {
         return telefonoCliJ.getText();
     }
+    
+    public void limpiarCamposClientes(){
+        nombreCliJ.setText("");
+        apellidosCliJ.setText("");
+        dniCliJ.setText("");
+        cod_postalCliJ.setText("");
+        telefonoCliJ.setText("");
+        anadirCli.setEnabled(true);
+        modificarCli.setEnabled(false);
+        bajaCli.setEnabled(false);
+    }
 
     public void addEventosClientes(ActionListener escucharBoton) {
         anadirCli.addActionListener(escucharBoton);
         modificarCli.addActionListener(escucharBoton);
         bajaCli.addActionListener(escucharBoton);
+        resetCli.addActionListener(escucharBoton);
     }
 
     public void actualizarTablaClientes() {

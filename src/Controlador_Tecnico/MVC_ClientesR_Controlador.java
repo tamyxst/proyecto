@@ -63,6 +63,8 @@ public class MVC_ClientesR_Controlador {
                 tecnPrinVis.mostrarErroresPanelTecnico("El campo apellidos esta vacío");
             } else if (cliente.getDni().equals("")) {
                 tecnPrinVis.mostrarErroresPanelTecnico("El campo dni no puede estar vacío");
+            } else if (cliRepMode.buscarClientesPorDni(dni)) {
+                tecnPrinVis.mostrarErroresPanelTecnico("Ya existe un cliente con ese dni");
             } else if (!matTfno.matches()) {
                 tecnPrinVis.mostrarErroresPanelTecnico("El campo telefono no es correcto");
             } else if (!matCodPostal.matches()) {

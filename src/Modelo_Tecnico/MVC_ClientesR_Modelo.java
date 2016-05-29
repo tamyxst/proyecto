@@ -9,6 +9,8 @@ import Componentes.Cliente;
 import Componentes.Conexion;
 import Modelo_Comercial.MVC_GestionC_Modelo;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,5 +47,25 @@ public class MVC_ClientesR_Modelo {
         }catch(SQLException ex){
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public boolean buscarClientesPorDni(String dni){
+        boolean validar=false;
+        c.abrirConexion();
+        ResultSet rs;
+        try{
+            PreparedStatement comprobarDni = c.getConexion().prepareStatement("SELECT * FROM clientes WHERE dni=?");
+            comprobarDni.setString(1, dni);
+            rs=comprobarDni.executeQuery();
+            
+            if(rs.first()){
+                validar= true;
+            }else{
+                validar= false;
+            }
+            c.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return validar;
     }
 }

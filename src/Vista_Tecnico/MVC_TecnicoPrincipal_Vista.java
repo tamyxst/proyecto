@@ -268,7 +268,7 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     
     public void createPage3Reparaciones() {
         JLabel label = new JLabel("Cargar reparaciones");
-        JLabel cargaDatos=new JLabel("En Fichero .txt");
+        JLabel cargaDatos=new JLabel("Al exportar, no es necesario añadir la extensión .TXT a el fichero");
         label.setHorizontalTextPosition(JLabel.TRAILING);
         panel3.add(cargaDatos);
         panel3.add(fc.getPanel(), BorderLayout.CENTER);

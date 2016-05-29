@@ -90,7 +90,7 @@ public class MVC_Facturas_Controlador {
                         comercialFactVista.actualizarTablaFacturas();
                     }
                 } catch (NumberFormatException ex) {
-                    comercialFactVista.mostrarErroresPanelComercial("Has introducido números");
+                    comercialFactVista.mostrarErroresPanelComercial("Has introducido carácteres no válidos");
                 }
             } else {
                 //Se abrirá el menu busqueda clientes.
