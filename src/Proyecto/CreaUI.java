@@ -5,7 +5,6 @@
  */
 package Proyecto;
 
-import Componentes.FileChooser;
 import Controlador_Comercial.MVC_BuscaC_Controlador;
 import Controlador_Comercial.MVC_Buscador_Controlador;
 import Controlador_Comercial.MVC_Clientes_Controlador;
@@ -17,13 +16,11 @@ import Controlador_Tecnico.MVC_ClientesR_Controlador;
 import Controlador_Tecnico.MVC_Reparaciones_Controlador;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Modelo_Comercial.MVC_Facturas_Modelo;
-import Modelo_Comercial.MVC_GestionC_Modelo;
 import Modelo_Empleado.MVC_GestionE_Modelo;
 import Modelo_Tecnico.MVC_ClientesR_Modelo;
 import Modelo_Tecnico.MVC_Reparaciones_Modelo;
 import Vista_Comercial.MVC_BuscaC_Vista;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;
-import Vista_Comercial.MVC_Comercial_Vista;
 import Vista_Empleado.MVC_Login_Vista;
 import Vista_Empleado.MVC_NuevoUser_Vista;
 import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;

@@ -6,14 +6,9 @@
 package Vista_Tecnico;
 
 import Componentes.ComboTecnicos;
-import Componentes.FileChooser;
+import Componentes.FileChooserT;
 import Componentes.TablaClientes;
 import Componentes.TablaReparaciones;
-import static Vista_Comercial.MVC_ComercialPrincipal_Vista.apellidosCliJ;
-import static Vista_Comercial.MVC_ComercialPrincipal_Vista.cod_postalCliJ;
-import static Vista_Comercial.MVC_ComercialPrincipal_Vista.dniCliJ;
-import static Vista_Comercial.MVC_ComercialPrincipal_Vista.nombreCliJ;
-import static Vista_Comercial.MVC_ComercialPrincipal_Vista.telefonoCliJ;
 import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -38,7 +33,7 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     JFrame fRep1 = new JFrame();
     public static ComboTecnicos comboTec=new ComboTecnicos();
     TablaReparaciones tReparacionesT=new TablaReparaciones();
-    FileChooser fc=new FileChooser();
+    FileChooserT fc=new FileChooserT();
     
     //Página 1
     JPanel panel1 = new JPanel();
@@ -256,7 +251,9 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
     
     public void createPage3Reparaciones() {
         JLabel label = new JLabel("Cargar reparaciones");
+        JLabel cargaDatos=new JLabel("En Fichero .txt");
         label.setHorizontalTextPosition(JLabel.TRAILING);
+        panel3.add(cargaDatos);
         panel3.add(fc.getPanel(), BorderLayout.CENTER);
         
     }

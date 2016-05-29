@@ -14,8 +14,6 @@ import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -58,11 +56,6 @@ public class MVC_Reparaciones_Controlador {
             solucion = tecnVista.getSolucionReparacion();
             fecha2 = tecnVista.getFechaEntregaReparacion();
 
-            Pattern patPro = Pattern.compile("[A-Za-z0-9]{0,55}");
-            Matcher matPro = patPro.matcher(problema);
-
-            Pattern patSol = Pattern.compile("[A-Za-z0-9]{0,55}");
-            Matcher matSol = patSol.matcher(solucion);
 
             opcion = e.getActionCommand();
             if (opcion.equals("Añadir")) {
@@ -75,9 +68,9 @@ public class MVC_Reparaciones_Controlador {
                     tecnVista.mostrarErroresPanelTecnico("El cod cliente esta vacío");
                 } else if (!repModelo.buscarClientesCodCliente(codCliente)) {
                     tecnVista.mostrarErroresPanelTecnico("El cliente no existe, debes crearlo antes");
-                } else if (!matPro.matches()) {
+                } else if (problema.equals("") && problema.length()>55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo problema no es válido");
-                } else if (!matSol.matches()) {
+                } else if (solucion.equals("") && solucion.length()>55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo solución no es válido");
                 }else if (fecha1 == null) {
                     tecnVista.mostrarErroresPanelTecnico("El campo fecha esta vacío");
@@ -102,7 +95,7 @@ public class MVC_Reparaciones_Controlador {
 
             } else {
                 cod_rep = TablaReparaciones.getCodRep();
-                int id = gesEmpMod.pedirIdTecnico(idString);
+                //int id = gesEmpMod.pedirIdTecnico(idString);
                 Reparacion repBaja = new Reparacion(cod_rep);
                 repModelo.bajaReparacion(repBaja);
                 tecnVista.actualizarTablaReparaciones();

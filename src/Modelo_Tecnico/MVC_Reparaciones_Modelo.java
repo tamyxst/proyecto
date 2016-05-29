@@ -109,9 +109,8 @@ public class MVC_Reparaciones_Modelo {
         ResultSet rs;
         try {
             PreparedStatement bajaRep = c.getConexion().prepareStatement("DELETE from reparaciones where cod_rep=?");
-            bajaRep.setInt(1, r.getCod_cliente());
+            bajaRep.setInt(1, r.getCod_rep());
             bajaRep.executeUpdate();
-
             c.cerrarConexion();
         } catch (SQLException ex) {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);

@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ import javax.swing.JPanel;
  *
  * @author milla_000
  */
-public class FileChooser extends JPanel {
+public class FileChooserT extends JPanel {
 
     static ArrayList<Reparacion> reparaciones = new ArrayList<>();
     MVC_GestionT_Modelo gesModelo = new MVC_GestionT_Modelo();
@@ -44,12 +43,12 @@ public class FileChooser extends JPanel {
     JFileChooser fchooser;
     JPanel pBotones = new JPanel();
 
-    public FileChooser() {
+    public FileChooserT() {
         fchooser = new JFileChooser();
         fchooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
-        btnImportar = crearBoton("Abrir fichero");
-        btnExportar = crearBoton("Guardar fichero");
+        btnImportar = crearBoton("Cargar Reparaciones");
+        btnExportar = crearBoton("Guardar Reparaciones");
 
         pBotones.add(btnImportar);
         pBotones.add(btnExportar);
@@ -92,7 +91,7 @@ public class FileChooser extends JPanel {
             }
 
         } else if (e.getSource() == btnExportar) {
-            int respuesta = fchooser.showSaveDialog(FileChooser.this);
+            int respuesta = fchooser.showSaveDialog(FileChooserT.this);
             if (respuesta == JFileChooser.APPROVE_OPTION) {
                 File file = fchooser.getSelectedFile();
                 //Aquí iría lo que haríamos con el archivo
@@ -175,7 +174,7 @@ public class FileChooser extends JPanel {
                     }
                 }
             } catch (ParseException ex) {
-                Logger.getLogger(FileChooser.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileChooserT.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             System.out.println(reparaciones.get(1).getProblema());

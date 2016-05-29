@@ -5,6 +5,7 @@
  */
 package Vista_Comercial;
 
+import Componentes.FileChooserC;
 import Componentes.TablaPendientesFacturar;
 import Componentes.TablaFacturas;
 import Componentes.TablaCodPostal;
@@ -33,10 +34,10 @@ import javax.swing.UIManager;
 public final class MVC_ComercialPrincipal_Vista extends JDialog {
 
     JFrame fFact2 = new JFrame();
-    TablaFacturaFechas tFacFechas=new TablaFacturaFechas();
-    TablaPendientesFacturar tRepa=new TablaPendientesFacturar();
-    TablaCodPostal tCodPos=new TablaCodPostal();
-    
+    TablaFacturaFechas tFacFechas = new TablaFacturaFechas();
+    TablaPendientesFacturar tRepa = new TablaPendientesFacturar();
+    TablaCodPostal tCodPos = new TablaCodPostal();
+
     //Página 1
     JPanel panel1 = new JPanel();
     JPanel pListado, pDatosF, pBotones;
@@ -72,22 +73,26 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     JPanel panelBusq = new JPanel();
     JButton mostrarFechas = new JButton("Mostrar por fechas");
     JButton mostrarCodPos = new JButton("Mostrar");
-    JButton mostrarRepNoFac=new JButton("Mostrar Reparaciones");
-    JLabel reparNoFacturadas=new JLabel("Reparaciones no facturadas");
+    JButton mostrarRepNoFac = new JButton("Mostrar Reparaciones");
+    JLabel reparNoFacturadas = new JLabel("Reparaciones no facturadas");
     JLabel frasRealizadasLa = new JLabel("Facturas entre fechas");
     JLabel frasCodPostalLa = new JLabel("Facturas por Código postal");
     JTextField frasCodPos = new JTextField(20);
     JDateChooser primFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     JDateChooser ultiFras = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
 
-    
+    //TablaReparacionesPendientes
+    FileChooserC fcC=new FileChooserC();
+    JButton exportarDatos = new JButton("Exportar Datos");
+   
+
     public MVC_ComercialPrincipal_Vista() {
 
         fFact2.setSize(700, 700);
         fFact2.setLocationRelativeTo(null);
 
         JLabel label = new JLabel("Bienvenido/a");
-        label.setHorizontalTextPosition(JLabel.TRAILING); 
+        label.setHorizontalTextPosition(JLabel.TRAILING);
         label.setIcon(UIManager.getIcon("OptionPane.informationIcon"));
 
         createPage1();
@@ -270,21 +275,21 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public void createPage3() {
         JLabel label = new JLabel("Búsqueda");
         label.setHorizontalTextPosition(JLabel.TRAILING);
-        
-        panel3.setLayout(new GridLayout(3,1));
+
+        panel3.setLayout(new GridLayout(3, 1));
         panelFechas.add(frasRealizadasLa);
         panelFechas.add(primFras);
         panelFechas.add(ultiFras);
         panelFechas.add(mostrarFechas);
-        
+
         frasCodPos.setBounds(20, 35, 150, 20);
-        
+
         panelBusq.add(frasCodPostalLa);
         panelBusq.add(frasCodPos);
         panelBusq.add(mostrarCodPos);
-        
-        JPanel pRep=new JPanel();
-        
+
+        JPanel pRep = new JPanel();
+
         pRep.add(reparNoFacturadas);
         pRep.add(mostrarRepNoFac);
 
@@ -312,14 +317,14 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     }
 
     public void mostrarTablaFechas(Date fecha1, Date fecha2) {
-        java.sql.Date fechaI= convertirFecha(fecha1);
-        java.sql.Date fechaU= convertirFecha(fecha2);    
-        System.out.println(fechaI +" "+fechaU);
+        java.sql.Date fechaI = convertirFecha(fecha1);
+        java.sql.Date fechaU = convertirFecha(fecha2);
+        System.out.println(fechaI + " " + fechaU);
 
         tFacFechas.rellenarTablaEntreFechas(fechaI, fechaU);
-        JFrame fLisFrasFechas=new JFrame();
+        JFrame fLisFrasFechas = new JFrame();
         fLisFrasFechas.add(tFacFechas.getPanel1(), BorderLayout.CENTER);
-        fLisFrasFechas.setSize(500,300);
+        fLisFrasFechas.setSize(500, 300);
         fLisFrasFechas.setLocationRelativeTo(null);
         fLisFrasFechas.setResizable(false);
         fLisFrasFechas.setVisible(true);
@@ -328,22 +333,26 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public java.sql.Date convertirFecha(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
-    
-    public void mostrarTablaReparaciones(){
-        JFrame fReparaciones=new JFrame();
+
+    public void mostrarTablaReparaciones() {
+        JFrame fReparaciones = new JFrame();
+        
         fReparaciones.add(tRepa.getPanel1(), BorderLayout.CENTER);
-        fReparaciones.setSize(500,300);
+        fReparaciones.add(fcC, BorderLayout.SOUTH);
+        fReparaciones.setSize(500, 400);
         fReparaciones.setLocationRelativeTo(null);
         fReparaciones.setResizable(false);
         fReparaciones.setVisible(true);
     }
     
-    public void mostrarTablaFacturas(String cod_postal){
-        JFrame fFacCodPostal=new JFrame();
-        
+    
+
+    public void mostrarTablaFacturas(String cod_postal) {
+        JFrame fFacCodPostal = new JFrame();
+
         tCodPos.rellenarTablaPorCodPostal(cod_postal);
         fFacCodPostal.add(tCodPos.getPanel1(), BorderLayout.CENTER);
-        fFacCodPostal.setSize(500,300);
+        fFacCodPostal.setSize(500, 300);
         fFacCodPostal.setLocationRelativeTo(null);
         fFacCodPostal.setResizable(false);
         fFacCodPostal.setVisible(true);
