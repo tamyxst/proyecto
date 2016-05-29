@@ -43,13 +43,15 @@ public class TablaReparaciones {
             @Override
             public void mouseClicked(MouseEvent e){
                 int row= tabla.rowAtPoint(e.getPoint());
-                
                 cod_rep=tabla.getValueAt(row, 0).toString();
+                MVC_TecnicoPrincipal_Vista.modificarR.setEnabled(true);
+                MVC_TecnicoPrincipal_Vista.bajaR.setEnabled(true);
                 MVC_TecnicoPrincipal_Vista.problemaRJ.setText(tabla.getValueAt(row, 1).toString());
                 MVC_TecnicoPrincipal_Vista.solucionRJ.setText(tabla.getValueAt(row, 2).toString());
                 MVC_TecnicoPrincipal_Vista.fecha_recogidaR.setEnabled(false);
                 MVC_TecnicoPrincipal_Vista.cod_clienteRJ.setEditable(false);
-                MVC_TecnicoPrincipal_Vista.comboTec.getSetEnabled();
+                MVC_TecnicoPrincipal_Vista.comboTec.getSetEnabled(false);
+                MVC_TecnicoPrincipal_Vista.anadirR.setEnabled(false);
             }
         });
         

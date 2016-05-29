@@ -95,7 +95,7 @@ public class MVC_Reparaciones_Modelo {
             modificarRep.setString(1, r.getProblema());
             modificarRep.setString(2, r.getSolucion());
             modificarRep.setDate(3, r.getF_entrega());
-            modificarRep.setInt(4, r.getCod_cliente());
+            modificarRep.setInt(4, r.getCod_rep());
             modificarRep.executeUpdate();
 
             c.cerrarConexion();

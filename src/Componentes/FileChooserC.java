@@ -116,8 +116,10 @@ public class FileChooserC extends JPanel {
             rs.close();
             // Graba el archiv XML en disco
             XMLOutputter outputter = new XMLOutputter( Format.getPrettyFormat() );
+            
+            String Rruta= ruta + ".xml";
             try {
-               outputter.output(doc, new FileOutputStream ( ruta ));
+               outputter.output(doc, new FileOutputStream ( Rruta ));
                System.out.println("Arhivo XML creado en " + ruta);
             }
             catch (IOException e) {

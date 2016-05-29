@@ -71,9 +71,8 @@ public final class ComboTecnicos {
         return nombre;
     }
     
-    public void getSetEnabled(){
-        combo.setEnabled(false);
+    public void getSetEnabled(boolean dato){
+        combo.setEnabled(dato);
     }
-    
 
 }

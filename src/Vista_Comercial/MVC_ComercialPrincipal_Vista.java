@@ -62,7 +62,7 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public static JTextField cod_postalCliJ = new JTextField(20);
     public static JTextField telefonoCliJ = new JTextField(20);
     TablaClientes tCli = new TablaClientes();
-    JButton anadirCli = new JButton("Añadir");
+    public static JButton anadirCli = new JButton("Añadir");
     JButton modificarCli = new JButton("Modificar");
     JButton bajaCli = new JButton("Baja");
     JPanel pListadoCli = new JPanel();

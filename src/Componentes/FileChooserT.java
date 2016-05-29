@@ -94,6 +94,7 @@ public class FileChooserT extends JPanel {
             int respuesta = fchooser.showSaveDialog(FileChooserT.this);
             if (respuesta == JFileChooser.APPROVE_OPTION) {
                 File file = fchooser.getSelectedFile();
+                String path = file.getAbsolutePath();
                 //Aquí iría lo que haríamos con el archivo
                 try {
                     ResultSet rs = gesModelo.cargarReparaciones();
@@ -112,7 +113,7 @@ public class FileChooserT extends JPanel {
                 }
 
                 try {
-                    BufferedWriter bf = new BufferedWriter(new FileWriter(fchooser.getSelectedFile()));
+                    BufferedWriter bf = new BufferedWriter(new FileWriter(path + ".txt"));
                     String linea;
                     String titulo = "REPARACIONES PENDIENTES YEAR 2016";
                     String barra = "===============================================================================";
@@ -122,7 +123,6 @@ public class FileChooserT extends JPanel {
                     bf.newLine();
                     for (Reparacion r : reparaciones) {
                         bf.write(String.format("%-60s%-20s%-20s%-20s%-20s%n" + barra + "%n", r.getProblema(), r.getF_recogida(), r.getF_entrega(), r.getCod_cliente(), r.getId()));
-
                         bf.flush();
                     }
                     bf.close();

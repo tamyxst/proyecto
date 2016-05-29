@@ -56,7 +56,6 @@ public class MVC_Reparaciones_Controlador {
             solucion = tecnVista.getSolucionReparacion();
             fecha2 = tecnVista.getFechaEntregaReparacion();
 
-
             opcion = e.getActionCommand();
             if (opcion.equals("Añadir")) {
                 fecha1 = tecnVista.getFechaRecogidaReparacion();
@@ -68,13 +67,13 @@ public class MVC_Reparaciones_Controlador {
                     tecnVista.mostrarErroresPanelTecnico("El cod cliente esta vacío");
                 } else if (!repModelo.buscarClientesCodCliente(codCliente)) {
                     tecnVista.mostrarErroresPanelTecnico("El cliente no existe, debes crearlo antes");
-                } else if (problema.equals("") || problema.length()>55) {
+                } else if (problema.equals("") || problema.length() > 55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo problema no es válido");
-                } else if (solucion.equals("") || solucion.length()>55) {
+                } else if (solucion.equals("") || solucion.length() > 55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo solución no es válido");
-                }else if (fecha1 == null) {
+                } else if (fecha1 == null) {
                     tecnVista.mostrarErroresPanelTecnico("El campo fecha esta vacío");
-                }else if (fecha2 == null) {
+                } else if (fecha2 == null) {
                     tecnVista.mostrarErroresPanelTecnico("El campo fecha esta vacío");
                 } else {
 
@@ -87,20 +86,31 @@ public class MVC_Reparaciones_Controlador {
                     tecnVista.actualizarTablaReparaciones();
                 }
             } else if (opcion.equals("Modificar")) {
+                //Recibimos los campos
+                cod_rep = TablaReparaciones.getCodRep();
+
+                if (problema.equals("") || problema.length() > 55) {
+                    tecnVista.mostrarErroresPanelTecnico("El campo problema no es válido");
+                } else if (solucion.equals("") || solucion.length() > 55) {
+                    tecnVista.mostrarErroresPanelTecnico("El campo solución no es válido");
+                } else if (fecha2 == null) {
+                    tecnVista.mostrarErroresPanelTecnico("El campo fecha esta vacío");
+                }
                 java.sql.Date fechaEnt = convertirFecha(fecha2);
                 Reparacion rep1 = new Reparacion(cod_rep, problema, solucion, fechaEnt);
 
                 repModelo.modificarReparacion(rep1);
                 tecnVista.actualizarTablaReparaciones();
 
-            } else {
+            } else if (opcion.equals("Eliminar")){
+                //Recibimos los campos
                 cod_rep = TablaReparaciones.getCodRep();
-                //int id = gesEmpMod.pedirIdTecnico(idString);
                 Reparacion repBaja = new Reparacion(cod_rep);
                 repModelo.bajaReparacion(repBaja);
                 tecnVista.actualizarTablaReparaciones();
+            } else{
+                tecnVista.limpiarCampos();
             }
-
         }
     }
 
