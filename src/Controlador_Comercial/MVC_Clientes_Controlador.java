@@ -79,7 +79,6 @@ public class MVC_Clientes_Controlador {
                     } else if (!matCodPostal.matches()) {
                         comercialFactVista.mostrarErroresPanelComercial("El campo código postal no es correcto");
                     } else if (matDni.matches()) {
-                        
                         if (comerClienMod.buscarClientesPorDni(dni)) {
                             comercialFactVista.mostrarErroresPanelComercial("Ya existe un cliente con ese dni");
                         } else {

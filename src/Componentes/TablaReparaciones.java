@@ -55,9 +55,7 @@ public class TablaReparaciones {
             }
         });
         
-        
-        
-        
+
         panel_6.setLayout(new BorderLayout());
         panel_6.add(scrollPane, BorderLayout.CENTER);
 
@@ -78,7 +76,7 @@ public class TablaReparaciones {
             ResultSet rs = gesModelo.listaReparaciones(); //con es la conexión que hemos creado antes con el patrón singleton               
             //listaEquipos() es la consulta a la base de datos, que retorna un ResultSet
             while (rs.next()) {
-                Object[] fila = new Object[9];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
+                Object[] fila = new Object[8];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                 // de la consulta
                 fila[0] = rs.getInt("cod_rep"); //Lo que hay entre comillas son los campos de la base de datos
                 fila[1] = rs.getString("problema");
@@ -87,7 +85,7 @@ public class TablaReparaciones {
                 fila[4] = rs.getDate("f_entrega");
                 fila[5] = rs.getInt("cod_cliente");
                 fila[6] = rs.getInt("id");
-                fila[8] = rs.getBoolean("facturado");
+                fila[7] = rs.getBoolean("facturado");
                 modelo.addRow(fila); // Añade una fila al final del modelo de la tabla
             }
 

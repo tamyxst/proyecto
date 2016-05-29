@@ -35,7 +35,7 @@ public class MVC_GestionT_Modelo {
         c.abrirConexion();
         ResultSet rs = null;
         try {
-            String consulta = "SELECT * FROM reparaciones";
+            String consulta = "SELECT cod_rep,problema,solucion,f_recogida,f_entrega,cod_cliente,id,facturado FROM reparaciones";
             Statement st = c.getConexion().createStatement();
             rs = st.executeQuery(consulta);
         } catch (SQLException ex) {
