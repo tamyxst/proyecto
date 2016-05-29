@@ -68,9 +68,9 @@ public class MVC_Reparaciones_Controlador {
                     tecnVista.mostrarErroresPanelTecnico("El cod cliente esta vacío");
                 } else if (!repModelo.buscarClientesCodCliente(codCliente)) {
                     tecnVista.mostrarErroresPanelTecnico("El cliente no existe, debes crearlo antes");
-                } else if (problema.equals("") && problema.length()>55) {
+                } else if (problema.equals("") || problema.length()>55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo problema no es válido");
-                } else if (solucion.equals("") && solucion.length()>55) {
+                } else if (solucion.equals("") || solucion.length()>55) {
                     tecnVista.mostrarErroresPanelTecnico("El campo solución no es válido");
                 }else if (fecha1 == null) {
                     tecnVista.mostrarErroresPanelTecnico("El campo fecha esta vacío");
