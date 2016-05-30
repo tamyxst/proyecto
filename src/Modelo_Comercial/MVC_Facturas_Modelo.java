@@ -16,9 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Facturas_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Facturas_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -30,7 +34,14 @@ public class MVC_Facturas_Modelo {
     public MVC_Facturas_Modelo(){
         
     }
-    
+    /**
+     * Método que graba la factura en la BD a través de un procedimiento
+     * almacenado.
+     * @param fecha_fact f_factura de la factura
+     * @param cod_rep cod_rep de la factura
+     * @param importe importe de la factura
+     * @param cod_cliente cod_cliente de la factura
+     */
     public void grabarNuevaFactura(Date fecha_fact,int cod_rep,float importe, int cod_cliente){
         CallableStatement cs;
         try{
@@ -46,7 +57,11 @@ public class MVC_Facturas_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Método que marca una reparación en la BD como facturada al
+     * introducir su cod_rep en una factura.
+     * @param cod_rep corresponde al cod_rep de la reparación y de la factura.
+     */
     public void marcarReparacionFacturada(int cod_rep){
         boolean facturado=true;
         c.abrirConexion();
@@ -64,7 +79,12 @@ public class MVC_Facturas_Modelo {
         }
      
     }
-    
+    /**
+     * Método que busca clientes por su cod_cliente. Evita que se cree
+     * una factura si no existe el cliente.
+     * @param cod_cliente corresponde al cliente, y a la factura.
+     * @return Devuelve true si lo encuentra, false si no lo encuentra.
+     */
     public boolean buscarClientesCodCliente(int cod_cliente){
         boolean validar=false;
         c.abrirConexion();
@@ -84,7 +104,12 @@ public class MVC_Facturas_Modelo {
     public void abrirBuscarClientes(){
         CreaUI.abrirMenuBuscarClientes();
     }
-    
+    /**
+     * Método que busca el cod_rep de la reparacion. Y comprueba
+     * si esta facturado o no.
+     * @param cod_rep Corresponde a la reparación y a la factura.
+     * @return Devuelve true si esta facturado, y false si no esta facturado.
+     */
     public boolean buscarCodigoReparacion(int cod_rep){
         boolean validar=true;
         c.abrirConexion();

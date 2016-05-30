@@ -7,8 +7,10 @@ package Proyecto;
 
 
 /**
- *
- * @author Alumno
+ * Clase Principal. 
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public class GasconMorenoTamara_ProyectoFinal {
 
@@ -17,8 +19,8 @@ public class GasconMorenoTamara_ProyectoFinal {
      */
     public static void main(String[] args) {
         //CreaUI.abrirMenuLogin();
-        //CreaUI.abrirMenuComercial();
-       CreaUI.abrirMenuTecnico();
+        CreaUI.abrirMenuComercial();
+        CreaUI.abrirMenuTecnico();
         //CreaUI.abrirMenuLogin();
         //Antes de ejecutar esto tiene que meter los datos
         //Calcular entre dos fechasJCalendar comprobar entre dos fechas

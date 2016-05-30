@@ -16,9 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Alumno
+ * Clase MVC_ClientesR_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_ClientesR_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -31,7 +35,10 @@ public class MVC_ClientesR_Modelo {
     public MVC_ClientesR_Modelo(){
         
     }
-    
+    /**
+     * Método que añade Cliente nuevoa través de un procedimiento almacenado
+     * @param cliente Objeto de tipo cliente
+     */
     public void anadirNuevoCliente(Cliente cliente){
         CallableStatement cs;
         try{
@@ -48,6 +55,11 @@ public class MVC_ClientesR_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     * Método que busca clientes en la BD, por su dni.
+     * @param dni Corresponde al dni del cliente
+     * @return Devuelve true si lo encuentra, false sino lo encuentra.
+     */
     public boolean buscarClientesPorDni(String dni){
         boolean validar=false;
         c.abrirConexion();

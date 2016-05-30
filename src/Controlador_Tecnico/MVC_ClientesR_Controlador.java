@@ -14,8 +14,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author Alumno
+ * Clase MVC_ClientesR_Controlador
+ * Clase Clientes que válida los datos ingresados por el usuario Técnico.
+ * El usuario técnico sólo puede añadir.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public class MVC_ClientesR_Controlador {
 
@@ -39,15 +43,17 @@ public class MVC_ClientesR_Controlador {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            //Recogemos los datos
             nombre = tecnPrinVis.getNombreR();
             apellidos = tecnPrinVis.getApellidosR();
             dni = tecnPrinVis.getDniR();
             cod_postal = tecnPrinVis.getCodPostalR();
             telefono = tecnPrinVis.getTelefonoR();
-
+            
+            //Creamos un objeto de tipo Cliente
             Cliente cliente = new Cliente(nombre, apellidos, dni, cod_postal, telefono);
-
+            
+            //Expresiones regulares
             Pattern patDni = Pattern.compile("^(([A-Za-z]\\d{8})|(\\d{8}[A-Za-z]))$");
             Matcher matDni = patDni.matcher(dni);
 
@@ -75,7 +81,6 @@ public class MVC_ClientesR_Controlador {
                     cliRepMode.anadirNuevoCliente(cliente);
                     tecnPrinVis.actualizarTablaClientesR();
                 }
-
             }else{
                 tecnPrinVis.mostrarErroresPanelTecnico("El campo dni no es correcto");
             }

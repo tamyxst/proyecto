@@ -7,6 +7,7 @@ package Controlador_Comercial;
 
 import Modelo_Comercial.MVC_BuscaC_Modelo;
 import Vista_Comercial.MVC_BuscaC_Vista;
+import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -14,9 +15,13 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_BuscaC_Controlador. 
+ * Clase Controlador de Búsqueda clientes por dni.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_BuscaC_Controlador {
 
     private MVC_BuscaC_Vista buscarClientesV;
@@ -46,8 +51,10 @@ public class MVC_BuscaC_Controlador {
                     if(cod_cliente==0) {
                         buscarClientesV.mostrarMensajeErrorBuscar("No hay resultados.");
                     }else{
-                        System.out.println(cod_cliente);
-                        MVC_Facturas_Controlador.setText(cod_cliente);
+                        //System.out.println(cod_cliente); 
+                        String cadena = String.valueOf(cod_cliente);
+                        //Ponemos en el JTextField el código de cliente localizado por dni
+                        MVC_ComercialPrincipal_Vista.codClienteJ.setText(cadena);
                         buscarClientesV.cerrarVentanaBuscadorClientes();
                     }
  

@@ -13,9 +13,13 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Facturas_Controlador
+ * Clase Controlador Comercial que válida los datos de las facturas.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Facturas_Controlador {
 
     static MVC_ComercialPrincipal_Vista comercialFactVista;
@@ -23,8 +27,7 @@ public class MVC_Facturas_Controlador {
     MVC_Clientes_Modelo comercialCliModelo;
     MVC_Clientes_Controlador comercialCliConst;
     MVC_Buscador_Controlador buscaFac;
-    //TablaFacturas t = new TablaFacturas();
-    static int cod_cliente;
+    static int cod_cliente; //Corresponde al cod_cliente que comprobará si existe
 
     public MVC_Facturas_Controlador(MVC_ComercialPrincipal_Vista comercialFactVista, MVC_Facturas_Modelo comercialGesModelo, MVC_Clientes_Modelo comercialCliModelo, MVC_Clientes_Controlador comercialCliConst, MVC_Buscador_Controlador buscaFac) {
         this.comercialFactVista = comercialFactVista;
@@ -35,13 +38,6 @@ public class MVC_Facturas_Controlador {
         this.buscaFac = buscaFac;
         this.cod_cliente = cod_cliente;
     }
-
-    public static void setText(int codcliente) {
-        cod_cliente = codcliente;
-        System.out.println("aqui PROBANDO:" + cod_cliente);
-        comercialFactVista.setCodCliente(cod_cliente);
-    }
-
     public class SeleccionaBotonesFacturas implements ActionListener {
 
         String codCliente;
@@ -49,17 +45,13 @@ public class MVC_Facturas_Controlador {
         int codRep;
         float importe;
         String opcion;
-
         String nombreBuscado;
-        String dniBuscado;
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
             opcion = e.getActionCommand();
-
             if (opcion.equals("Añadir")) {
-
                 try {
                     codCliente = comercialFactVista.getCodigoCliente();
                     fecha = comercialFactVista.getFecha();
@@ -71,8 +63,10 @@ public class MVC_Facturas_Controlador {
 
                     if (cod_cliente==0) {
                         comercialFactVista.mostrarErroresPanelComercial("El campo dni esta vacío");
+                        //Buscamos si el cod_cliente existe sino saltará error porque se debe crear antes
                     } else if (!comercialGesModelo.buscarClientesCodCliente(cod_cliente)) {
                         comercialFactVista.mostrarErroresPanelComercial("El cliente no existe, debes crearlo antes");
+                        //Buscamos el cod_rep existe sino saltará error porque se debe crear antes
                     } else if (comercialGesModelo.buscarCodigoReparacion(codRep)) {
                         comercialFactVista.mostrarErroresPanelComercial("Código reparación no válido. Ya esta facturado o debes crearlo antes.");
                     } else if (codRep == (0)) {

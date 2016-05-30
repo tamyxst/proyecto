@@ -43,7 +43,8 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     JPanel pListado, pDatosF, pBotones;
     JButton anadir, buscarCliente;
     JLabel codClienteL, fechaL, codigoRepL, importeL;
-    JTextField codClienteJ, fechaJ, codigoRepJ, importeJ;
+    public static JTextField codClienteJ=new JTextField();
+    JTextField fechaJ, codigoRepJ, importeJ;
     JDateChooser calendar = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     TablaFacturas t = new TablaFacturas();
 
@@ -181,12 +182,6 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
     public float getImporteF() {
         Float importF = Float.parseFloat(importeJ.getText());
         return importF;
-    }
-
-    public void setCodCliente(int codCliente) {
-        String cadena = String.valueOf(codCliente);
-        //System.out.println("Compruebo que funciona COD CLIENTE:" + cadena);
-        this.codClienteJ.setText(cadena);
     }
 
     public void mostrarErroresPanelComercial(String mensajeError) {

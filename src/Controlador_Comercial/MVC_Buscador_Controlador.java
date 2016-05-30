@@ -9,13 +9,17 @@ import Vista_Comercial.MVC_ComercialPrincipal_Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Buscador_Controlador
+ * Clase Controlador que válida los datos código postal, fechas, y que solicita
+ * al modelo las consultas para mostrar los listados de facturas por código postal,
+ * por fechas y listado de reparaciones no facturadas.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Buscador_Controlador {
 
     private final MVC_ComercialPrincipal_Vista buscaFactVista;
@@ -27,7 +31,7 @@ public class MVC_Buscador_Controlador {
 
     public class BusquedaFacturas implements ActionListener {
 
-        String opcion;
+        String opcion; //Opción que escoge el comercial
         Date fechaPrimera;
         Date fechaUltima;
         String codPostal;
@@ -39,34 +43,24 @@ public class MVC_Buscador_Controlador {
             fechaUltima = buscaFactVista.getFechaUltima();
             codPostal = buscaFactVista.getCodPostalListadoFras();
 
-            Pattern pat = Pattern.compile("[0-9]{0,5}");
-            Matcher mat = pat.matcher(codPostal);
-
-            //System.out.println(sqlDateUlti);
-            //System.out.println(sqlDatePrime);*/
             opcion = e.getActionCommand();
             try {
                 if (opcion.equals("Mostrar por fechas")) {
+                    //Vaciamos la tabla para que si se muestra otra vez no se duplique
                     buscaFactVista.vaciarTablaFechas();
                     buscaFactVista.mostrarTablaFechas(fechaPrimera, fechaUltima);
                 } else if (opcion.equals("Mostrar Reparaciones")) {
+                    //Vaciamos la tabla para que si se muestra otra vez no se duplique
                     buscaFactVista.vaciarTablaReparaciones();
                     buscaFactVista.mostrarTablaReparaciones();
                 }
                 if (opcion.equals("Mostrar")) {
+                    //Vaciamos la tabla para que si se muestra otra vez no se duplique
                     buscaFactVista.vaciarTablaFacturas();
                     buscaFactVista.mostrarTablaFacturas(codPostal);
                 }
-
-           //if (mat.matches()) {
-                //Ejecutar codigo
-                //buscaFactModelo.buscarFacturasEntreFechas(sqlDatePrimera,sqlDateUltima);
-                //buscaFactModelo.buscarFacturasCodPostal(codPostal);
-                //buscaFactModelo.buscarFacturasPoblacion(poblacion);*/
-                //} else {
-                //  buscaFactVista.mostrarErroresPanelComercial("El código postal no es válido.");
-                //}
             } catch (NullPointerException ex) {
+                //Nos aseguramos de que se selecciona una fecha
                 buscaFactVista.mostrarErroresPanelComercial("No has seleccionado ninguna fecha");
             }
 

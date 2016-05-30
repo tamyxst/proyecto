@@ -17,9 +17,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Clientes_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Clientes_Modelo {
     String servidor = "jdbc:mysql://localhost/";
     String bd = "tienda";
@@ -31,6 +35,11 @@ public class MVC_Clientes_Modelo {
     public MVC_Clientes_Modelo(){
         
     }
+    /**
+     * Consulta a la BD que devuelve todos los datos de los clientes.
+     * @return devuelve los datos de todos los clientes
+     * @throws SQLException Excepción SQLException
+     */
     public ResultSet listaClientes() throws SQLException{
         ResultSet rs = null;
         c.abrirConexion();
@@ -43,7 +52,10 @@ public class MVC_Clientes_Modelo {
         } 
         return rs;
     }
-    
+    /**
+     * Método que añade nuevo cliente a la BD.
+     * @param cliente corresponde al objeto Cliente.
+     */
     public void anadirNuevoCliente(Cliente cliente){
         CallableStatement cs;
         try{
@@ -60,6 +72,13 @@ public class MVC_Clientes_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     * Método que busca a un cliente en la BD por su dni, y devuelve
+     * un valor booleano.
+     * @param dni Corresponde al dni del cliente
+     * @return devuelve un valor booleano. True si encuentra el dni. False
+     * sino lo encuentra.
+     */
     public boolean buscarClientesPorDni(String dni){
         boolean validar=false;
         c.abrirConexion();
@@ -68,7 +87,6 @@ public class MVC_Clientes_Modelo {
             PreparedStatement comprobarDni = c.getConexion().prepareStatement("SELECT * FROM clientes WHERE dni=?");
             comprobarDni.setString(1, dni);
             rs=comprobarDni.executeQuery();
-            
             if(rs.first()){
                 validar= true;
             }else{
@@ -80,10 +98,14 @@ public class MVC_Clientes_Modelo {
         }
         return validar;
     }
+    
     public void abrirBuscarClientes(){
         CreaUI.abrirMenuBuscarClientes();
     }
-    
+    /**
+     * Método que modifica el cliente en la BD.
+     * @param cliente Objeto que corresponde al cliente.
+     */
     public void modificarCliente(Cliente cliente){  
         c.abrirConexion();
         ResultSet rs;
@@ -102,6 +124,10 @@ public class MVC_Clientes_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     * Método que da de baja a un cliente en la BD.
+     * @param cliente Objeto de tipo cliente.
+     */
     public void bajaCliente(Cliente cliente){  
         c.abrirConexion();
         ResultSet rs;

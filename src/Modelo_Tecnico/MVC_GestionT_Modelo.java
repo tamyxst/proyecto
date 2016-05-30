@@ -15,9 +15,13 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_GestionT_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_GestionT_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
@@ -30,7 +34,10 @@ public class MVC_GestionT_Modelo {
     public MVC_GestionT_Modelo() {
 
     }
-
+    /**
+     * Método que realiza una consulta a la BD de las reparaciones.
+     * @return Devuelve un ResultSet de todos los datos.
+     */
     public ResultSet listaReparaciones() {
         c.abrirConexion();
         ResultSet rs = null;
@@ -43,7 +50,10 @@ public class MVC_GestionT_Modelo {
         }
         return rs;
     }
-
+    /**
+     * Método que carga las reparaciones
+     * @return Devuelve un ResultSet con los datos.
+     */
     public ResultSet cargarReparaciones() {
         c.abrirConexion();
         ResultSet rs = null;
@@ -56,7 +66,10 @@ public class MVC_GestionT_Modelo {
         }
         return rs;
     }
-
+    /**
+     * Método que añade reparaciones desde el fichero
+     * @param r 
+     */
     public void anadirReparacionesDesdeFichero(ArrayList<Reparacion> r) {
         String solucion="";
         c.abrirConexion();

@@ -16,9 +16,15 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Reparaciones_Controlador
+ * Clase Reparaciones. Se válidan los datos de las reparaciones.
+ * Las reparaciones las inserta el usuario técnico. El usuario técnico
+ * puede añadir, modificar, eliminar y reset.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Reparaciones_Controlador {
 
     static MVC_TecnicoPrincipal_Vista tecnVista;
@@ -55,14 +61,14 @@ public class MVC_Reparaciones_Controlador {
             problema = tecnVista.getProblemaReparacion();
             solucion = tecnVista.getSolucionReparacion();
             fecha2 = tecnVista.getFechaEntregaReparacion();
-
+            
+            //Recogemos la opcion del usuario
             opcion = e.getActionCommand();
             if (opcion.equals("Añadir")) {
                 fecha1 = tecnVista.getFechaRecogidaReparacion();
                 idString = tecnVista.getNombreTecnico();
                 codCliente = tecnVista.getCodClienteReparacion();
 
-                //cod_rep = TablaReparaciones.getCodRep();
                 if (codCliente == 0) {
                     tecnVista.mostrarErroresPanelTecnico("El cod cliente esta vacío");
                 } else if (!repModelo.buscarClientesCodCliente(codCliente)) {
@@ -113,7 +119,11 @@ public class MVC_Reparaciones_Controlador {
             }
         }
     }
-
+    /**
+     * Método que convierte fecha
+     * @param date Pasamos la fecha de tipo java util
+     * @return devolvemos la fecha convertida a java sql Date
+     */
     public java.sql.Date convertirFecha(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }

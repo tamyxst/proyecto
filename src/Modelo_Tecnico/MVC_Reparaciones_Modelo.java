@@ -13,14 +13,17 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_GestionT_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Reparaciones_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
@@ -33,7 +36,11 @@ public class MVC_Reparaciones_Modelo {
     public MVC_Reparaciones_Modelo() {
 
     }
-
+    /**
+     * Método que carga el JComboBox con una consulta a la BD.
+     * Carga los usuarios empleados que son técnicos.
+     * @return Devuelve los datos del los usuarios que son técnicos.
+     */
     public ResultSet cargarCombo() {
         ResultSet rs = null;
         String tecnico = "tecnico";
@@ -47,7 +54,10 @@ public class MVC_Reparaciones_Modelo {
         }
         return rs;
     }
-
+    /**
+     * Método que guarda a través de un procedimiento almacenado las reparaciones.
+     * @param r Objeto de tipo reparación.
+     */
     public void grabarReparacion(Reparacion r) {
         CallableStatement cs;
         try {
@@ -66,7 +76,11 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Método que inserta a través de un procedimiento almacenado en la BD,
+     * las reparaciones sin fecha de entrega.
+     * @param r Objeto de la clase reparación.
+     */
     public void grabarReparacionSinFechaEntrega(Reparacion r) {
         CallableStatement cs;
         Date f_entrega =null;
@@ -86,7 +100,10 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Método que modifica la tabla reparaciones en la BD.
+     * @param r Objeto de la clase reparación.
+     */
     public void modificarReparacion(Reparacion r) {
         c.abrirConexion();
         ResultSet rs;
@@ -103,7 +120,10 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Método que da de baja las reparaciones en la BD, a través del cod_rep. 
+     * @param r Objeto de la clase reparación.
+     */
     public void bajaReparacion(Reparacion r) {
         c.abrirConexion();
         ResultSet rs;
@@ -116,7 +136,13 @@ public class MVC_Reparaciones_Modelo {
             Logger.getLogger(MVC_GestionC_Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Método que busca clientes por código de cliente y devuelve
+     * true si lo encuentra en la BD.
+     * @param cod_cliente Corresponde al cod_cliente del cliente.
+     * @return devuelve true si encuentra al cliente en la BD. Devuelve
+     * false si no lo encuentra.
+     */
     public boolean buscarClientesCodCliente(int cod_cliente) {
         boolean validar=false;
         c.abrirConexion();

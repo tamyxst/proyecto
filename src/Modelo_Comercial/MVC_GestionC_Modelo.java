@@ -15,9 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_GestionC_Modelo
+ * Clase Modelo, dónde se realizan las consultas a la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_GestionC_Modelo {
 
     String servidor = "jdbc:mysql://localhost/";
@@ -28,7 +32,11 @@ public class MVC_GestionC_Modelo {
     Conexion c = new Conexion(servidor, bd, usuario, password);
 
     
-
+    /**
+     * Consulta a la BD de todas las facturas.
+     * @return Devuelve todos los datos de la consulta.
+     * @throws SQLException.
+     */
     public ResultSet listaFacturas() throws SQLException {
         ResultSet rs = null;
         c.abrirConexion();
@@ -43,6 +51,12 @@ public class MVC_GestionC_Modelo {
         } 
         return rs;
     }
+    /**
+     * Método que consulta las facturas realizadas entre fechas.
+     * @param fechaPrimera Corresponde a la fecha de inicio
+     * @param fechaUltima Corresponde a la fecha final
+     * @return Devuelve un resultSet con el listado de facturas
+     */
     public ResultSet listaFacturasEntreFechas(Date fechaPrimera, Date fechaUltima) {
         c.abrirConexion();
         ResultSet rs = null;
@@ -58,6 +72,10 @@ public class MVC_GestionC_Modelo {
         }
         return rs;
     }
+    /**
+     * Consulta a la BD de todas las reparaciones no facturadas.
+     * @return Devuelve un ResultSet con el listado de reparaciones
+     */
     public ResultSet listaReparaciones() {
         c.abrirConexion();
         ResultSet rs = null;
@@ -71,7 +89,11 @@ public class MVC_GestionC_Modelo {
         } 
         return rs;
     }
-    
+    /**
+     * Metodo que localiza las facturas que tiene un cliente, por código postal.
+     * @param cod_postal Corresponde al cod_postal del cliente que tiene facturas
+     * @return Devuelve un ResulSet 
+     */
     public ResultSet listaPorCodPostal(String cod_postal) {
         c.abrirConexion();
         ResultSet rs = null;

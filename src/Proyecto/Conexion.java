@@ -10,10 +10,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//import java.sql.*;
 /**
- *
- * @author milla_000
+ * Clase Conexión. Clase que representa la conexión con la BD.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public class Conexion {
     private String server;
@@ -23,13 +24,17 @@ public class Conexion {
     private Connection conexion;
     ResultSet rs;
     
+    //Constructor
     public Conexion(String server, String bd, String usuario, String pass){
         this.server = server;
         this.bd = bd;
         this.usuario = usuario;
         this.pass = pass;
     }
-
+    /**
+     * Método que abre conexión con la BD.
+     * @return devuelve el estado de la conexión. True si esta conectado.
+     */
     public boolean abrirConexion(){
         boolean estado =false;
         //System.out.println(getServer());
@@ -41,7 +46,9 @@ public class Conexion {
         }
         return estado;
     }
-    
+    /**
+     * Método que cierra la conexión con la BD.
+     */
     public void cerrarConexion(){
         try{
             getConexion().close();
@@ -53,42 +60,42 @@ public class Conexion {
     }
 
     /**
-     * @return the server
+     * @return server
      */
     public String getServer() {
         return server;
     }
 
     /**
-     * @param server the server to set
+     * @param server set Corresponde al server
      */
     public void setServer(String server) {
         this.server = server;
     }
 
     /**
-     * @return the bd
+     * @return Devuelve el nombre de la BD
      */
     public String getBd() {
         return bd;
     }
 
     /**
-     * @param bd the bd to set
+     * @param bd set Corresponde al nombre de la BD
      */
     public void setBd(String bd) {
         this.bd = bd;
     }
 
     /**
-     * @return the usuario
+     * @return Devuelve el nombre del usuario
      */
     public String getUsuario() {
         return usuario;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param usuario set Corresponde al nombre del usuario de la BD.
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
@@ -102,14 +109,14 @@ public class Conexion {
     }
 
     /**
-     * @param pass the pass to set
+     * @param pass set Corresponde a la pass de acceso a la BD
      */
     public void setPass(String pass) {
         this.pass = pass;
     }
 
     /**
-     * @return the conexion
+     * @return Devuelve la conexión con la BD
      */
     public Connection getConexion() {
         return conexion;

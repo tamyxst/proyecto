@@ -6,8 +6,6 @@
 package Controlador_Empleado;
 
 import Proyecto.Empleado;
-import Modelo_Comercial.MVC_GestionC_Modelo;
-import Modelo_Empleado.MVC_GestionE_Modelo;
 import Modelo_Empleado.MVC_GestionE_Modelo;
 import Proyecto.CreaUI;
 import Vista_Empleado.MVC_Login_Vista;
@@ -15,9 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Login_Controlador
+ * Clase Login Controlador que válida los datos ingresados al loguearse.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Login_Controlador {
 
     private MVC_Login_Vista interfaceLogin;
@@ -39,13 +41,18 @@ public class MVC_Login_Controlador {
         public void actionPerformed(ActionEvent e) {
             nombreUsuario = interfaceLogin.getNombre();
             pass = interfaceLogin.getPass();
-
+            
+            //Comprobamos si los datos ingresados son correctos.
             if (!gesUsuarios.comprobarLogin(nombreUsuario, pass)) {
                 interfaceLogin.mostrarErrores("El usuario o la contraseña no son válidos");
                 conectado = false;
             } else {
+                //Comprobamos el tipo de usuario que es, técnico o comercial
                 String tipo = gesUsuarios.comprobarTipo(nombreUsuario, pass);
+                
+                //Creamos un objeto de tipo empleado
                 Empleado emp = new Empleado(nombreUsuario, tipo, true);
+                
                 if (emp.getTipo().equals("comercial")) {
                     CreaUI.abrirMenuComercial();
                 } else {
@@ -53,45 +60,14 @@ public class MVC_Login_Controlador {
                 }
                 conectado = true;
             }
+            //Cerramos ventana de login
             interfaceLogin.cerrarVentana();
         }
-
         /**
-         * Event Dispatch Thread
-         *
-         * @return
+         * Método que comprueba si el empleado esta conectado
+         * @return devuelve true si el empleado esta conectado.
+         * Devuelve false si el empleado no esta conectado.
          */
-        /*public void actionPerformed(ActionEvent e) {
-         Runnable miRunnable = new Runnable() {
-         public void run() {
-         try {
-         nombreUsuario = interfaceLogin.getNombre();
-         pass = interfaceLogin.getPass();
-
-         if (!gesUsuarios.comprobarLogin(nombreUsuario, pass)) {
-         interfaceLogin.mostrarErrores("El usuario o la contraseña no son válidos");
-         conectado = false;
-         } else {
-         String tipo = gesUsuarios.comprobarTipo(nombreUsuario, pass);
-         Empleado emp = new Empleado(nombreUsuario, tipo, true);
-         if (emp.getTipo().equals("comercial")) {
-         interfaceLogin.abrirMenuComercial();
-         }
-         conectado = true;
-
-         }
-         System.out.println("Me han pulsado");
-         Thread.sleep(10000); //Tarea que consume diez segundos.
-         System.out.println("Terminé");
-         } catch (Exception e) {
-         e.printStackTrace();
-         }
-         }
-         };
-         Thread hilo = new Thread(miRunnable);
-         hilo.start();
-         interfaceLogin.cerrarVentana ();
-         }*/
         public boolean empleadoConectado() {
             return conectado;
         }

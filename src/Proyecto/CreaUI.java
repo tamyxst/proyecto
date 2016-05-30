@@ -26,9 +26,13 @@ import Vista_Empleado.MVC_NuevoUser_Vista;
 import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 
 /**
- *
- * @author milla_000
+ * Clase CreaUI. Clase que se encarga de administrar los
+ * menús y apartados según su función.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class CreaUI {
     public static void abrirMenuLogin(){
         MVC_Login_Vista v = new MVC_Login_Vista();
@@ -41,10 +45,6 @@ public class CreaUI {
         MVC_NuevoUser_Controlador nuevoUserControl = new MVC_NuevoUser_Controlador(nuevoUserVista, nuevoUserGestion);
     }
     
-    /*public static void abrirMenuComercial(){
-        MVC_Comercial_Vista vComercial=new MVC_Comercial_Vista();
-    }*/
-    
     public static void abrirMenuTecnico(){
         MVC_TecnicoPrincipal_Vista tecPrinVis=new MVC_TecnicoPrincipal_Vista();
         MVC_Reparaciones_Modelo tecRepMod=new MVC_Reparaciones_Modelo();
@@ -52,7 +52,6 @@ public class CreaUI {
         MVC_ClientesR_Controlador cliContr=new MVC_ClientesR_Controlador(tecPrinVis,cliMod);
         MVC_GestionE_Modelo gesEmpMod=new MVC_GestionE_Modelo();
         MVC_Reparaciones_Controlador cReparaciones=new MVC_Reparaciones_Controlador(tecPrinVis,tecRepMod,cliMod,cliContr, gesEmpMod);
-        
     }
     
     public static void abrirMenuComercial(){
@@ -62,7 +61,6 @@ public class CreaUI {
         MVC_Clientes_Controlador cClientes=new MVC_Clientes_Controlador(v,mClientes);
         MVC_Buscador_Controlador buscaFac=new MVC_Buscador_Controlador(v);
         MVC_Facturas_Controlador cFacturas=new MVC_Facturas_Controlador(v,mFacturas,mClientes,cClientes,buscaFac);
-        
     }
     
     public static void abrirMenuClientes(){
@@ -76,6 +74,5 @@ public class CreaUI {
         MVC_BuscaC_Modelo mbClientes=new MVC_BuscaC_Modelo();
         MVC_BuscaC_Controlador cbClientes=new MVC_BuscaC_Controlador(vbClientes,mbClientes);
     }
-    
-          
+         
 }

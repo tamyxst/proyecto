@@ -6,11 +6,13 @@
 package Proyecto;
 
 import java.sql.Date;
-
 /**
- *
- * @author milla_000
+ * Clase Reparación. Clase que representa cada reparación.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class Reparacion {
     private int cod_rep;
     private String problema;
@@ -21,8 +23,8 @@ public class Reparacion {
     private int id; //Corresponde al nº de usuario en la tabla usuarios
     private boolean facturado; // si es 1 esta facturada la reparación
     
+   
     public Reparacion(String problema, String solucion, Date f_recogida, Date f_entrega, int cod_cliente, int id, boolean facturado) {
-        
         this.problema = problema;
         this.solucion = solucion;
         this.f_recogida = f_recogida;
@@ -32,7 +34,6 @@ public class Reparacion {
         this.facturado = facturado;
     }
     public Reparacion(String problema, String solucion, Date f_recogida, int cod_cliente, int id, boolean facturado) {
-        
         this.problema = problema;
         this.solucion = solucion;
         this.f_recogida = f_recogida;
@@ -40,6 +41,7 @@ public class Reparacion {
         this.id = id;
         this.facturado = facturado;
     }
+    
     public Reparacion(int cod_rep,String problema, String solucion,Date f_entrega) {
         this.cod_rep=cod_rep;
         this.problema = problema;
@@ -59,77 +61,79 @@ public class Reparacion {
     }
 
     /**
-     * @return the cod_rep
+     * @return Devuelve el cod_rep de la reparación
      */
     public int getCod_rep() {
         return cod_rep;
     }
 
     /**
-     * @return the problema
+     * @return Devuelve el problema de la reparación
      */
     public String getProblema() {
         return problema;
     }
 
     /**
-     * @return the solucion
+     * @return Devuelve la solución de la reparación
      */
     public String getSolucion() {
         return solucion;
     }
 
     /**
-     * @return the f_recogida
+     * @return Devuelve la fecha recogida de la reparación
      */
     public java.sql.Date getF_recogida() {
         return f_recogida;
     }
 
     /**
-     * @return the f_entrega
+     * @return Devuelve la fecha entrega de la reparación
      */
     public java.sql.Date getF_entrega() {
         return f_entrega;
     }
 
     /**
-     * @return the cod_cliente
+     * @return Devuelve el código cliente de la reparación
      */
     public int getCod_cliente() {
         return cod_cliente;
     }
 
     /**
-     * @return the id
+     * @return Devuelve el id de la reparación, que corresponde a 
+     * el id de la tabla usuarios (empleados).
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @return the facturado
+     * @return Devuelve si esta facturada la reparación, true es SI y
+     * false es no.
      */
     public boolean isFacturado() {
         return facturado;
     }
 
     /**
-     * @param cod_rep the cod_rep to set
+     * @param cod_rep set cod_rep de la reparación
      */
     public void setCod_rep(int cod_rep) {
         this.cod_rep = cod_rep;
     }
 
     /**
-     * @param problema the problema to set
+     * @param problema set problema de la reparación
      */
     public void setProblema(String problema) {
         this.problema = problema;
     }
 
     /**
-     * @param f_recogida the f_recogida to set
+     * @param f_recogida set fecha recogida de la reparación
      */
     public void setF_recogida(java.sql.Date f_recogida) {
         this.f_recogida = f_recogida;
