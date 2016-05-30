@@ -6,7 +6,7 @@
 package Controlador_Comercial;
 
 import static Controlador_Comercial.MVC_Facturas_Controlador.comercialFactVista;
-import Componentes.Cliente;
+import Proyecto.Cliente;
 import Modelo_Comercial.MVC_Clientes_Modelo;
 import Componentes.TablaClientes;
 import Vista_Comercial.MVC_ComercialPrincipal_Vista;

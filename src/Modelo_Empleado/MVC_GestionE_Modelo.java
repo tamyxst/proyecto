@@ -5,7 +5,7 @@
  */
 package Modelo_Empleado;
 
-import Componentes.Conexion;
+import Proyecto.Conexion;
 import Modelo_Comercial.MVC_GestionC_Modelo;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

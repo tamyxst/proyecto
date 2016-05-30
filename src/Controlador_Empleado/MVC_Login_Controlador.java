@@ -5,7 +5,7 @@
  */
 package Controlador_Empleado;
 
-import Componentes.Empleado;
+import Proyecto.Empleado;
 import Modelo_Comercial.MVC_GestionC_Modelo;
 import Modelo_Empleado.MVC_GestionE_Modelo;
 import Modelo_Empleado.MVC_GestionE_Modelo;

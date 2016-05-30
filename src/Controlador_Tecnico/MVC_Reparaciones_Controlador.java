@@ -8,7 +8,7 @@ package Controlador_Tecnico;
 import Componentes.TablaReparaciones;
 import Modelo_Empleado.MVC_GestionE_Modelo;
 import Modelo_Tecnico.MVC_Reparaciones_Modelo;
-import Componentes.Reparacion;
+import Proyecto.Reparacion;
 import Modelo_Tecnico.MVC_ClientesR_Modelo;
 import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 import java.awt.event.ActionEvent;

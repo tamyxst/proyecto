@@ -344,6 +344,10 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         fLisFrasFechas.setVisible(true);
     }
 
+    public void vaciarTablaFechas(){
+        tFacFechas.vaciarTabla();
+    }
+    
     public java.sql.Date convertirFecha(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
@@ -359,7 +363,9 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         fReparaciones.setVisible(true);
     }
     
-    
+    public void vaciarTablaReparaciones(){
+        tRepa.vaciarTabla();
+    }
 
     public void mostrarTablaFacturas(String cod_postal) {
         JFrame fFacCodPostal = new JFrame();
@@ -371,4 +377,8 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         fFacCodPostal.setResizable(false);
         fFacCodPostal.setVisible(true);
     }
+    public void vaciarTablaFacturas(){
+        tCodPos.vaciarTabla();
+    }
+    
 }

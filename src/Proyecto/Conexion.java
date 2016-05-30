@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Componentes;
+package Proyecto;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-
-import java.sql.*;
-
+//import java.sql.*;
 /**
  *
  * @author milla_000
@@ -28,16 +30,11 @@ public class Conexion {
         this.pass = pass;
     }
 
-    public Conexion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
     public boolean abrirConexion(){
         boolean estado =false;
-        System.out.println(getServer());
+        //System.out.println(getServer());
         try{
-            conexion =DriverManager.getConnection(getServer() +getBd(), getUsuario(), getPass());
+            conexion =DriverManager.getConnection(getServer() + getBd(), getUsuario(), getPass());
             estado=true;
         }catch(SQLException ex){
             System.out.println("Error en la conexion");

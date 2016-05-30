@@ -15,18 +15,25 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Alumno
+ * Clase TablaCodPostal Comercial. Clase que hereda de JPanel. 
+ * El comercial cuando introduzca el código postal, se mostrará
+ * una tabla con las "facturas" realizadas a los "Clientes" que
+ * vivan en ese código postal. Se mostrará en un JTable.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
-public class TablaCodPostal {
+
+public class TablaCodPostal extends JPanel{
     MVC_GestionC_Modelo gesModelo = new MVC_GestionC_Modelo();
     private JPanel panel_5 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
     JTable tabla = new JTable(modelo);
     JScrollPane scrollPane = new JScrollPane(tabla);
-    String cod_postal;
+    String cod_postal; //Recogemos el cod_postal para hacer la consulta
+    
     public TablaCodPostal(){
-        modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla (tantas como queramos)
+        modelo.addColumn("Nº Factura"); //Añadimos las columnas a la tabla 
         modelo.addColumn("Fecha");
         modelo.addColumn("Cod_rep");
         modelo.addColumn("Importe");
@@ -35,22 +42,28 @@ public class TablaCodPostal {
 
         panel_5.setLayout(new BorderLayout());
         panel_5.add(scrollPane, BorderLayout.CENTER);
-
+        
+        //Llamamos al método que rellena la tabla con los datos
         rellenarTablaPorCodPostal(cod_postal);
     }
+    /**
+     * Método que devuelve el panel dónde esta la TablaCodPostal
+     * @return devuelve el panel dónde esta la tablaCodPostal
+     */
     public JPanel getPanel1() {
         return panel_5;
     }
-        //Llamamos al método que rellena la tabla con los datos de la base de datos
-
-        //SIN ESTO NO SALEN LOS DATOS
-    //panelScroll.setViewportView(tabla);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
-    //hay que borrarlo del otro sitio, sino puede dar error de NullPointerException
+    
+    /**
+     * Método que rellena la tabla con un ResultSet a través de una consulta a la BD.
+     * Obtiene todas las filas de la tabla y las añade.
+     * @param cod_postal Corresponde al código postal del cliente a buscar.
+     */
     public void rellenarTablaPorCodPostal(String cod_postal) {
 
         try {
-            ResultSet rs = gesModelo.listaPorCodPostal(cod_postal); //con es la conexión que hemos creado antes con el patrón singleton               
-            //listaEquipos() es la consulta a la base de datos, que retorna un ResultSet
+             //es la consulta a la base de datos, que retorna un ResultSet
+            ResultSet rs = gesModelo.listaPorCodPostal(cod_postal); 
             while (rs.next()) {
                 Object[] fila = new Object[6];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                 // de la consulta
@@ -60,25 +73,25 @@ public class TablaCodPostal {
                 fila[3] = rs.getFloat("importe");
                 fila[4] = rs.getString("nombre");
                 fila[5] = rs.getString("dni");
-                modelo.addRow(fila); // Añade una fila al final del modelo de la tabla
+                modelo.addRow(fila); // Añadimos fila
             }
 
-            tabla.updateUI();//Actualiza la tabla
+            tabla.updateUI();//Actualizamos
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+           
             e.printStackTrace();
         }
 
     }
     
-   
+   //Método que vacia la tabla clientes si encuentra algún dato.
     public void vaciarTabla() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
     }
-
+    //Método que actualiza la tabla clientes    
     public void actualizarTabla() {
         vaciarTabla();
         rellenarTablaPorCodPostal(cod_postal);

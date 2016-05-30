@@ -5,8 +5,8 @@
  */
 package Modelo_Comercial;
 
-import Componentes.Cliente;
-import Componentes.Conexion;
+import Proyecto.Cliente;
+import Proyecto.Conexion;
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

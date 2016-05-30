@@ -5,8 +5,8 @@
  */
 package Modelo_Tecnico;
 
-import Componentes.Conexion;
-import Componentes.Reparacion;
+import Proyecto.Conexion;
+import Proyecto.Reparacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

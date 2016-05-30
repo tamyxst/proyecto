@@ -18,10 +18,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author milla_000
+ * Clase TablaReparaciones Técnico. Clase que hereda de JPanel. 
+ * Clase para que sirve para mostrar todas las reparaciones en 
+ * un JTable.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
-public class TablaReparaciones {
+
+public class TablaReparaciones extends JPanel{
     MVC_GestionT_Modelo gesModelo=new MVC_GestionT_Modelo();
     private JPanel panel_6 = new JPanel();
     DefaultTableModel modelo = new DefaultTableModel();
@@ -30,7 +35,7 @@ public class TablaReparaciones {
     static String cod_rep;
     public TablaReparaciones(){
         this.cod_rep=cod_rep;
-        modelo.addColumn("Cod_rep"); //Añadimos las columnas a la tabla (tantas como queramos)
+        modelo.addColumn("Cod_rep"); 
         modelo.addColumn("Problema");
         modelo.addColumn("Solución");
         modelo.addColumn("Fecha recogida");
@@ -58,27 +63,35 @@ public class TablaReparaciones {
 
         panel_6.setLayout(new BorderLayout());
         panel_6.add(scrollPane, BorderLayout.CENTER);
-
+        //Llamamos al método que rellena la tabla con los datos 
         rellenarTablaReparaciones();
     }
+    /**
+     * Método que devuelve el panel dónde esta la tabla
+     * @return devuelve el panel dónde esta la tabla
+     */
     public JPanel getPanel1() {
         return panel_6;
     }
-    
+    /**
+     * Devuelve el cod_rep de la reparación seleccionada en la tabla.
+     * @return Devuelve el cod_rep de la reparación seleccionada en la tabla 
+     */
     public static int getCodRep(){
         int codRep= Integer.parseInt(cod_rep);
         return codRep;
     }
-    
+    /**
+     * Método que rellena la tabla con un ResultSet a través de una consulta
+     * a la BD. Obtiene todas las filas y las añade.
+     */ 
     public void rellenarTablaReparaciones() {
 
         try {
-            ResultSet rs = gesModelo.listaReparaciones(); //con es la conexión que hemos creado antes con el patrón singleton               
-            //listaEquipos() es la consulta a la base de datos, que retorna un ResultSet
+            ResultSet rs = gesModelo.listaReparaciones(); 
             while (rs.next()) {
-                Object[] fila = new Object[8];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
-                // de la consulta
-                fila[0] = rs.getInt("cod_rep"); //Lo que hay entre comillas son los campos de la base de datos
+                Object[] fila = new Object[8];
+                fila[0] = rs.getInt("cod_rep"); 
                 fila[1] = rs.getString("problema");
                 fila[2] = rs.getString("solucion");
                 fila[3] = rs.getDate("f_recogida");
@@ -86,25 +99,22 @@ public class TablaReparaciones {
                 fila[5] = rs.getInt("cod_cliente");
                 fila[6] = rs.getInt("id");
                 fila[7] = rs.getBoolean("facturado");
-                modelo.addRow(fila); // Añade una fila al final del modelo de la tabla
+                modelo.addRow(fila); 
             }
-
-            tabla.updateUI();//Actualiza la tabla
-
+            tabla.updateUI();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
     }
     
-   
+   //Método que vacia la tabla si encuentra algún dato.
     public void vaciarTabla() {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
     }
-
+    //Método que actualiza la tabla
     public void actualizarTabla() {
         vaciarTabla();
         rellenarTablaReparaciones();

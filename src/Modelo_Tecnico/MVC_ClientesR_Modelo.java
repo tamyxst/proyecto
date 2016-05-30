@@ -5,8 +5,8 @@
  */
 package Modelo_Tecnico;
 
-import Componentes.Cliente;
-import Componentes.Conexion;
+import Proyecto.Cliente;
+import Proyecto.Conexion;
 import Modelo_Comercial.MVC_GestionC_Modelo;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

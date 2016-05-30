@@ -5,7 +5,7 @@
  */
 package Modelo_Comercial;
 
-import Componentes.Conexion;
+import Proyecto.Conexion;
 import Proyecto.CreaUI;
 import java.sql.CallableStatement;
 import java.sql.Date;

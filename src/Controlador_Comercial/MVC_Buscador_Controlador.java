@@ -47,11 +47,14 @@ public class MVC_Buscador_Controlador {
             opcion = e.getActionCommand();
             try {
                 if (opcion.equals("Mostrar por fechas")) {
+                    buscaFactVista.vaciarTablaFechas();
                     buscaFactVista.mostrarTablaFechas(fechaPrimera, fechaUltima);
                 } else if (opcion.equals("Mostrar Reparaciones")) {
+                    buscaFactVista.vaciarTablaReparaciones();
                     buscaFactVista.mostrarTablaReparaciones();
                 }
                 if (opcion.equals("Mostrar")) {
+                    buscaFactVista.vaciarTablaFacturas();
                     buscaFactVista.mostrarTablaFacturas(codPostal);
                 }
 

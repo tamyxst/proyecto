@@ -5,9 +5,9 @@
  */
 package Modelo_Tecnico;
 
-import Componentes.Conexion;
+import Proyecto.Conexion;
 import Modelo_Comercial.MVC_GestionC_Modelo;
-import Componentes.Reparacion;
+import Proyecto.Reparacion;
 import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.PreparedStatement;

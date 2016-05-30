@@ -5,7 +5,7 @@
  */
 package Controlador_Tecnico;
 
-import Componentes.Cliente;
+import Proyecto.Cliente;
 import Modelo_Tecnico.MVC_ClientesR_Modelo;
 import Vista_Tecnico.MVC_TecnicoPrincipal_Vista;
 import java.awt.event.ActionEvent;
