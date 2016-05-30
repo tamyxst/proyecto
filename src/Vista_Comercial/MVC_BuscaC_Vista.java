@@ -14,9 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_BuscaC_Vista. Clase que hereda de JFrame. 
+ * Corresponde a la Interfaz visual de Busqueda Clientes por dni.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_BuscaC_Vista extends JFrame {
     JFrame fBClientes=new JFrame();
     JPanel pBClientes=new JPanel();
@@ -34,19 +38,32 @@ public class MVC_BuscaC_Vista extends JFrame {
         fBClientes.add(pBClientes);
         fBClientes.setVisible(true);
     }
-    
+    /**
+     * Método que devuelve el dni
+     * @return Devuelve el dni
+     */
     public String getBuscar(){
         return Jdni.getText();
     }
     
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void buscarPorDniClientes(ActionListener escucharBoton){
         buscar.addActionListener(escucharBoton);
     }
     
+    /**
+     * Método que lanza un mensaje de error.
+     * @param mensajeError Contiene el mensaje de error
+     */
     public void mostrarMensajeErrorBuscar(String mensajeError){
         JOptionPane.showMessageDialog(this, mensajeError);
     }
-    
+    /**
+     * Método que cierra la ventana
+     */
     public void cerrarVentanaBuscadorClientes(){
         fBClientes.dispose();
     }

@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,10 +26,14 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 /**
- *
- * @author Alumno
+ * Clase MVC_TecnicoPrincipal_Vista. Clase que hereda de JDialog.
+ * Corresponde a la Interfaz principal del empleado Técnico.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
-public class MVC_TecnicoPrincipal_Vista extends JFrame {
+
+public class MVC_TecnicoPrincipal_Vista extends JDialog {
 
     JFrame fRep1 = new JFrame();
     public static ComboTecnicos comboTec=new ComboTecnicos();
@@ -146,23 +151,45 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         panel1.add(tReparacionesT.getPanel1(), BorderLayout.SOUTH);
         
     }
-    
+    /**
+     * 
+     * @return Devuelve el problema de la reparación insertada
+     */
     public String getProblemaReparacion(){
         return problemaRJ.getText();
     }
+    /**
+     * 
+     * @return Devuelve la solución de la reparación insertada
+     */
     public String getSolucionReparacion(){
         return solucionRJ.getText();
-    }    
+    }
+    /**
+     * 
+     * @return Devuelve la fecha recogida insertada
+     */
     public Date getFechaRecogidaReparacion(){
         return fecha_recogidaR.getDate();
     }
+    /**
+     * 
+     * @return Devuelve la fecha entrega insertada
+     */
     public Date getFechaEntregaReparacion(){
         return fecha_entregaR.getDate();
     }
+    /**
+     * 
+     * @return Devuelve el código de cliente insertado
+     */
     public int getCodClienteReparacion(){
         int cod_cliente= Integer.parseInt(cod_clienteRJ.getText());
         return cod_cliente;
-    }  
+    }
+    /**
+     * Método que limpia los campos del formulario
+     */
     public void limpiarCampos(){
         problemaRJ.setText("");
         solucionRJ.setText("");
@@ -174,7 +201,9 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         modificarR.setEnabled(false);
         bajaR.setEnabled(false);
     }
-    
+    /**
+     * Método que muestra la tablaReparaciones
+     */
     public void mostrarTablaReparacionesT(){
         JFrame fReparacionesT=new JFrame();
         fReparacionesT.add(tReparacionesT.getPanel1(), BorderLayout.CENTER);
@@ -183,24 +212,38 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         fReparacionesT.setResizable(false);
         fReparacionesT.setVisible(true);
     }
+    /**
+     * Método que lanza un mensaje de error
+     * @param mensajeError Contiene el mensaje de error
+     */
     public void mostrarErroresPanelTecnico(String mensajeError){
         JOptionPane.showMessageDialog(this,mensajeError);
     }
-    
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addEventosBotonesPTecnico(ActionListener escucharBoton){
         anadirR.addActionListener(escucharBoton);
         modificarR.addActionListener(escucharBoton);
         bajaR.addActionListener(escucharBoton);
         resetR.addActionListener(escucharBoton);
     }
+    /**
+     * Método que actualiza la tablaReparaciones
+     */
     public void actualizarTablaReparaciones(){
         tReparacionesT.actualizarTabla();
     }
-    
+    /**
+     * 
+     * @return Devuelve el nombre del técnico seleccionado en el comboBox 
+     */
     public String getNombreTecnico(){
         return comboTec.getNombreTecnico();
     }
-
+    
+     //Crea la página 2
     public void createPage2Reparaciones() {
         JLabel label = new JLabel("Nuevo Cliente");
         label.setHorizontalTextPosition(JLabel.TRAILING);
@@ -237,35 +280,55 @@ public class MVC_TecnicoPrincipal_Vista extends JFrame {
         pListadoCliR.setVisible(true);
         panel2.add(pListadoCliR, BorderLayout.SOUTH);
     }
-    
+    /**
+     * 
+     * @return Devuelve el nombre del cliente insertado
+     */
     public String getNombreR() {
         return nombreCliJR.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve los apellidos del cliente insertados
+     */
     public String getApellidosR() {
         return apellidosCliJR.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el dni del cliente insertado
+     */
     public String getDniR() {
         return dniCliJR.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el cód postal del cliente insertado
+     */
     public String getCodPostalR() {
         return cod_postalCliJR.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el teléfono del cliente insertado
+     */
     public String getTelefonoR() {
         return telefonoCliJR.getText();
     }
-
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addEventosClientesR(ActionListener escucharBoton) {
         anadirCliR.addActionListener(escucharBoton);
     }
-
+    /**
+     * Método que actualiza la tabla Clientes
+     */
     public void actualizarTablaClientesR() {
         tCliR.actualizarTablaClientes();
     }
-    
+    //Crea la página 3
     public void createPage3Reparaciones() {
         JLabel label = new JLabel("Cargar reparaciones");
         JLabel cargaDatos=new JLabel("Al exportar, no es necesario añadir la extensión .TXT a el fichero");

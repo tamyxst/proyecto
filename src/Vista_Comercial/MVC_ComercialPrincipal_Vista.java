@@ -28,8 +28,11 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_ComercialPrincipal_Vista. Clase que hereda de JDialog.
+ * Corresponde a la Interfaz principal del empleado Comercial.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public final class MVC_ComercialPrincipal_Vista extends JDialog {
 
@@ -165,34 +168,54 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         panel1.add(pListado, BorderLayout.SOUTH);
 
     }
-
+    /**
+     * 
+     * @return Devuelve la fecha insertado
+     */
     public Date getFecha() {
         return calendar.getDate();
     }
-
+    /**
+     * 
+     * @return Devuelve el código de cliente insertado
+     */
     public String getCodigoCliente() {
         return codClienteJ.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el código de reparación insertado
+     */
     public int getCodigoRepF() {
         int codRepN = Integer.parseInt(codigoRepJ.getText());
         return codRepN;
     }
-
+    /**
+     * 
+     * @return Devuelve el importe de la factura insertado
+     */
     public float getImporteF() {
         Float importF = Float.parseFloat(importeJ.getText());
         return importF;
     }
-
+    /**
+     * Método que lanza un mensaje de error.
+     * @param mensajeError Contiene el mensaje de error
+     */
     public void mostrarErroresPanelComercial(String mensajeError) {
         JOptionPane.showMessageDialog(this, mensajeError);
     }
-
+    /**
+     * Método que escucha los botones 
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addEventosBotonesPComercial(ActionListener escucharBoton) {
         anadir.addActionListener(escucharBoton);
         buscarCliente.addActionListener(escucharBoton);
     }
-
+    /**
+     * Método que actualiza la tabla
+     */
     public void actualizarTablaFacturas() {
         t.actualizarTabla();
     }
@@ -238,27 +261,44 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         panel2.add(pListadoCli, BorderLayout.SOUTH);
 
     }
-
+    /**
+     * 
+     * @return Devuelve el nombre insertado del cliente
+     */
     public String getNombre() {
         return nombreCliJ.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve los apellidos insertado del cliente
+     */
     public String getApellidos() {
         return apellidosCliJ.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el dni insertado del cliente
+     */
     public String getDni() {
         return dniCliJ.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el cód postal del cliente insertado
+     */
     public String getCodPostal() {
         return cod_postalCliJ.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el teléfono del cliente insertado
+     */
     public String getTelefono() {
         return telefonoCliJ.getText();
     }
-    
+    /**
+     * Método que limpia los campos de los clientes
+     */
     public void limpiarCamposClientes(){
         nombreCliJ.setText("");
         apellidosCliJ.setText("");
@@ -269,18 +309,23 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         modificarCli.setEnabled(false);
         bajaCli.setEnabled(false);
     }
-
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addEventosClientes(ActionListener escucharBoton) {
         anadirCli.addActionListener(escucharBoton);
         modificarCli.addActionListener(escucharBoton);
         bajaCli.addActionListener(escucharBoton);
         resetCli.addActionListener(escucharBoton);
     }
-
+    /**
+     * Método que actualiza la tabla clientes 
+     */
     public void actualizarTablaClientes() {
         tCli.actualizarTablaClientes();
     }
-
+    //Crear página 3
     public void createPage3() {
         JLabel label = new JLabel("Búsqueda");
         label.setHorizontalTextPosition(JLabel.TRAILING);
@@ -306,25 +351,41 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         panel3.add(panelBusq, BorderLayout.NORTH);
         panel3.add(pRep, BorderLayout.NORTH);
     }
-
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addEventosBusquedaFacturas(ActionListener escucharBoton) {
         mostrarFechas.addActionListener(escucharBoton);
         mostrarCodPos.addActionListener(escucharBoton);
         mostrarRepNoFac.addActionListener(escucharBoton);
     }
-
+    /**
+     * 
+     * @return Devuelve la fecha inicial seleccionada para la búsqueda
+     */
     public Date getFechaPrimera() {
         return primFras.getDate();
     }
-
+    /**
+     * 
+     * @return Devuelve la fecha ultima seleccionada para la búsqueda
+     */
     public Date getFechaUltima() {
         return ultiFras.getDate();
     }
-
+    /**
+     * 
+     * @return Devuelve el código postal 
+     */
     public String getCodPostalListadoFras() {
         return frasCodPos.getText();
     }
-
+    /**
+     * Método que muesta la tablafechas
+     * @param fecha1 corresponde a la fecha inicial
+     * @param fecha2 corresponde a la fecha final
+     */
     public void mostrarTablaFechas(Date fecha1, Date fecha2) {
         java.sql.Date fechaI = convertirFecha(fecha1);
         java.sql.Date fechaU = convertirFecha(fecha2);
@@ -338,15 +399,23 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         fLisFrasFechas.setResizable(false);
         fLisFrasFechas.setVisible(true);
     }
-
+    /**
+     * Método que vacía la tabla fechas
+     */
     public void vaciarTablaFechas(){
         tFacFechas.vaciarTabla();
     }
-    
+    /**
+     * Método que convierte la fecha date java util a java sql
+     * @param date Se le pasa fecha date java util
+     * @return devuelve fecha convertida en sql
+     */
     public java.sql.Date convertirFecha(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
-
+    /**
+     * Método que muestra tabla reparaciones
+     */
     public void mostrarTablaReparaciones() {
         JFrame fReparaciones = new JFrame();
         
@@ -357,11 +426,16 @@ public final class MVC_ComercialPrincipal_Vista extends JDialog {
         fReparaciones.setResizable(false);
         fReparaciones.setVisible(true);
     }
-    
+    /**
+     * Método que vacia tabla reparaciones
+     */
     public void vaciarTablaReparaciones(){
         tRepa.vaciarTabla();
     }
-
+    /**
+     * Método que muestra la tabla facturas 
+     * @param cod_postal Corresponde al código postal del cliente
+     */
     public void mostrarTablaFacturas(String cod_postal) {
         JFrame fFacCodPostal = new JFrame();
 

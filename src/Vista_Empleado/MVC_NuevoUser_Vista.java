@@ -20,9 +20,12 @@ import javax.swing.WindowConstants;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_NuevoUser_Vista. 
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_NuevoUser_Vista extends JFrame{
     JFrame fNuevoUsuario=new JFrame();
     JPanel pArribaNuevoUsuario=new JPanel();
@@ -61,24 +64,45 @@ public class MVC_NuevoUser_Vista extends JFrame{
         fNuevoUsuario.add(pAbajoNuevoUsuario, BorderLayout.SOUTH);
         fNuevoUsuario.setVisible(true);
     }
-    
+    /**
+     * 
+     * @return Devuelve el nombre del usuario 
+     */
     public String getNombreNuevoUsuario(){
         return jNombreUsuario.getText();
     }
+    /**
+     * 
+     * @return Devuelve la pass del usuario
+     */
     public String getPassNuevoUsuario(){
         return jPassUsuario.getText();
     }
+    /**
+     * 
+     * @return Devuelve el tipo de usuario
+     */
     public String getTipoNuevoUsuario(){
         String choice = buttonGroup.getSelection().getActionCommand();
         return choice;
     }
+    /**
+     * Método que escucha botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addAnadirUsuario(ActionListener escucharBoton){
         anadirNuevo.addActionListener(escucharBoton);
     } 
-    
+    /**
+     * Método que lanza un mensaje de error
+     * @param mensajeError Contiene el mensaje de error
+     */
     public void mostrarErrores(String mensajeError){
         JOptionPane.showMessageDialog(this, mensajeError);    
     }
+    /**
+     * Método que cierra la ventana
+     */
     public void cerrarVentana(){
         fNuevoUsuario.dispose();
     }

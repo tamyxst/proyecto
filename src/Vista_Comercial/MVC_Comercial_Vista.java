@@ -5,7 +5,6 @@
  */
 package Vista_Comercial;
 
-import Proyecto.CreaUI;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,15 +13,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Comercial_Vista Clase que hereda de JFrame. 
+ * Corresponde a la Interfaz visual de Busqueda Clientes por dni.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
-public class MVC_Comercial_Vista extends JFrame{
+
+/*public class MVC_Comercial_Vista extends JFrame{
 
     JFrame fComercial = new JFrame("Menu Comercial");
     JPanel pComercial = new JPanel();
     JButton facturas = new JButton("Facturas");
-    JButton futuro = new JButton("XXXXX");
+    //JButton futuro = new JButton("XXXXX");
 
     public MVC_Comercial_Vista() {
         fComercial.setTitle("Menu Comercial");
@@ -50,4 +53,4 @@ public class MVC_Comercial_Vista extends JFrame{
         facturas.addActionListener(escucharBotonComercial);
         futuro.addActionListener(escucharBotonComercial);
     } 
-}
+}*/

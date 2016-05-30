@@ -6,7 +6,6 @@
 package Vista_Empleado;
 
 import Controlador_Empleado.MVC_NuevoUser_Controlador;
-import Modelo_Comercial.MVC_GestionC_Modelo;
 import Proyecto.CreaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -21,9 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author milla_000
+ * Clase MVC_Login_Vista. 
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
+
 public class MVC_Login_Vista extends JFrame {
     MVC_NuevoUser_Controlador control;
     JFrame f = new JFrame();
@@ -65,23 +67,37 @@ public class MVC_Login_Vista extends JFrame {
         f.setVisible(true);
 
     }
-
+    /**
+     * 
+     * @return Devuelve el nombre del empleado 
+     */
     public String getNombre() {
         return jUsuario.getText();
     }
-
+    /**
+     * 
+     * @return Devuelve el pass del empleado
+     */
     public String getPass() {
         return jpass.getText();
     }
-
+    /**
+     * Método que escucha los botones
+     * @param escucharBoton de tipo ActionListener
+     */
     public void addValidarUsuario(ActionListener escucharBoton) {
         validar.addActionListener(escucharBoton);
     }
-
+    /**
+     * Método que muestra el mensaje de error
+     * @param mensajeError 
+     */
     public void mostrarErrores(String mensajeError) {
         JOptionPane.showMessageDialog(this, mensajeError);
     }
-
+    /**
+     * Método que cierra la ventana
+     */
     public void cerrarVentana(){
         f.dispose();
     }

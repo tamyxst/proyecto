@@ -10,53 +10,53 @@ import java.sql.Date;
 import java.util.Calendar;
 
 /**
+ * Clase DJFechasCalen
  *
- * @author milla_000
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public class DJFechasCalen {
+
+    Calendar calendar = Calendar.getInstance();
     
-Calendar calendar = Calendar.getInstance();
+    //Constructor
+    public DJFechasCalen() {
 
- public DJFechasCalen() {
+    }
+    
+    public boolean isSpecial(Date date) {
+        calendar.setTime(date);
+        return calendar.get(Calendar.MONTH) == Calendar.DECEMBER
+                && calendar.get(Calendar.DAY_OF_MONTH) == 24;
+    }
+    
+    public Color getSpecialForegroundColor() {
+        return Color.GREEN;
+    }
 
- }
+    public Color getSpecialBackroundColor() {
+        return Color.WHITE;
+    }
 
- public boolean isSpecial(Date date) {
-  calendar.setTime(date);
-  return calendar.get(Calendar.MONTH) == Calendar.DECEMBER
-    && calendar.get(Calendar.DAY_OF_MONTH) == 24;
- }
- 
- 
+    public String getSpecialTooltip() {
+        return "Es Navidad por fin";
+    }
 
- public Color getSpecialForegroundColor() {
-  return Color.GREEN;
- }
+    public boolean isInvalid(Date date) {
+        calendar.setTime(date);
+        return calendar.get(Calendar.MONTH) == Calendar.JANUARY
+                && calendar.get(Calendar.DAY_OF_MONTH) == 01;
+    }
 
- public Color getSpecialBackroundColor() {
-  return Color.WHITE;
- }
+    public Color getInvalidForegroundColor() {
+        return Color.WHITE;
+    }
 
- public String getSpecialTooltip() {
-  return "Es Navidad";
- }
+    public Color getInvalidBackroundColor() {
+        return Color.BLACK;
+    }
 
- public boolean isInvalid(Date date) {
-  calendar.setTime(date);
-  return calendar.get(Calendar.MONTH) == Calendar.JANUARY
-    && calendar.get(Calendar.DAY_OF_MONTH) == 01;
- }
-
- public Color getInvalidForegroundColor() {
-  return Color.WHITE;
- }
-
- public Color getInvalidBackroundColor() {
-  return Color.BLACK;
- }
-
- public String getInvalidTooltip() {
-  return "No es día Laborable";
- }
+    public String getInvalidTooltip() {
+        return "No es un día Laborable";
+    }
 }
-  

@@ -11,11 +11,16 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- *
- * @author milla_000
+ * Clase DJCalendar.
+ * 
+ * @author Tamara Gascón Moreno
+ * @version Tienda Reparaciones 1.0 Mayo 2016
  */
 public class DJCalendar {
-    
+    /**
+     * Método que añade al calendario fechas especiales.
+     * @return Devuelve fechas especiales
+     */
     public static List fechasEspeciales() {
         List fechas = new ArrayList();
 
@@ -35,7 +40,6 @@ public class DJCalendar {
 
     public static List tipFechas() {
         List tips = new ArrayList();
-
         tips.add("Diciembre 25");
         tips.add("Enero 5");
         tips.add("Agosto 15");
