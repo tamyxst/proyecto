@@ -23,33 +23,40 @@ Habrá acceso restringido a determinadas características.
 La aplicación permitirá una serie de opciones a los empleados y la realización de informes dentro de la aplicación. Estas opciones e informes estarán enfocados en su primera versión a:
 
 **Técnico**
+
 El técnico puede añadir, modificar, dar de baja reparaciones. También puede añadir Clientes.
 El técnico tendrá la opción de cargar o guardar desde un .txt las reparaciones.
 
 **Comercial**
+
 El comercial puede añadir, modificar, dar de baja Clientes. También puede añadir facturas.
 Además, podrá buscar clientes por dni, realizar búsquedas de facturas por código postal del cliente, por fechas, localizar las reparaciones que no estén facturadas y exportar los datos en xml.
 
 ##Especificaciones a tener en cuenta
 
 **Facturas**
+
 Al insertar una nueva factura, el código de reparación (identificador) dará error sino existe la reparación en la tabla reparaciones.
 Al insertar una factura, el código de reparación (identificador) dará error si éste ya ha sido facturado (true) en la tabla reparaciones.
 Al insertar una factura, el código cliente (identificador) dará error sino existe el cliente en la tabla clientes.
 Al realizarse una factura, automáticamente el código de reparación correspondiente se pone en facturado(true).
 
 **Clientes**
+
 Al insertar un cliente con un dni duplicado en la tabla clientes dará error.
 Al insertar un cliente con un dni no válido dará error.
 
 **Comercial**
+
 El comercial puede exportar en un fichero .xml las reparaciones no facturadas facturarlas.
 
 **Técnico**
+
 El técnico puede importar y exportar datos en un fichero .txt de la misma estructura.
 NOTA: Al importar las reparaciones sólo se importarán aquellas de los clientes que existan.
 
 **Opción modificar**
+
 Al pulsar sobre una fila de la tabla, los datos de la tabla clientes o reparaciones aparecerán en los campos del formulario para ser modificados, salvo aquellos que no deban serlo. 
 
 
