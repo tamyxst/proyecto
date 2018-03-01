@@ -1,4 +1,4 @@
-# Proyecto JAVA - Aplicación que gestiona las reparaciones de ordenadores, clientes y facturas.
+# Primer Proyecto en JAVA - Aplicación que gestiona las reparaciones de ordenadores, clientes y facturas.
 Se describe la creación de una aplicación o programa que puede ser implementada en un pequeño comercio que se dedique a la reparación de productos informáticos.
 
 [![img.jpg](https://s13.postimg.org/57yi2ciw7/img.jpg)](https://postimg.org/image/e2zccv7oj/)
