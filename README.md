@@ -1,4 +1,4 @@
-# proyecto.
+# Proyecto JAVA - Aplicación que gestiona las reparaciones de ordenadores, clientes y facturas.
 Se describe la creación de una aplicación o programa que puede ser implementada en un pequeño comercio que se dedique a la reparación de productos informáticos.
 
 [![img.jpg](https://s13.postimg.org/57yi2ciw7/img.jpg)](https://postimg.org/image/e2zccv7oj/)
@@ -13,7 +13,7 @@ De los clientes interesa saber: Código cliente, nombre, apellidos, teléfono, c
 Se necesita llevar un control de las reparaciones que se lleva en el taller y que técnico las lleva a cabo. De las reparaciones interesa saber:
 Código de reparación, fecha de entrada, fecha de entrega, código del cliente, el problema que describe dicho técnico y la solución.
 
-##Perfil de usuario
+##Perfiles de usuario
 Para la seguridad de los datos, los usuarios se identificarán mediante usuario y contraseña en la aplicación.
 Al iniciar la aplicación aparecerá el menú login. Al crear el usuario se seleccionará un rol específico de administración: comercial o técnico.
 La contraseña deberá empezar por una o varias mayúsculas, dos minúsculas, 0 o más caracteres alfanuméricos, 2 o más dígitos y terminar con el símbolo del dólar. Además por lo menos debe tener 8 caracteres.
